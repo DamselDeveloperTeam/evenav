@@ -30,13 +30,14 @@ class SystemsView: UIView {
         NSLog("Drawing connections(size: \(Connectors.count)");
         for ix in 0 ... Connectors.count - 1 {
             n += 1;
-            NSLog("Drew connection: \(n)")
+            //NSLog("Drew connection: \(n)")
             Connectors[ix].plot()
         }
-     
+        NSLog("...done.")
 
         //  Drawing systems and their names according to Systems array.
-        UIColor.cyan.setStroke()
+        //UIColor.cyan.setStroke()
+        NSLog("Drawing systems and system names...")
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
             Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
@@ -47,6 +48,7 @@ class SystemsView: UIView {
             newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 18)
             self.addSubview(newLabel)
         }
+        NSLog("...done.")
 
     }
 }

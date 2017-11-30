@@ -229,7 +229,7 @@ class DataBase {
     
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
-        let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
+        //let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
         
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM System;";
@@ -244,7 +244,7 @@ class DataBase {
                     //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                    newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                    newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
 
                     Systems.append(newSystem)
@@ -273,7 +273,7 @@ class DataBase {
                     //newConnection.targetX = con.pX;
                     newConnection.targetX = origin + (con.pX / coordinateScale);
                     //newConnection.targetY = con.pY;
-                    newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
+                    newConnection.targetY = origin - (con.pY / coordinateScaleY);
                     
                     Connectors.append(newConnection);
                 }
@@ -328,7 +328,7 @@ class DataBase {
     }
     
     func convertY(posY: Int) -> Int {
-        return origin + (posY / (Int(Double(coordinateScale)/3.5)));
+        return origin - (posY / coordinateScaleY);
     }
     
     
