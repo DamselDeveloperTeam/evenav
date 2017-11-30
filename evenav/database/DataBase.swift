@@ -1,0 +1,336 @@
+//
+//  DataBase.swift
+//  EveDatabase
+//
+//  Created by Koulutus on 8.11.2017.
+//  Copyright © 2017 ?. All rights reserved.
+//
+
+/*
+Files needed to use the functionality of this class:
+fmdb folder (remember bridging header!)
+eveDB.db
+System.swift file
+*/
+
+
+import Foundation
+
+class DataBase {
+    static let sharedInstance = DataBase();
+    private var connectionToFMDB: FMDatabase;
+    private let mainPath: URL! = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first;
+    private let dbPath: String;
+    
+    private struct table_system {
+        static let ID: String = "system_id";
+        static let name: String = "name";
+        static let pX: String = "positionX";
+        static let pY: String = "positionY";
+        static let pZ: String = "positionZ";
+    }
+    
+    private struct table_connections {
+        static let ID: String = "connection_id";
+        static let from: String = "system_from";
+        static let to: String = "system_to";
+    }
+
+    func displayDBPath() {
+        NSLog(self.dbPath);
+    }
+
+    init() {
+        let databasePath: String? = Bundle.main.path(forResource: "EveDB", ofType: "db");
+
+        self.dbPath = databasePath!;
+        //NSLog("Database path: \(self.dbPath)");
+        
+        self.connectionToFMDB = FMDatabase(path: self.dbPath);
+ 
+        displayDBPath();
+        /*
+        self.dbPath = mainPath.appendingPathComponent("EveDB.db").path;
+        
+        if !FileManager.default.fileExists(atPath: dbPath){
+            self.connectionToFMDB = FMDatabase(path: dbPath);
+            
+            if (self.connectionToFMDB.open()) {
+                connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", withArgumentsIn: []);
+                
+                connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS System(" +
+                    "system_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
+                    "name TEXT NOT NULL," +
+                    "positionX INTEGER NOT NULL," +
+                    "positionY INTEGER NOT NULL," +
+                    "positionZ INTEGER NOT NULL);"
+                );
+                
+                connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS Connections(" +
+                    "connection_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
+                    "system_from INTEGER NOT NULL," +
+                    "system_to INTEGER NOT NULL," +
+                    "FOREIGN KEY(system_from) REFERENCES System(system_id)," +
+                    "FOREIGN KEY(system_to) REFERENCES System(system_id)," +
+                    "UNIQUE (system_from, system_to) ON CONFLICT IGNORE);"
+                );
+                
+                //insertTestData();
+                self.connectionToFMDB.close();
+            }
+        }else {
+            self.connectionToFMDB = FMDatabase(path: dbPath);
+        }
+         */
+    }
+    
+    private func insertTestData() {
+        connectionToFMDB.executeStatements("INSERT INTO System (system_id, name, PositionX, PositionY, PositionZ) VALUES (1, 'system1', 1, 1, 1);");
+        connectionToFMDB.executeStatements("INSERT INTO System (system_id, name, PositionX, PositionY, PositionZ) VALUES (2, 'system2', 2, 2, 2);");
+        connectionToFMDB.executeStatements("INSERT INTO System (system_id, name, PositionX, PositionY, PositionZ) VALUES (3, 'system3', 3, 3, 3);");
+        connectionToFMDB.executeStatements("INSERT INTO Connections (system_from, system_to) VALUES (1 , 2);");
+        connectionToFMDB.executeStatements("INSERT INTO Connections (system_from, system_to) VALUES (1 , 3);");
+    }
+    
+    func openDataBase() -> Bool {
+        if !FileManager.default.fileExists(atPath: dbPath){ return false }
+        if(self.connectionToFMDB.open()){
+            do {
+                try self.connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", values: nil);
+            } catch {
+                NSLog("Database opening failed: \(error.localizedDescription)");
+                return false
+            }
+            return true
+        }
+        return false
+    }
+    
+    func closeDatabase() {
+        self.connectionToFMDB.close();
+    }
+    
+    func addSystem(system: System) -> Bool {
+        var succesfull: Bool = false;
+        
+        if openDataBase() {
+            succesfull = connectionToFMDB.executeStatements("INSERT INTO System (" +
+                "system_id, name, PositionX, PositionY, PositionZ) VALUES (" +
+                "\(system.id), '\(system.name)', \(system.pX), \(system.pY), \(system.pZ));"
+            );
+            closeDatabase();
+        }
+        
+        return succesfull;
+    }
+    
+    func addConnection (from: Int, to: Int) -> Bool {
+        var succesfull: Bool = false;
+        
+        if from == to {
+            NSLog("Error, system cannot be connected to itself.");
+            return false
+        }
+        
+        if openDataBase() {
+            succesfull = connectionToFMDB.executeStatements(
+                "INSERT INTO Connections (system_from, system_to) " +
+                "SELECT \(from), \(to) WHERE NOT EXISTS(" +
+                "SELECT system_from, system_to FROM Connections WHERE system_from=\(to) AND system_to=\(from));"
+            );
+            closeDatabase();
+        }
+        
+        return succesfull
+    }
+    
+    private func generateSystem(result: FMResultSet) -> System {
+        let system = System(id: Int(result.int(forColumn: table_system.ID)),
+                        name: result.string(forColumn: table_system.name)!,
+                        pX: Int(result.int(forColumn: table_system.pX)),
+                        pY: Int(result.int(forColumn: table_system.pY)),
+                        pZ: Int(result.int(forColumn: table_system.pZ)));
+        return system
+    }
+    
+    
+    /*
+     Usage example:
+     if let system = DataBase.sharedInstance.getSystemByName(name: "name of system") {
+         // Access found system here (ex. system.name).
+     }else {
+         // No such system found.
+     }
+     */
+    func getSystemByName(name: String) -> System? {
+        var system: System?;
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM System WHERE name=?;";
+            
+            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [name]) {
+                if resultSet.next() == true{
+                    system = generateSystem(result: resultSet);
+                };
+                resultSet.close();
+            }
+            closeDatabase();
+        }
+        
+        return system;
+    }
+    
+    func getSystemByID(ID: Int) -> System? {
+        var system: System?;
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM System WHERE system_id=?;";
+            
+            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [ID]) {
+                if resultSet.next() == true{
+                    system = generateSystem(result: resultSet);
+                };
+                resultSet.close();
+            }
+            closeDatabase();
+        }
+        
+        return system;
+    }
+    
+    /*
+     Usage example:
+     if let systems = DataBase.sharedInstance.getConnectionsTo(system: system) {
+         // Access connected systems array here (ex. for sys in systems {sys.name;}).
+     }else {
+         // No connected systems found.
+     }
+     */
+    func getConnectionsTo(system: System) -> [System]? {
+        var systems: [System]?;
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM System, Connections WHERE " +
+            "Connections.system_from=? AND Connections.system_to=System.system_id OR " +
+            "Connections.system_from=System.system_id AND Connections.system_to=?;";
+            
+            if let resultSet: FMResultSet = self.connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [system.id, system.id]) {
+                while resultSet.next() == true{
+                    if systems == nil {systems = [];}
+                    systems?.append(generateSystem(result: resultSet));
+                }
+                resultSet.close();
+            }
+            closeDatabase();
+        }
+        
+        return systems
+    }
+    
+    //  Function reads systems data from database and stores it to an array of system objects.
+    func CreateSystemsArray() {
+        let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM System;";
+            //let sqlStatement: String = "SELECT * FROM System WHERE name LIKE 'Ta%';";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
+                
+                while results.next() {
+                    let newSystem = SystemButton() as SystemButton
+                    newSystem.id = Int(results.int(forColumn: "system_id"))
+                    //newSystem.color = UIColor.white
+                    newSystem.name = results.string(forColumn: "name")!
+                    newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                    newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                    newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
+
+                    Systems.append(newSystem)
+                }
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            
+            closeDatabase();
+        }
+        
+    }
+    
+    // Old ConnectorArray creator.
+    func CreateConnectionsArray() {
+        for sys in Systems {
+            if let connections = DataBase.sharedInstance.getConnectionsTo(system: System(id: sys.id, name: "", pX: 0, pY: 0, pZ: 0)) {
+                // Access connected systems array here.
+                for con in connections {
+                    let newConnection: SystemConnector = SystemConnector();
+                    newConnection.connection_id = [sys.id, con.id];
+                    newConnection.sourceX = sys.posX;
+                    newConnection.sourceY = sys.posY;
+                    //newConnection.targetX = con.pX;
+                    newConnection.targetX = origin + (con.pX / coordinateScale);
+                    //newConnection.targetY = con.pY;
+                    newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
+                    
+                    Connectors.append(newConnection);
+                }
+            }else {
+                // No connected systems found.
+                NSLog("No connections found for \(sys.name)(\(sys.id))");
+            }
+            
+        }
+    }
+    
+    // Newer ConnectorArray creator.
+    func CreateConnectorArray() {
+        var from: [Int] = [];
+        var to: [Int] = [];
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM Connections;";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
+                
+                while results.next() {
+                    from.append(Int(results.int(forColumn: table_connections.from)));
+                    to.append(Int(results.int(forColumn: table_connections.to)));
+                }
+                
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            
+            closeDatabase();
+        }
+        
+        for index in 0..<from.count {
+            if let systemFrom = getSystemByID(ID: from[index]), let systemTo = getSystemByID(ID: to[index]) {
+                let newConnection: SystemConnector = SystemConnector();
+                newConnection.connection_id = [from[index], to[index]];
+                newConnection.sourceX = convertX(posX: systemFrom.pX);
+                newConnection.sourceY = convertY(posY: systemFrom.pY);
+                newConnection.targetX = convertX(posX: systemTo.pX);
+                newConnection.targetY = convertY(posY: systemTo.pY);
+                Connectors.append(newConnection);
+            }
+        }
+    }
+    
+    func convertX(posX: Int) -> Int {
+        return origin + (posX / coordinateScale);
+    }
+    
+    func convertY(posY: Int) -> Int {
+        return origin + (posY / (Int(Double(coordinateScale)/3.5)));
+    }
+    
+    
+}
+
