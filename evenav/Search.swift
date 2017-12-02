@@ -11,9 +11,10 @@ import Foundation
 //  Locate system name from Systems table and return index.
 public func locateSystemIndex(systemNameToSearch: String) -> Int {
     var foundIndex : Int = -1
+    let nameToSearch: String = systemNameToSearch.uppercased()
     
     for ix in 0 ... Systems.count - 1 {
-        if Systems[ix].name == systemNameToSearch {
+        if Systems[ix].name.uppercased() == nameToSearch {
             foundIndex = ix
             return (foundIndex)
         }

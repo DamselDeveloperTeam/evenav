@@ -12,8 +12,7 @@ public let nc = NotificationCenter.default
 
 public var focusOnSystem : Int = -1 {
     willSet(newSystemIndex) {
-        print("About to set system index to \(newSystemIndex)")
-        nc.post(name: Notification.Name("focusToSystem"), object: nil)
+        //nc.post(name: Notification.Name("focusToSystem"), object: nil)
     }
 }
 
@@ -32,7 +31,6 @@ class ScrollView: UIScrollView {
     }
 
     @objc func focusToSystem() {
-        NSLog("notification triggered")
-        setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY), animated: false)
+        setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY), animated: true)
     }
 }

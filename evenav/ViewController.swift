@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         if (currentSystemIndex >= 0) {
             print("system:", sender.text!, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "focusOnCurrentSystem"), object: nil)
+            nc.post(name: Notification.Name("focusToSystem"), object: nil)
         } else {
             print("system '\(String(describing: sender.text))' not found")
         }

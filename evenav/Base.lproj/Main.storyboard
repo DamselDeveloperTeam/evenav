@@ -55,7 +55,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartQuotesType="no"/>
                                         <connections>
                                             <action selector="sourceSystem:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="0j3-MX-rij"/>
                                         </connections>
@@ -67,7 +67,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartQuotesType="no"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.2912868924" alpha="1" colorSpace="calibratedWhite"/>
