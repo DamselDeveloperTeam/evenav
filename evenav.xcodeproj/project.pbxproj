@@ -13,6 +13,7 @@
 		401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B711FD02BBA0077F5BF /* FMResultSet.m */; };
 		401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B741FD02BBB0077F5BF /* FMDatabase.m */; };
 		773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773300E11FD0475F00970D6E /* SystemLabel.swift */; };
+		7751F1291FD2CF75000F1516 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751F1281FD2CF75000F1516 /* Search.swift */; };
 		775954731FCADB7A00C92A1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954721FCADB7A00C92A1A /* AppDelegate.swift */; };
 		775954751FCADB7A00C92A1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954741FCADB7A00C92A1A /* ViewController.swift */; };
 		775954781FCADB7A00C92A1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 775954761FCADB7A00C92A1A /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		401A5B741FD02BBB0077F5BF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		401A5B7A1FD02BF40077F5BF /* evenav-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "evenav-Bridging-Header.h"; sourceTree = "<group>"; };
 		773300E11FD0475F00970D6E /* SystemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLabel.swift; sourceTree = "<group>"; };
+		7751F1281FD2CF75000F1516 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		7759546F1FCADB7A00C92A1A /* evenav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = evenav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		775954721FCADB7A00C92A1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		775954741FCADB7A00C92A1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				775954871FCADF0C00C92A1A /* ScrollView.swift */,
 				775954891FCADFAE00C92A1A /* SystemsView.swift */,
 				773300E11FD0475F00970D6E /* SystemLabel.swift */,
+				7751F1281FD2CF75000F1516 /* Search.swift */,
 				7759548B1FCAE03200C92A1A /* SystemButton.swift */,
 				7759548D1FCAE07000C92A1A /* SystemConnector.swift */,
 				7759547C1FCADB7A00C92A1A /* Assets.xcassets */,
@@ -217,6 +220,7 @@
 				773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */,
 				7759547B1FCADB7A00C92A1A /* evenav.xcdatamodeld in Sources */,
 				401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */,
+				7751F1291FD2CF75000F1516 /* Search.swift in Sources */,
 				401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */,
 				401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */,
 				775954901FCAE0A400C92A1A /* DebugClasses.swift in Sources */,

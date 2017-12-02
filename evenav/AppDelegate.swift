@@ -12,8 +12,10 @@ import CoreData
 public let coordinateScale : Int = 130
 //public let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
 public let coordinateScaleY : Int = coordinateScale
+public var currentSystemIndex : Int = -1
 public let origin : Int = 4096
 public let systemButtonSize : Int = 8
+public let notificationCenter = NotificationCenter()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
