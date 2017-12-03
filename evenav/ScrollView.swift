@@ -10,20 +10,12 @@ import UIKit
 
 public let nc = NotificationCenter.default
 
-public var focusOnSystem : Int = -1 {
-    willSet(newSystemIndex) {
-        //nc.post(name: Notification.Name("focusToSystem"), object: nil)
-    }
-}
-
 class ScrollView: UIScrollView {
 
     override func draw(_ rect: CGRect) {
         print("SCROLLVIEW")
         
-        // Set up local notifications.
-        //let nc = NotificationCenter.default
-        //nc.post(name: Notification.Name("focusToSystem"), object: nil)
+        // Local notification observer for focusToSystem.
         nc.addObserver(self, selector: #selector(focusToSystem), name: Notification.Name("focusToSystem"), object: nil)
         
         //  Set map initial focus.

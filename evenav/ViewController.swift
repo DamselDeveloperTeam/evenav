@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     func initiateSearch(systemName: String) {
         currentSystemIndex = -1
         currentSystemIndex = locateSystemIndex(systemNameToSearch: systemName)
+        focusOnSystem = -1
         if (currentSystemIndex >= 0) {
             NSLog("system:", systemName, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
