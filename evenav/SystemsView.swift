@@ -48,6 +48,5 @@ class SystemsView: UIView {
             self.addSubview(newLabel)
         }
         NSLog("...done.")
-
     }
 }

@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         initiateSearch(systemName: sender.text!)
     }
     
+    //  Search system name from Systems array and trigger notification to focus map onto it.
     func initiateSearch(systemName: String) {
         currentSystemIndex = -1
         currentSystemIndex = locateSystemIndex(systemNameToSearch: systemName)
@@ -39,7 +40,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
