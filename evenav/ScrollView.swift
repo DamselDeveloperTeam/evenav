@@ -9,6 +9,10 @@
 import UIKit
 
 public let nc = NotificationCenter.default
+let screenSize = UIScreen.main.bounds
+let screenWidth : Int = Int(screenSize.width)
+let screenHeight : Int = Int(screenSize.height)
+let verticalOffset : Int = TopBarHeight / 2
 
 class ScrollView: UIScrollView {
 
@@ -23,6 +27,7 @@ class ScrollView: UIScrollView {
     }
 
     @objc func focusToSystem() {
-        setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY), animated: true)
+        //setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY), animated: true)
+        setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX - (Int(screenWidth) / 2), y: Systems[currentSystemIndex].posY + verticalOffset - (Int(screenHeight) / 2)), animated: true)
     }
 }

@@ -20,7 +20,6 @@ class SystemsView: UIView {
         self.isOpaque = true
         
         //  Appending systems and connectors to their respective arrays.
-        //FakeSystemsGenerator()
         DataBase.sharedInstance.CreateSystemsArray()
         //DataBase.sharedInstance.CreateConnectionsArray()
         DataBase.sharedInstance.CreateConnectorArray();
