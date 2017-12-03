@@ -68,6 +68,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartQuotesType="no"/>
+                                        <connections>
+                                            <action selector="targetSystem:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ImO-aS-dVm"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.2912868924" alpha="1" colorSpace="calibratedWhite"/>

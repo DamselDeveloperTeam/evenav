@@ -10,14 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBAction func sourceSystem(_ sender: UITextField) {
+        initiateSearch(systemName: sender.text!)
+    }
+    
+    @IBAction func targetSystem(_ sender: UITextField) {
+        initiateSearch(systemName: sender.text!)
+    }
+    
+    func initiateSearch(systemName: String) {
         currentSystemIndex = -1
-        currentSystemIndex = locateSystemIndex(systemNameToSearch: sender.text!)
+        currentSystemIndex = locateSystemIndex(systemNameToSearch: systemName)
         if (currentSystemIndex >= 0) {
-            print("system:", sender.text!, "system index:", currentSystemIndex)
+            NSLog("system:", systemName, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
             nc.post(name: Notification.Name("focusToSystem"), object: nil)
         } else {
-            print("system '\(String(describing: sender.text))' not found")
+            NSLog("system '\(String(describing: systemName))' not found")
         }
     }
     
