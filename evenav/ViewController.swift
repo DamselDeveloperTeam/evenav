@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    /*
     @IBAction func sourceSystem(_ sender: UITextField) {
         initiateSearch(systemName: sender.text!)
     }
+    */
+    @IBOutlet weak var sourceSystem: UISearchBar!
     
     @IBAction func targetSystem(_ sender: UITextField) {
         initiateSearch(systemName: sender.text!)

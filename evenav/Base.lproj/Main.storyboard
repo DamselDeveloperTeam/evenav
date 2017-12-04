@@ -48,20 +48,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n77-Ty-44L" userLabel="Top bar">
                                 <rect key="frame" x="0.0" y="20" width="320" height="48"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="y5h-4X-hW9" userLabel="sourceSystem">
-                                        <rect key="frame" x="16" y="9" width="120" height="30"/>
+                                    <searchBar contentMode="redraw" barStyle="black" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iau-6P-aOC" userLabel="sourceSystem" customClass="SourceSearchBar" customModule="evenav" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="eyI-hy-Trp"/>
+                                            <constraint firstAttribute="width" constant="150" id="V02-RN-JJj"/>
+                                            <constraint firstAttribute="height" constant="48" id="pno-iu-mfX"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartQuotesType="no"/>
-                                        <connections>
-                                            <action selector="sourceSystem:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="0j3-MX-rij"/>
-                                        </connections>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </searchBar>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="nX6-4y-9SQ" userLabel="targetSystem">
-                                        <rect key="frame" x="152" y="9" width="120" height="30"/>
+                                        <rect key="frame" x="166" y="9" width="120" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="mI2-nA-yoG"/>
                                         </constraints>
@@ -76,9 +72,9 @@
                                 <color key="backgroundColor" white="0.2912868924" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="nX6-4y-9SQ" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="IcG-iK-tVx"/>
-                                    <constraint firstItem="y5h-4X-hW9" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="eUS-Nd-hvz"/>
-                                    <constraint firstItem="y5h-4X-hW9" firstAttribute="leading" secondItem="n77-Ty-44L" secondAttribute="leading" constant="16" id="gCR-Z5-o5G"/>
-                                    <constraint firstItem="nX6-4y-9SQ" firstAttribute="leading" secondItem="y5h-4X-hW9" secondAttribute="trailing" constant="16" id="txZ-FF-DuR"/>
+                                    <constraint firstItem="Iau-6P-aOC" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="TZC-gX-gO8"/>
+                                    <constraint firstItem="nX6-4y-9SQ" firstAttribute="leading" secondItem="Iau-6P-aOC" secondAttribute="trailing" constant="16" id="nF5-Mn-N0w"/>
+                                    <constraint firstItem="Iau-6P-aOC" firstAttribute="leading" secondItem="n77-Ty-44L" secondAttribute="leading" id="ovo-oP-djT"/>
                                     <constraint firstAttribute="height" constant="48" id="uR8-T3-kfL"/>
                                 </constraints>
                             </view>
@@ -96,6 +92,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="sourceSystem" destination="Iau-6P-aOC" id="R1A-d4-HHj"/>
                         <outlet property="viewPinch" destination="bai-45-imm" id="rOd-uu-eZB"/>
                     </connections>
                 </viewController>
