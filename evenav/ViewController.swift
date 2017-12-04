@@ -17,6 +17,10 @@ class ViewController: UIViewController {
         initiateSearch(systemName: sender.text!)
     }
     
+    @IBOutlet weak var viewPinch: UIView!
+    var pinchGesture = UIPinchGestureRecognizer()
+
+    
     //  Search system name from Systems array and trigger notification to focus map onto it.
     func initiateSearch(systemName: String) {
         currentSystemIndex = -1
@@ -34,6 +38,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("VIEWCONTROLLER")
+        
+        // PINCH Gesture
+        pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.pinchedView))
+        viewPinch.isUserInteractionEnabled = true
+        viewPinch.addGestureRecognizer(pinchGesture)
+    }
+    
+    @objc func pinchedView(sender:UIPinchGestureRecognizer){
+        self.view.bringSubview(toFront: viewPinch)
+        sender.view?.transform = (sender.view?.transform)!.scaledBy(x: sender.scale, y: sender.scale)
+        sender.scale = 1.0
     }
 
     override func didReceiveMemoryWarning() {
