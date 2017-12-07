@@ -9,7 +9,9 @@
 import UIKit
 
 class SourceSearchBar: UISearchBar {
+    /*
     override func draw(_ rect: CGRect) {
         self.text = "kukku"
     }
+    */
 }

@@ -28,7 +28,18 @@
 		775954901FCAE0A400C92A1A /* DebugClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7759548F1FCAE0A400C92A1A /* DebugClasses.swift */; };
 		775954A41FCAFCF000C92A1A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954A31FCAFCF000C92A1A /* DataBase.swift */; };
 		775954A61FCAFCFF00C92A1A /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954A51FCAFCFF00C92A1A /* System.swift */; };
-		775954AA1FCB142A00C92A1A /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 775954A71FCAFD1800C92A1A /* EveDB.db */; };
+		77AEC33E1FD9860900C5C986 /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 77AEC33D1FD9860500C5C986 /* EveDB.db */; };
+		77AEC3411FD989AE00C5C986 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC33F1FD989AD00C5C986 /* Region.swift */; };
+		77AEC3421FD989AE00C5C986 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3401FD989AE00C5C986 /* Constellation.swift */; };
+		77AEC3441FD989D400C5C986 /* EveSystemConnectionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3431FD989D400C5C986 /* EveSystemConnectionFinder.swift */; };
+		77AEC3461FD989E100C5C986 /* JsonHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3451FD989E100C5C986 /* JsonHttpRequest.swift */; };
+		77AEC3481FD989F500C5C986 /* SystemDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3471FD989F500C5C986 /* SystemDataManager.swift */; };
+		77AEC34A1FD98A0300C5C986 /* SystemJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3491FD98A0300C5C986 /* SystemJSON.swift */; };
+		77AEC34C1FD98A1600C5C986 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC34B1FD98A1500C5C986 /* Position.swift */; };
+		77AEC34E1FD98A2500C5C986 /* RegionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC34D1FD98A2500C5C986 /* RegionDataManager.swift */; };
+		77AEC3501FD98A3200C5C986 /* RegionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC34F1FD98A3200C5C986 /* RegionJSON.swift */; };
+		77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */; };
+		77AEC3541FD98A4E00C5C986 /* ConstellationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +73,18 @@
 		7759548F1FCAE0A400C92A1A /* DebugClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugClasses.swift; sourceTree = "<group>"; };
 		775954A31FCAFCF000C92A1A /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		775954A51FCAFCFF00C92A1A /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
-		775954A71FCAFD1800C92A1A /* EveDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = EveDB.db; sourceTree = "<group>"; };
+		77AEC33D1FD9860500C5C986 /* EveDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = EveDB.db; sourceTree = "<group>"; };
+		77AEC33F1FD989AD00C5C986 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		77AEC3401FD989AE00C5C986 /* Constellation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
+		77AEC3431FD989D400C5C986 /* EveSystemConnectionFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EveSystemConnectionFinder.swift; sourceTree = "<group>"; };
+		77AEC3451FD989E100C5C986 /* JsonHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHttpRequest.swift; sourceTree = "<group>"; };
+		77AEC3471FD989F500C5C986 /* SystemDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemDataManager.swift; sourceTree = "<group>"; };
+		77AEC3491FD98A0300C5C986 /* SystemJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemJSON.swift; sourceTree = "<group>"; };
+		77AEC34B1FD98A1500C5C986 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		77AEC34D1FD98A2500C5C986 /* RegionDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionDataManager.swift; sourceTree = "<group>"; };
+		77AEC34F1FD98A3200C5C986 /* RegionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionJSON.swift; sourceTree = "<group>"; };
+		77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationDataManager.swift; sourceTree = "<group>"; };
+		77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +139,15 @@
 				775954A81FCAFD2800C92A1A /* database */,
 				401A5B691FD02B700077F5BF /* fmdb */,
 				775954721FCADB7A00C92A1A /* AppDelegate.swift */,
+				77AEC3431FD989D400C5C986 /* EveSystemConnectionFinder.swift */,
+				77AEC3451FD989E100C5C986 /* JsonHttpRequest.swift */,
+				77AEC3471FD989F500C5C986 /* SystemDataManager.swift */,
+				77AEC3491FD98A0300C5C986 /* SystemJSON.swift */,
+				77AEC34B1FD98A1500C5C986 /* Position.swift */,
+				77AEC34D1FD98A2500C5C986 /* RegionDataManager.swift */,
+				77AEC34F1FD98A3200C5C986 /* RegionJSON.swift */,
+				77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */,
+				77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */,
 				775954741FCADB7A00C92A1A /* ViewController.swift */,
 				775954761FCADB7A00C92A1A /* Main.storyboard */,
 				775954871FCADF0C00C92A1A /* ScrollView.swift */,
@@ -139,8 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				775954A31FCAFCF000C92A1A /* DataBase.swift */,
+				77AEC33D1FD9860500C5C986 /* EveDB.db */,
+				77AEC3401FD989AE00C5C986 /* Constellation.swift */,
+				77AEC33F1FD989AD00C5C986 /* Region.swift */,
 				775954A51FCAFCFF00C92A1A /* System.swift */,
-				775954A71FCAFD1800C92A1A /* EveDB.db */,
 			);
 			path = database;
 			sourceTree = "<group>";
@@ -205,7 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				775954AA1FCB142A00C92A1A /* EveDB.db in Resources */,
+				77AEC33E1FD9860900C5C986 /* EveDB.db in Resources */,
 				775954801FCADB7A00C92A1A /* LaunchScreen.storyboard in Resources */,
 				7759547D1FCADB7A00C92A1A /* Assets.xcassets in Resources */,
 				775954781FCADB7A00C92A1A /* Main.storyboard in Resources */,
@@ -220,22 +253,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				7759548E1FCAE07000C92A1A /* SystemConnector.swift in Sources */,
+				77AEC3461FD989E100C5C986 /* JsonHttpRequest.swift in Sources */,
+				77AEC34A1FD98A0300C5C986 /* SystemJSON.swift in Sources */,
 				773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */,
+				77AEC3441FD989D400C5C986 /* EveSystemConnectionFinder.swift in Sources */,
+				77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */,
+				77AEC3481FD989F500C5C986 /* SystemDataManager.swift in Sources */,
 				7759547B1FCADB7A00C92A1A /* evenav.xcdatamodeld in Sources */,
 				401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */,
+				77AEC3501FD98A3200C5C986 /* RegionJSON.swift in Sources */,
 				7751F1291FD2CF75000F1516 /* Search.swift in Sources */,
 				401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */,
 				7720565A1FD563D3000B0833 /* SourceSearchBar.swift in Sources */,
 				401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */,
+				77AEC3411FD989AE00C5C986 /* Region.swift in Sources */,
 				775954901FCAE0A400C92A1A /* DebugClasses.swift in Sources */,
 				775954A41FCAFCF000C92A1A /* DataBase.swift in Sources */,
 				775954881FCADF0C00C92A1A /* ScrollView.swift in Sources */,
 				401A5B761FD02BBB0077F5BF /* FMDatabaseQueue.m in Sources */,
+				77AEC34E1FD98A2500C5C986 /* RegionDataManager.swift in Sources */,
+				77AEC3421FD989AE00C5C986 /* Constellation.swift in Sources */,
 				775954751FCADB7A00C92A1A /* ViewController.swift in Sources */,
 				775954731FCADB7A00C92A1A /* AppDelegate.swift in Sources */,
 				401A5B751FD02BBB0077F5BF /* FMDatabaseAdditions.m in Sources */,
 				775954A61FCAFCFF00C92A1A /* System.swift in Sources */,
+				77AEC3541FD98A4E00C5C986 /* ConstellationJSON.swift in Sources */,
 				7759548C1FCAE03200C92A1A /* SystemButton.swift in Sources */,
+				77AEC34C1FD98A1600C5C986 /* Position.swift in Sources */,
 				7759548A1FCADFAE00C92A1A /* SystemsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TQU38TKLFN;
+				DEVELOPMENT_TEAM = 2KK8255Y2A;
 				INFOPLIST_FILE = evenav/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -394,7 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TQU38TKLFN;
+				DEVELOPMENT_TEAM = 2KK8255Y2A;
 				INFOPLIST_FILE = evenav/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

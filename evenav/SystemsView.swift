@@ -22,7 +22,7 @@ class SystemsView: UIView {
         //  Appending systems and connectors to their respective arrays.
         DataBase.sharedInstance.CreateSystemsArray()
         //DataBase.sharedInstance.CreateConnectionsArray()
-        DataBase.sharedInstance.CreateConnectorArray();
+        DataBase.sharedInstance.CreateConnectionsArray();
         
         //  Drawing connectors between systems according to Connectors array.
         var n: Int = 0;

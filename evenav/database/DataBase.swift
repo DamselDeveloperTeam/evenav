@@ -7,12 +7,11 @@
 //
 
 /*
-Files needed to use the functionality of this class:
-fmdb folder (remember bridging header!)
-eveDB.db
-System.swift file
-*/
-
+ Files needed to use the functionality of this class:
+ fmdb folder (remember bridging header!)
+ eveDB.db
+ System.swift file
+ */
 
 import Foundation
 
@@ -35,21 +34,44 @@ class DataBase {
         static let from: String = "system_from";
         static let to: String = "system_to";
     }
-
+    
+    private struct table_region {
+        static let ID: String = "region_id";
+        static let name: String = "name";
+        static let description: String = "description";
+    }
+    
+    private struct table_constellation {
+        static let ID: String = "constellation_id";
+        static let name: String = "name";
+        static let region_id: String = "region_id";
+        static let pX: String = "positionX";
+        static let pY: String = "positionY";
+        static let pZ: String = "positionZ";
+    }
+    
+    private struct table_regionConstellations {
+        static let region_id: String = "region_id";
+        static let constellation_id: String = "constellation_id";
+    }
+    
+    private struct table_constellationSystems {
+        static let constellation_id: String = "constellation_id";
+        static let system_id: String = "system_id";
+    }
+    
     func displayDBPath() {
         NSLog(self.dbPath);
     }
-
+    
     init() {
-        let databasePath: String? = Bundle.main.path(forResource: "EveDB", ofType: "db");
-
-        self.dbPath = databasePath!;
-        //NSLog("Database path: \(self.dbPath)");
-        
-        self.connectionToFMDB = FMDatabase(path: self.dbPath);
- 
-        displayDBPath();
         /*
+         let databasePath: String? = Bundle.main.path(forResource: "EveDB", ofType: "db");
+         
+         self.dbPath = databasePath!;
+         self.connectionToFMDB = FMDatabase.init(path: self.dbPath);
+         */
+        
         self.dbPath = mainPath.appendingPathComponent("EveDB.db").path;
         
         if !FileManager.default.fileExists(atPath: dbPath){
@@ -81,7 +103,48 @@ class DataBase {
         }else {
             self.connectionToFMDB = FMDatabase(path: dbPath);
         }
-         */
+        
+    }
+    
+    func createRegionConstellationTables() {
+        if (self.connectionToFMDB.open()) {
+            connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS Region(" +
+                "region_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
+                "name TEXT NOT NULL," +
+                "description TEXT NOT NULL);"
+            );
+            
+            connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS Constellation(" +
+                "constellation_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
+                "name TEXT NOT NULL," +
+                "region_id INTEGER NOT NULL," +
+                "positionX INTEGER NOT NULL," +
+                "positionY INTEGER NOT NULL," +
+                "positionZ INTEGER NOT NULL," +
+                "FOREIGN KEY(region_id) REFERENCES Region(region_id));"
+            );
+            
+            
+            connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS RegionConstellations(" +
+                "id_autoinc INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
+                "region_id INTEGER NOT NULL," +
+                "constellation_id INTEGER NOT NULL," +
+                "FOREIGN KEY(region_id) REFERENCES Region(region_id)," +
+                "FOREIGN KEY(constellation_id) REFERENCES Constellation(constellation_id)," +
+                "UNIQUE (region_id, constellation_id) ON CONFLICT IGNORE);"
+            );
+            
+            connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS ConstellationSystems(" +
+                "id_autoinc INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
+                "constellation_id INTEGER NOT NULL," +
+                "system_id INTEGER NOT NULL," +
+                "FOREIGN KEY(constellation_id) REFERENCES Constellation(constellation_id)," +
+                "FOREIGN KEY(system_id) REFERENCES System(system_id)," +
+                "UNIQUE (constellation_id, system_id) ON CONFLICT IGNORE);"
+            );
+            
+            self.connectionToFMDB.close();
+        }
     }
     
     private func insertTestData() {
@@ -98,7 +161,7 @@ class DataBase {
             do {
                 try self.connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", values: nil);
             } catch {
-                NSLog("Database opening failed: \(error.localizedDescription)");
+                NSLog("failed: \(error.localizedDescription)");
                 return false
             }
             return true
@@ -135,7 +198,7 @@ class DataBase {
         if openDataBase() {
             succesfull = connectionToFMDB.executeStatements(
                 "INSERT INTO Connections (system_from, system_to) " +
-                "SELECT \(from), \(to) WHERE NOT EXISTS(" +
+                    "SELECT \(from), \(to) WHERE NOT EXISTS(" +
                 "SELECT system_from, system_to FROM Connections WHERE system_from=\(to) AND system_to=\(from));"
             );
             closeDatabase();
@@ -144,12 +207,52 @@ class DataBase {
         return succesfull
     }
     
+    func addRegion (region: Region) {
+        if openDataBase() {
+            connectionToFMDB.executeStatements(
+                "INSERT INTO Region (\(table_region.ID), \(table_region.name), \(table_region.description)) " +
+                "VALUES (\(region.id), '\(region.name)', '\(region.description)');"
+            );
+            closeDatabase();
+        }
+    }
+    
+    func addConstellationToRegion (constellationID: Int, regionID: Int) {
+        if openDataBase() {
+            connectionToFMDB.executeStatements(
+                "INSERT INTO regionConstellations (\(table_regionConstellations.region_id), \(table_regionConstellations.constellation_id)) " +
+                "VALUES (\(regionID), \(constellationID));"
+            );
+            closeDatabase();
+        }
+    }
+    
+    func addConstellation (constellation: Constellation) {
+        if openDataBase() {
+            connectionToFMDB.executeStatements(
+                "INSERT INTO Constellation (\(table_constellation.ID), \(table_constellation.name), \(table_constellation.region_id), \(table_constellation.pX), \(table_constellation.pY), \(table_constellation.pZ)) " +
+                "VALUES (\(constellation.id), '\(constellation.name)', \(constellation.region), \(constellation.pX), \(constellation.pY), \(constellation.pZ));"
+            );
+            closeDatabase();
+        }
+    }
+    
+    func addSystemToConstellation (systemID: Int, constellationID: Int) {
+        if openDataBase() {
+            connectionToFMDB.executeStatements(
+                "INSERT INTO constellationSystems (\(table_constellationSystems.constellation_id), \(table_constellationSystems.system_id)) " +
+                "VALUES (\(constellationID), \(systemID));"
+            );
+            closeDatabase();
+        }
+    }
+    
     private func generateSystem(result: FMResultSet) -> System {
         let system = System(id: Int(result.int(forColumn: table_system.ID)),
-                        name: result.string(forColumn: table_system.name)!,
-                        pX: Int(result.int(forColumn: table_system.pX)),
-                        pY: Int(result.int(forColumn: table_system.pY)),
-                        pZ: Int(result.int(forColumn: table_system.pZ)));
+                            name: result.string(forColumn: table_system.name)!,
+                            pX: Int(result.int(forColumn: table_system.pX)),
+                            pY: Int(result.int(forColumn: table_system.pY)),
+                            pZ: Int(result.int(forColumn: table_system.pZ)));
         return system
     }
     
@@ -157,9 +260,9 @@ class DataBase {
     /*
      Usage example:
      if let system = DataBase.sharedInstance.getSystemByName(name: "name of system") {
-         // Access found system here (ex. system.name).
+     // Access found system here (ex. system.name).
      }else {
-         // No such system found.
+     // No such system found.
      }
      */
     func getSystemByName(name: String) -> System? {
@@ -172,25 +275,6 @@ class DataBase {
                 if resultSet.next() == true{
                     system = generateSystem(result: resultSet);
                 };
-                resultSet.close();
-            }
-            closeDatabase();
-        }
-        
-        return system;
-    }
-    
-    func getSystemByID(ID: Int) -> System? {
-        var system: System?;
-        
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM System WHERE system_id=?;";
-            
-            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [ID]) {
-                if resultSet.next() == true{
-                    system = generateSystem(result: resultSet);
-                };
-                resultSet.close();
             }
             closeDatabase();
         }
@@ -201,9 +285,9 @@ class DataBase {
     /*
      Usage example:
      if let systems = DataBase.sharedInstance.getConnectionsTo(system: system) {
-         // Access connected systems array here (ex. for sys in systems {sys.name;}).
+     // Access connected systems array here (ex. for sys in systems {sys.name;}).
      }else {
-         // No connected systems found.
+     // No connected systems found.
      }
      */
     func getConnectionsTo(system: System) -> [System]? {
@@ -211,30 +295,26 @@ class DataBase {
         
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM System, Connections WHERE " +
-            "Connections.system_from=? AND Connections.system_to=System.system_id OR " +
+                "Connections.system_from=? AND Connections.system_to=System.system_id OR " +
             "Connections.system_from=System.system_id AND Connections.system_to=?;";
             
-            if let resultSet: FMResultSet = self.connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [system.id, system.id]) {
+            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [system.id, system.id]) {
                 while resultSet.next() == true{
                     if systems == nil {systems = [];}
                     systems?.append(generateSystem(result: resultSet));
                 }
-                resultSet.close();
             }
             closeDatabase();
         }
         
         return systems
     }
-    
+
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
-        //let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
-        
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM System;";
-            //let sqlStatement: String = "SELECT * FROM System WHERE name LIKE 'Ta%';";
-            
+
             do {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
                 
@@ -246,7 +326,7 @@ class DataBase {
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
-
+                    
                     Systems.append(newSystem)
                 }
                 results.close();
@@ -277,14 +357,14 @@ class DataBase {
                     
                     Connectors.append(newConnection);
                 }
-            }else {
+            } else {
                 // No connected systems found.
                 NSLog("No connections found for \(sys.name)(\(sys.id))");
             }
-            
         }
     }
     
+    /*
     // Newer ConnectorArray creator.
     func CreateConnectorArray() {
         var from: [Int] = [];
@@ -322,6 +402,7 @@ class DataBase {
             }
         }
     }
+ */
     
     func convertX(posX: Int) -> Int {
         return origin + (posX / coordinateScale);
@@ -330,7 +411,4 @@ class DataBase {
     func convertY(posY: Int) -> Int {
         return origin - (posY / coordinateScaleY);
     }
-    
-    
 }
-
