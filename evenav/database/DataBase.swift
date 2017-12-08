@@ -295,8 +295,9 @@ class DataBase {
     
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
-        let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
-        
+        //let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
+        let coordinateScaleY : Int = coordinateScale
+
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM System;";
             //let sqlStatement: String = "SELECT * FROM System WHERE name LIKE 'Ta%';";
@@ -339,8 +340,9 @@ class DataBase {
                     //newConnection.targetX = con.pX;
                     newConnection.targetX = origin + (con.pX / coordinateScale);
                     //newConnection.targetY = con.pY;
-                    newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
-                    
+                    //newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
+                    newConnection.targetY = origin + (con.pY / coordinateScaleY);
+
                     Connectors.append(newConnection);
                 }
             }else {
@@ -394,7 +396,8 @@ class DataBase {
     }
     
     func convertY(posY: Int) -> Int {
-        return origin + (posY / (Int(Double(coordinateScale)/3.5)));
+        //return origin + (posY / (Int(Double(coordinateScale)/3.5)));
+        return origin + (posY / coordinateScaleY);
     }
     
     
