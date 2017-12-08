@@ -12,7 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var sourceSystem: UISearchBar!
     
     @IBAction func targetSystem(_ sender: UITextField) {
-        initiateSearch(systemName: sender.text!)
+        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+        if sender.text != "" {
+            initiateSearch(systemName: sender.text!)
+        }
     }
     
     @IBOutlet weak var viewPinch: UIView!
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
         currentSystemIndex = locateSystemIndex(systemNameToSearch: systemName)
         focusOnSystem = -1
         if (currentSystemIndex >= 0) {
-            NSLog("system:", systemName, "system index:", currentSystemIndex)
+            //NSLog("system:", systemName, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
             nc.post(name: Notification.Name("focusToSystem"), object: nil)
         } else {
@@ -63,8 +66,8 @@ class ViewController: UIViewController {
                 view.transform.d = 3.0 // this is x coordinate
             }
             if CGFloat(view.transform.d) < 0.01 {
-                view.transform.a = 0.01 // this is x coordinate
-                view.transform.d = 0.01 // this is x coordinate
+                view.transform.a = 0.05 // this is x coordinate
+                view.transform.d = 0.05 // this is x coordinate
             }
             recognizer.scale = 1
         }
