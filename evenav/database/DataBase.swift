@@ -13,6 +13,7 @@
  System.swift file
  */
 
+
 import Foundation
 
 class DataBase {
@@ -60,91 +61,53 @@ class DataBase {
         static let system_id: String = "system_id";
     }
     
+    
     func displayDBPath() {
         NSLog(self.dbPath);
     }
     
     init() {
+        let databasePath: String? = Bundle.main.path(forResource: "EveDB", ofType: "db");
+        
+        self.dbPath = databasePath!;
+        //NSLog("Database path: \(self.dbPath)");
+        
+        self.connectionToFMDB = FMDatabase(path: self.dbPath);
+        
+        displayDBPath();
         /*
-         let databasePath: String? = Bundle.main.path(forResource: "EveDB", ofType: "db");
+         self.dbPath = mainPath.appendingPathComponent("EveDB.db").path;
          
-         self.dbPath = databasePath!;
-         self.connectionToFMDB = FMDatabase.init(path: self.dbPath);
+         if !FileManager.default.fileExists(atPath: dbPath){
+         self.connectionToFMDB = FMDatabase(path: dbPath);
+         
+         if (self.connectionToFMDB.open()) {
+         connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", withArgumentsIn: []);
+         
+         connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS System(" +
+         "system_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
+         "name TEXT NOT NULL," +
+         "positionX INTEGER NOT NULL," +
+         "positionY INTEGER NOT NULL," +
+         "positionZ INTEGER NOT NULL);"
+         );
+         
+         connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS Connections(" +
+         "connection_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
+         "system_from INTEGER NOT NULL," +
+         "system_to INTEGER NOT NULL," +
+         "FOREIGN KEY(system_from) REFERENCES System(system_id)," +
+         "FOREIGN KEY(system_to) REFERENCES System(system_id)," +
+         "UNIQUE (system_from, system_to) ON CONFLICT IGNORE);"
+         );
+         
+         //insertTestData();
+         self.connectionToFMDB.close();
+         }
+         }else {
+         self.connectionToFMDB = FMDatabase(path: dbPath);
+         }
          */
-        
-        self.dbPath = mainPath.appendingPathComponent("EveDB.db").path;
-        
-        if !FileManager.default.fileExists(atPath: dbPath){
-            self.connectionToFMDB = FMDatabase(path: dbPath);
-            
-            if (self.connectionToFMDB.open()) {
-                connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", withArgumentsIn: []);
-                
-                connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS System(" +
-                    "system_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
-                    "name TEXT NOT NULL," +
-                    "positionX INTEGER NOT NULL," +
-                    "positionY INTEGER NOT NULL," +
-                    "positionZ INTEGER NOT NULL);"
-                );
-                
-                connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS Connections(" +
-                    "connection_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
-                    "system_from INTEGER NOT NULL," +
-                    "system_to INTEGER NOT NULL," +
-                    "FOREIGN KEY(system_from) REFERENCES System(system_id)," +
-                    "FOREIGN KEY(system_to) REFERENCES System(system_id)," +
-                    "UNIQUE (system_from, system_to) ON CONFLICT IGNORE);"
-                );
-                
-                //insertTestData();
-                self.connectionToFMDB.close();
-            }
-        }else {
-            self.connectionToFMDB = FMDatabase(path: dbPath);
-        }
-        
-    }
-    
-    func createRegionConstellationTables() {
-        if (self.connectionToFMDB.open()) {
-            connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS Region(" +
-                "region_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
-                "name TEXT NOT NULL," +
-                "description TEXT NOT NULL);"
-            );
-            
-            connectionToFMDB.executeStatements( "CREATE TABLE IF NOT EXISTS Constellation(" +
-                "constellation_id INTEGER PRIMARY KEY  NOT NULL  UNIQUE," +
-                "name TEXT NOT NULL," +
-                "region_id INTEGER NOT NULL," +
-                "positionX INTEGER NOT NULL," +
-                "positionY INTEGER NOT NULL," +
-                "positionZ INTEGER NOT NULL," +
-                "FOREIGN KEY(region_id) REFERENCES Region(region_id));"
-            );
-            
-            
-            connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS RegionConstellations(" +
-                "id_autoinc INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
-                "region_id INTEGER NOT NULL," +
-                "constellation_id INTEGER NOT NULL," +
-                "FOREIGN KEY(region_id) REFERENCES Region(region_id)," +
-                "FOREIGN KEY(constellation_id) REFERENCES Constellation(constellation_id)," +
-                "UNIQUE (region_id, constellation_id) ON CONFLICT IGNORE);"
-            );
-            
-            connectionToFMDB.executeStatements("CREATE TABLE IF NOT EXISTS ConstellationSystems(" +
-                "id_autoinc INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL," +
-                "constellation_id INTEGER NOT NULL," +
-                "system_id INTEGER NOT NULL," +
-                "FOREIGN KEY(constellation_id) REFERENCES Constellation(constellation_id)," +
-                "FOREIGN KEY(system_id) REFERENCES System(system_id)," +
-                "UNIQUE (constellation_id, system_id) ON CONFLICT IGNORE);"
-            );
-            
-            self.connectionToFMDB.close();
-        }
     }
     
     private func insertTestData() {
@@ -161,7 +124,7 @@ class DataBase {
             do {
                 try self.connectionToFMDB.executeQuery("PRAGMA foreign_keys = ON", values: nil);
             } catch {
-                NSLog("failed: \(error.localizedDescription)");
+                NSLog("Database opening failed: \(error.localizedDescription)");
                 return false
             }
             return true
@@ -275,6 +238,25 @@ class DataBase {
                 if resultSet.next() == true{
                     system = generateSystem(result: resultSet);
                 };
+                resultSet.close();
+            }
+            closeDatabase();
+        }
+        
+        return system;
+    }
+    
+    func getSystemByID(ID: Int) -> System? {
+        var system: System?;
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM System WHERE system_id=?;";
+            
+            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [ID]) {
+                if resultSet.next() == true{
+                    system = generateSystem(result: resultSet);
+                };
+                resultSet.close();
             }
             closeDatabase();
         }
@@ -298,23 +280,27 @@ class DataBase {
                 "Connections.system_from=? AND Connections.system_to=System.system_id OR " +
             "Connections.system_from=System.system_id AND Connections.system_to=?;";
             
-            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [system.id, system.id]) {
+            if let resultSet: FMResultSet = self.connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [system.id, system.id]) {
                 while resultSet.next() == true{
                     if systems == nil {systems = [];}
                     systems?.append(generateSystem(result: resultSet));
                 }
+                resultSet.close();
             }
             closeDatabase();
         }
         
         return systems
     }
-
+    
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
+        let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
+        
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM System;";
-
+            //let sqlStatement: String = "SELECT * FROM System WHERE name LIKE 'Ta%';";
+            
             do {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
                 
@@ -324,7 +310,7 @@ class DataBase {
                     //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                    newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                    newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
                     
                     Systems.append(newSystem)
@@ -353,18 +339,18 @@ class DataBase {
                     //newConnection.targetX = con.pX;
                     newConnection.targetX = origin + (con.pX / coordinateScale);
                     //newConnection.targetY = con.pY;
-                    newConnection.targetY = origin - (con.pY / coordinateScaleY);
+                    newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
                     
                     Connectors.append(newConnection);
                 }
-            } else {
+            }else {
                 // No connected systems found.
                 NSLog("No connections found for \(sys.name)(\(sys.id))");
             }
+            
         }
     }
     
-    /*
     // Newer ConnectorArray creator.
     func CreateConnectorArray() {
         var from: [Int] = [];
@@ -402,13 +388,16 @@ class DataBase {
             }
         }
     }
- */
     
     func convertX(posX: Int) -> Int {
         return origin + (posX / coordinateScale);
     }
     
     func convertY(posY: Int) -> Int {
-        return origin - (posY / coordinateScaleY);
+        return origin + (posY / (Int(Double(coordinateScale)/3.5)));
     }
+    
+    
 }
+
+
