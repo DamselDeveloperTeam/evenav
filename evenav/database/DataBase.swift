@@ -293,14 +293,48 @@ class DataBase {
         return systems
     }
     
+    func getConstellationData (constellationID: Int) -> Constellation? {
+        var newConstellation: Constellation?;
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM Constellation WHERE constellation_id=?;";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [constellationID]);
+                
+                while results.next() {
+                    newConstellation = Constellation( id: Int(results.int(forColumn: table_constellation.ID)),
+                                                         name: results.string(forColumn: table_constellation.name)!,
+                                                         region: Int(results.int(forColumn: table_constellation.region_id)),
+                                                         pX: Int(results.int(forColumn: table_constellation.pX)),
+                                                         pY: Int(results.int(forColumn: table_constellation.pY)),
+                                                         pZ: Int(results.int(forColumn: table_constellation.pZ))
+                                                     );
+                }
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            
+            closeDatabase();
+        }
+        
+        return newConstellation
+    }
+    
+    
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
         //let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
         let coordinateScaleY : Int = coordinateScale
 
+        /*
+         SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;
+         */
         if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM System;";
-            //let sqlStatement: String = "SELECT * FROM System WHERE name LIKE 'Ta%';";
+            //let sqlStatement: String = "SELECT * FROM System;";
+            let sqlStatement: String = "SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;";
             
             do {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
@@ -310,6 +344,7 @@ class DataBase {
                     newSystem.id = Int(results.int(forColumn: "system_id"))
                     //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
+                    newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale

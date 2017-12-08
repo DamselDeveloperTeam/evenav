@@ -48,5 +48,13 @@ class SystemsView: UIView {
             self.addSubview(newLabel)
         }
         NSLog("...done.")
+        
+        NSLog("Printing constellation data for all systems...")
+        for i in 0 ... Systems.count - 1 {
+            if let constellation = DataBase.sharedInstance.getConstellationData(constellationID: Systems[i].constellation) {
+                NSLog("\(constellation.name) (\(constellation.id)) [\(constellation.pX), \(constellation.pY), \(constellation.pZ)]");
+            }
+        }
+        
     }
 }
