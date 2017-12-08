@@ -303,13 +303,13 @@ class DataBase {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [constellationID]);
                 
                 while results.next() {
-                    newConstellation = Constellation(id: Int(results.int(forColumn: table_constellation.ID)),
+                    newConstellation = Constellation( id: Int(results.int(forColumn: table_constellation.ID)),
                                                          name: results.string(forColumn: table_constellation.name)!,
                                                          region: Int(results.int(forColumn: table_constellation.region_id)),
                                                          pX: Int(results.int(forColumn: table_constellation.pX)),
                                                          pY: Int(results.int(forColumn: table_constellation.pY)),
                                                          pZ: Int(results.int(forColumn: table_constellation.pZ))
-                                                         );
+                                                     );
                 }
                 results.close();
             }
