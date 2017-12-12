@@ -239,9 +239,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407BEDC71FDFF9E300BC6F31 /* EveDB.db in Resources */,
 				775954801FCADB7A00C92A1A /* LaunchScreen.storyboard in Resources */,
 				7759547D1FCADB7A00C92A1A /* Assets.xcassets in Resources */,
-				407BEDC61FDFF39D00BC6F31 /* EveDB.db in Resources */,
 				775954781FCADB7A00C92A1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
