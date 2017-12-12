@@ -12,7 +12,7 @@
 		401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B701FD02BBA0077F5BF /* FMDatabasePool.m */; };
 		401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B711FD02BBA0077F5BF /* FMResultSet.m */; };
 		401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B741FD02BBB0077F5BF /* FMDatabase.m */; };
-		407BEDC61FDFF39D00BC6F31 /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 407BEDC51FDFF39C00BC6F31 /* EveDB.db */; };
+		407BEDC71FDFF9E300BC6F31 /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 407BEDC51FDFF39C00BC6F31 /* EveDB.db */; };
 		7720565A1FD563D3000B0833 /* SourceSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772056591FD563D3000B0833 /* SourceSearchBar.swift */; };
 		773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773300E11FD0475F00970D6E /* SystemLabel.swift */; };
 		7751F1291FD2CF75000F1516 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751F1281FD2CF75000F1516 /* Search.swift */; };
@@ -238,9 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407BEDC71FDFF9E300BC6F31 /* EveDB.db in Resources */,
 				775954801FCADB7A00C92A1A /* LaunchScreen.storyboard in Resources */,
 				7759547D1FCADB7A00C92A1A /* Assets.xcassets in Resources */,
-				407BEDC61FDFF39D00BC6F31 /* EveDB.db in Resources */,
 				775954781FCADB7A00C92A1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
