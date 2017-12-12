@@ -10,6 +10,7 @@ import UIKit
 
 public var Systems = [SystemButton]()
 public var Connectors = [SystemConnector]()
+public var Constellations = [ConstellationLabel]()
 
 class SystemsView: UIView {
     var newLabel = SystemLabel() as SystemLabel
@@ -20,9 +21,9 @@ class SystemsView: UIView {
         self.clearsContextBeforeDrawing = false
         self.isOpaque = true
         
-        //  Appending systems and connectors to their respective arrays.
+        //  Appending constellations, systems and connectors to their respective arrays.
+        DataBase.sharedInstance.CreateConstellationsArray()
         DataBase.sharedInstance.CreateSystemsArray()
-        //DataBase.sharedInstance.CreateConnectionsArray()
         DataBase.sharedInstance.CreateConnectorArray();
         
         //  Drawing connectors between systems according to Connectors array.

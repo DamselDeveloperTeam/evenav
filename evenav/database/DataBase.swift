@@ -364,35 +364,36 @@ class DataBase {
         }
         
     }
-    
-    // Old ConnectorArray creator.
-    /*
-    func CreateConnectionsArray() {
-        for sys in Systems {
-            if let connections = DataBase.sharedInstance.getConnectionsTo(system: System(id: sys.id, name: "", pX: 0, pY: 0, pZ: 0)) {
-                // Access connected systems array here.
-                for con in connections {
-                    let newConnection: SystemConnector = SystemConnector();
-                    newConnection.connection_id = [sys.id, con.id];
-                    newConnection.sourceX = sys.posX;
-                    newConnection.sourceY = sys.posY;
-                    //newConnection.targetX = con.pX;
-                    newConnection.targetX = origin + (con.pX / coordinateScale);
-                    //newConnection.targetY = con.pY;
-                    //newConnection.targetY = origin + (con.pY / (Int(Double(coordinateScale)/3.5)));
-                    newConnection.targetY = origin + (con.pY / coordinateScaleY);
 
-                    Connectors.append(newConnection);
+    //  Function reads constellation data from database and stores it to an array of constellation objects.
+    func CreateConstellationsArray() {
+
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM Constellation;";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
+                
+                while results.next() {
+                    let newConstellation = ConstellationLabel() as ConstellationLabel
+                    newConstellation.id = Int(results.int(forColumn: "constellation_id"))
+                    newConstellation.name = results.string(forColumn: "name")!
+                    newConstellation.region = Int(results.int(forColumn: "region_id"))
+                    newConstellation.pX = Int(results.int(forColumn: "positionX")) / constellationScale
+                    newConstellation.pY = Int(results.int(forColumn: "positionY")) / constellationScale
+                    newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
+                    Constellations.append(newConstellation)
                 }
-            }else {
-                // No connected systems found.
-                NSLog("No connections found for \(sys.name)(\(sys.id))");
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
             }
             
+            closeDatabase();
         }
+        
     }
-     */
-    
     
     private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {
         var region: [Int] = [];
@@ -480,5 +481,3 @@ class DataBase {
     
     
 }
-
-
