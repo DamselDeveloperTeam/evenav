@@ -12,6 +12,7 @@
 		401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B701FD02BBA0077F5BF /* FMDatabasePool.m */; };
 		401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B711FD02BBA0077F5BF /* FMResultSet.m */; };
 		401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B741FD02BBB0077F5BF /* FMDatabase.m */; };
+		770BC0DD1FDFF4F1009D33A5 /* ConstellationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770BC0DC1FDFF4F1009D33A5 /* ConstellationLabel.swift */; };
 		7720565A1FD563D3000B0833 /* SourceSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772056591FD563D3000B0833 /* SourceSearchBar.swift */; };
 		773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773300E11FD0475F00970D6E /* SystemLabel.swift */; };
 		7751F1291FD2CF75000F1516 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751F1281FD2CF75000F1516 /* Search.swift */; };
@@ -55,6 +56,7 @@
 		401A5B731FD02BBB0077F5BF /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		401A5B741FD02BBB0077F5BF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		401A5B7A1FD02BF40077F5BF /* evenav-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "evenav-Bridging-Header.h"; sourceTree = "<group>"; };
+		770BC0DC1FDFF4F1009D33A5 /* ConstellationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstellationLabel.swift; sourceTree = "<group>"; };
 		772056591FD563D3000B0833 /* SourceSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchBar.swift; sourceTree = "<group>"; };
 		773300E11FD0475F00970D6E /* SystemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLabel.swift; sourceTree = "<group>"; };
 		7751F1281FD2CF75000F1516 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				773300E11FD0475F00970D6E /* SystemLabel.swift */,
 				772056591FD563D3000B0833 /* SourceSearchBar.swift */,
 				7751F1281FD2CF75000F1516 /* Search.swift */,
+				770BC0DC1FDFF4F1009D33A5 /* ConstellationLabel.swift */,
 				7759548B1FCAE03200C92A1A /* SystemButton.swift */,
 				7759548D1FCAE07000C92A1A /* SystemConnector.swift */,
 				7759547C1FCADB7A00C92A1A /* Assets.xcassets */,
@@ -278,6 +281,7 @@
 				401A5B751FD02BBB0077F5BF /* FMDatabaseAdditions.m in Sources */,
 				775954A61FCAFCFF00C92A1A /* System.swift in Sources */,
 				77AEC3541FD98A4E00C5C986 /* ConstellationJSON.swift in Sources */,
+				770BC0DD1FDFF4F1009D33A5 /* ConstellationLabel.swift in Sources */,
 				7759548C1FCAE03200C92A1A /* SystemButton.swift in Sources */,
 				77AEC34C1FD98A1600C5C986 /* Position.swift in Sources */,
 				7759548A1FCADFAE00C92A1A /* SystemsView.swift in Sources */,

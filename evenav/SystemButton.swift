@@ -25,7 +25,6 @@ public class SystemButton: UIButton {
         switch color {
         case UIColor.blue:
             UIColor.blue.set()
-            NSLog("USING BLUE")
         default:
             UIColor.white.set()
         }

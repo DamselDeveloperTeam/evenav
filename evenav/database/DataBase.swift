@@ -348,19 +348,6 @@ class DataBase {
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     Systems.append(newSystem)
-
-                    //  Getting constellation coordinates.
-                    /*
-                    if let thisConstellation = DataBase.sharedInstance.getConstellationData(constellationID: newSystem.constellation) {
-                        newSystem.posX = origin + (thisConstellation.pX) + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                        newSystem.posY = origin + (thisConstellation.pY) + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
-                        newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
-                        
-                        Systems.append(newSystem)
-                    } else {
-                        NSLog("Constellation id", newSystem.constellation, "for system", newSystem.id, "not found.")
-                    }*/
-
                 }
                 results.close();
             }

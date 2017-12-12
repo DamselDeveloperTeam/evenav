@@ -13,7 +13,8 @@ public var Connectors = [SystemConnector]()
 
 class SystemsView: UIView {
     var newLabel = SystemLabel() as SystemLabel
-    
+    var conLabel = SystemLabel() as SystemLabel
+
     override func draw(_ rect: CGRect) {
         print("UIVIEW")
         self.clearsContextBeforeDrawing = false
@@ -38,14 +39,14 @@ class SystemsView: UIView {
         //UIColor.cyan.setStroke()
         NSLog("Drawing systems and system names...")
         for ix in 0 ... Systems.count - 1 {
-                //  Drawing system.
-                Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
-            
-                //  Drawing system name.
-                newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
-                newLabel.text = Systems[ix].name
-                newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 18)
-                self.addSubview(newLabel)
+            //  Drawing system.
+            Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
+        
+            //  Drawing system name.
+            newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
+            newLabel.text = Systems[ix].name
+            newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 18)
+            self.addSubview(newLabel)
         }
         NSLog("...done.")
 /*
@@ -57,4 +58,27 @@ class SystemsView: UIView {
         }
  */
     }
+
+/*
+    func drawConstellations() {
+        //  Getting constellation coordinates.
+        var conX : Int = 0
+        var conY : Int = 0
+        //var conZ : Int = 0
+        if let thisConstellation = DataBase.sharedInstance.getConstellationData(constellationID: Systems[ix].constellation) {
+            //NSLog(thisConstellation.name)
+            conX = origin + (thisConstellation.pX / constellationScale)
+            conY = origin - (thisConstellation.pY / constellationScale)
+            //conZ = Systems[ix].posY
+            //  Drawing constellation name.
+            conLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 300, height: 60))
+            conLabel.text = thisConstellation.name
+            conLabel.center = CGPoint(x: conX + (systemButtonSize / 2), y: conY + 18)
+            conLabel.font = UIFont(name: "Helvetica", size: 32)
+            self.addSubview(conLabel)
+        } else {
+            NSLog("Constellation id", Systems[ix].constellation, "for system", Systems[ix].id, "not found.")
+        }
+    }
+ */
 }
