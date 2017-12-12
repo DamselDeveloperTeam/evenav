@@ -211,7 +211,7 @@ class DataBase {
             closeDatabase();
         }
     }
-    
+
     private func generateSystem(result: FMResultSet) -> System {
         let system = System(id: Int(result.int(forColumn: table_system.ID)),
                             name: result.string(forColumn: table_system.name)!,
@@ -221,33 +221,6 @@ class DataBase {
                             pY: Int(result.int(forColumn: table_system.pY)),
                             pZ: Int(result.int(forColumn: table_system.pZ)));
         return system
-    }
-    
-    
-    /*
-     Usage example:
-     if let system = DataBase.sharedInstance.getSystemByName(name: "name of system") {
-     // Access found system here (ex. system.name).
-     }else {
-     // No such system found.
-     }
-     */
-    func getSystemByName(name: String) -> System? {
-        var system: System?;
-        
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM System WHERE name=?;";
-            
-            if let resultSet: FMResultSet = connectionToFMDB.executeQuery(sqlStatement, withArgumentsIn: [name]) {
-                if resultSet.next() == true{
-                    system = generateSystem(result: resultSet);
-                };
-                resultSet.close();
-            }
-            closeDatabase();
-        }
-        
-        return system;
     }
     
     func getSystemByID(ID: Int) -> System? {
@@ -297,36 +270,6 @@ class DataBase {
         return systems
     }
     
-    func getConstellationData (constellationID: Int) -> Constellation? {
-        var newConstellation: Constellation?;
-        
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM Constellation WHERE constellation_id=?;";
-            
-            do {
-                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [constellationID]);
-                
-                while results.next() {
-                    newConstellation = Constellation( id: Int(results.int(forColumn: table_constellation.ID)),
-                                                         name: results.string(forColumn: table_constellation.name)!,
-                                                         region: Int(results.int(forColumn: table_constellation.region_id)),
-                                                         pX: Int(results.int(forColumn: table_constellation.pX)),
-                                                         pY: Int(results.int(forColumn: table_constellation.pY)),
-                                                         pZ: Int(results.int(forColumn: table_constellation.pZ))
-                                                     );
-                }
-                results.close();
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-            
-            closeDatabase();
-        }
-        
-        return newConstellation
-    }
-    
     //  Function reads constellation data from database and stores it to an array of constellation objects.
     func CreateConstellationsArray() {
         
@@ -359,6 +302,8 @@ class DataBase {
 
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
+        var conIndex : Int = -1     // Constellation index.
+        
         if openDataBase() {
             //let sqlStatement: String = "SELECT * FROM System;";
             let sqlStatement: String = "SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;";
@@ -369,13 +314,19 @@ class DataBase {
                 while results.next() {
                     let newSystem = SystemButton() as SystemButton
                     newSystem.id = Int(results.int(forColumn: "system_id"))
-                    //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
-                    newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                    newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
-                    Systems.append(newSystem)
+                    //newSystem.color = UIColor.white
+
+                    conIndex = locateConstellationIdByIndex(constellationIdToSearch: newSystem.constellation)
+                    if conIndex >= 0 {
+                        newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                        newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                        Systems.append(newSystem)
+                    } else {
+                        NSLog("CONSTELLATION NOT FOUND FOR SYSTEM")
+                    }
                 }
                 results.close();
             }
@@ -451,26 +402,16 @@ class DataBase {
         }
         
         for index in 0..<from.count {
-            if let systemFrom = getSystemByID(ID: from[index]), let systemTo = getSystemByID(ID: to[index]) {
-                let newConnection: SystemConnector = SystemConnector();
-                newConnection.connection_id = [from[index], to[index]];
-                newConnection.sourceX = convertX(posX: systemFrom.pX);
-                newConnection.sourceY = convertY(posY: systemFrom.pY);
-                newConnection.targetX = convertX(posX: systemTo.pX);
-                newConnection.targetY = convertY(posY: systemTo.pY);
-                newConnection.gateType = determineConnectionChange(systemID1: systemFrom.id, SystemID2: systemTo.id);
-                Connectors.append(newConnection);
-            }
+            let systemFrom = locateSystemById(systemIdToSearch: from[index])
+            let systemTo = locateSystemById(systemIdToSearch: to[index])
+            let newConnection: SystemConnector = SystemConnector();
+            newConnection.connection_id = [from[index], to[index]];
+            newConnection.sourceX = Systems[systemFrom].posX;
+            newConnection.sourceY = Systems[systemFrom].posY;
+            newConnection.targetX = Systems[systemTo].posX;
+            newConnection.targetY = Systems[systemTo].posY;
+            newConnection.gateType = determineConnectionChange(systemID1: Systems[systemFrom].id, SystemID2: Systems[systemTo].id);
+            Connectors.append(newConnection);
         }
     }
-    
-    func convertX(posX: Int) -> Int {
-        return origin + (posX / coordinateScale);
-    }
-    
-    func convertY(posY: Int) -> Int {
-        return origin - (posY / coordinateScaleY);
-    }
-    
-    
 }

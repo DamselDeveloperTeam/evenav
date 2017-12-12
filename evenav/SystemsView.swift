@@ -59,36 +59,6 @@ class SystemsView: UIView {
             self.addSubview(newLabel)
         }
         NSLog("...done.")
-/*
-        NSLog("Printing constellation data for all systems...")
-        for i in 0 ... Systems.count - 1 {
-            if let constellation = DataBase.sharedInstance.getConstellationData(constellationID: Systems[i].constellation) {
-                NSLog("\(constellation.name) (\(constellation.id)) [\(constellation.pX), \(constellation.pY), \(constellation.pZ)]");
-            }
-        }
- */
     }
 
-/*
-    func drawConstellations() {
-        //  Getting constellation coordinates.
-        var conX : Int = 0
-        var conY : Int = 0
-        //var conZ : Int = 0
-        if let thisConstellation = DataBase.sharedInstance.getConstellationData(constellationID: Systems[ix].constellation) {
-            //NSLog(thisConstellation.name)
-            conX = origin + (thisConstellation.pX / constellationScale)
-            conY = origin - (thisConstellation.pY / constellationScale)
-            //conZ = Systems[ix].posY
-            //  Drawing constellation name.
-            conLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 300, height: 60))
-            conLabel.text = thisConstellation.name
-            conLabel.center = CGPoint(x: conX + (systemButtonSize / 2), y: conY + 18)
-            conLabel.font = UIFont(name: "Helvetica", size: 32)
-            self.addSubview(conLabel)
-        } else {
-            NSLog("Constellation id", Systems[ix].constellation, "for system", Systems[ix].id, "not found.")
-        }
-    }
- */
 }

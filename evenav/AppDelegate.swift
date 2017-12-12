@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-public let constellationScale : Int = 130
+public let constellationScale : Int = 260
 public let coordinateScale : Int = 130
 public let coordinateScaleY : Int = coordinateScale
 public var currentSystemIndex : Int = -1

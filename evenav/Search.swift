@@ -5,6 +5,8 @@
 //  Created by Koulutus on 29/11/2017.
 //  Copyright © 2017 Koulutus. All rights reserved.
 //
+//  Module contains functions for searching constellations and systems with their name or id.
+//
 
 import Foundation
 
@@ -42,6 +44,19 @@ public func locateSystemIndex(systemNameToSearch: String) -> Int {
     
     for ix in 0 ... Systems.count - 1 {
         if Systems[ix].name.uppercased() == nameToSearch {
+            foundIndex = ix
+            return (foundIndex)
+        }
+    }
+    return (foundIndex)
+}
+
+//  Locate system Id from Systems table and return index.
+public func locateSystemById(systemIdToSearch: Int) -> Int {
+    var foundIndex : Int = -1
+    
+    for ix in 0 ... Systems.count - 1 {
+        if Systems[ix].id == systemIdToSearch {
             foundIndex = ix
             return (foundIndex)
         }
