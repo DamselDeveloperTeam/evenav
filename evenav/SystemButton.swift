@@ -9,19 +9,28 @@
 import UIKit
 
 public class SystemButton: UIButton {
-    lazy var id: Int = 0
-    lazy var color: UIColor = UIColor.white
-    lazy var name: String = ""
-    lazy var posX: Int = 0
-    lazy var posY: Int = 0
-    lazy var posZ: Int = 0
-    lazy var constellation: Int = 0
-    lazy var region: Int = 0
-    lazy var connectsToSystem = [Int]()
+    var id: Int = 0
+    var color: UIColor = UIColor.white
+    var name: String = ""
+    var posX: Int = 0
+    var posY: Int = 0
+    var posZ: Int = 0
+    var constellation: Int = 0
+    var region: Int = 0
+    var connectsToSystem = [Int]()
     
     override public func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: rect)
-        UIColor.white.setFill()
+        
+        switch color {
+        case UIColor.blue:
+            UIColor.blue.set()
+            NSLog("USING BLUE")
+        default:
+            UIColor.white.set()
+        }
+
         path.fill()
+        path.close()
     }
 }

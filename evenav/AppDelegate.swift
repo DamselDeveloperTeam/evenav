@@ -16,6 +16,7 @@ public var currentSystemIndex : Int = -1
 public var focusOnSystem : Int = -1
 public let origin : Int = 4096
 public let systemButtonSize : Int = 8
+public var systemButtonColor : UIColor = UIColor.white
 public let TopBarHeight : Int = 48
 
 @UIApplicationMain

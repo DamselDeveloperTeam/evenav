@@ -38,9 +38,9 @@ class ConstellationDataManager
                 for constellation in constellations
                 {
                     // rounding positioning to a more processable format
-                    let xpos = Int(round(constellation.position.x/1000000000000))
-                    let ypos = Int(round(constellation.position.y/1000000000000))
-                    let zpos = Int(round(constellation.position.z/1000000000000))
+                    //let xpos = Int(round(constellation.position.x/1000000000000))
+                    //let ypos = Int(round(constellation.position.y/1000000000000))
+                    //let zpos = Int(round(constellation.position.z/1000000000000))
                     
                     //DataBase.sharedInstance.addConstellation(constellation: Constellation(id: constellation.constellation_id, name: constellation.name, region: constellation.region_id, pX: xpos, pY: ypos, pZ: zpos));
                     

@@ -18,6 +18,13 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet var resetButton: UIButton!
+    @IBAction func resetButton(_ sender: Any) {
+        viewPinch.transform = CGAffineTransform.identity
+        resetButton.isHidden = true
+        self.viewPinch.center = CGPoint(x: viewPinch.frame.size.width  / 2, y: viewPinch.frame.size.height / 2);
+    }
+    
     @IBOutlet weak var viewPinch: UIView!
     var pinchGesture = UIPinchGestureRecognizer()
 
@@ -40,6 +47,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("VIEWCONTROLLER")
         
+        resetButton.isHidden = true
         // PINCH Gesture
         pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(ViewController.handlePinchGesture))
         viewPinch.isUserInteractionEnabled = true
@@ -47,25 +55,19 @@ class ViewController: UIViewController {
         
         DataBase.sharedInstance.displayDBPath();
     }
-
-    /*
-    @objc func pinchedView(sender:UIPinchGestureRecognizer){
-        self.view.bringSubview(toFront: viewPinch)
-        sender.view?.transform = (sender.view?.transform)!.scaledBy(x: sender.scale, y: sender.scale)
-        sender.scale = 1.0
-    }
-    */
     
     @objc func handlePinchGesture(recognizer: UIPinchGestureRecognizer) {
         
         if let view = recognizer.view {
-            //view.transform = CGAffineTransform(view.transform,recognizer.scale, recognizer.scale)
+            resetButton.isHidden = false
+            //scrollView.isScrollEnabled = true
+    
             view.transform = (recognizer.view?.transform)!.scaledBy(x: recognizer.scale, y: recognizer.scale)
             if CGFloat(view.transform.a) > 3.0 {
                 view.transform.a = 3.0 // this is x coordinate
                 view.transform.d = 3.0 // this is x coordinate
             }
-            if CGFloat(view.transform.d) < 0.01 {
+            if CGFloat(view.transform.d) < 0.05 {
                 view.transform.a = 0.05 // this is x coordinate
                 view.transform.d = 0.05 // this is x coordinate
             }
