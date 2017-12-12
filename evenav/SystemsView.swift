@@ -11,6 +11,7 @@ import UIKit
 public var Systems = [SystemButton]()
 public var Connectors = [SystemConnector]()
 public var Constellations = [ConstellationLabel]()
+public var RegionLabels = [RegionLabel]()
 
 class SystemsView: UIView {
     var newLabel = SystemLabel() as SystemLabel

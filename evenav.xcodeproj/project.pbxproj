@@ -41,6 +41,7 @@
 		77AEC3501FD98A3200C5C986 /* RegionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC34F1FD98A3200C5C986 /* RegionJSON.swift */; };
 		77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */; };
 		77AEC3541FD98A4E00C5C986 /* ConstellationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */; };
+		77D92BB41FE080B6000FDF13 /* RegionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92BB31FE080B6000FDF13 /* RegionLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		77AEC34F1FD98A3200C5C986 /* RegionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionJSON.swift; sourceTree = "<group>"; };
 		77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationDataManager.swift; sourceTree = "<group>"; };
 		77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationJSON.swift; sourceTree = "<group>"; };
+		77D92BB31FE080B6000FDF13 /* RegionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				773300E11FD0475F00970D6E /* SystemLabel.swift */,
 				772056591FD563D3000B0833 /* SourceSearchBar.swift */,
 				7751F1281FD2CF75000F1516 /* Search.swift */,
+				77D92BB31FE080B6000FDF13 /* RegionLabel.swift */,
 				770BC0DC1FDFF4F1009D33A5 /* ConstellationLabel.swift */,
 				7759548B1FCAE03200C92A1A /* SystemButton.swift */,
 				7759548D1FCAE07000C92A1A /* SystemConnector.swift */,
@@ -271,6 +274,7 @@
 				401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */,
 				77AEC3411FD989AE00C5C986 /* Region.swift in Sources */,
 				775954901FCAE0A400C92A1A /* DebugClasses.swift in Sources */,
+				77D92BB41FE080B6000FDF13 /* RegionLabel.swift in Sources */,
 				775954A41FCAFCF000C92A1A /* DataBase.swift in Sources */,
 				775954881FCADF0C00C92A1A /* ScrollView.swift in Sources */,
 				401A5B761FD02BBB0077F5BF /* FMDatabaseQueue.m in Sources */,
