@@ -351,7 +351,7 @@ class DataBase {
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
                     
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                    newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                    newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     Systems.append(newSystem)
                 }
                 results.close();
@@ -476,7 +476,7 @@ class DataBase {
     }
     
     func convertY(posY: Int) -> Int {
-        return origin + (posY / coordinateScaleY);
+        return origin - (posY / coordinateScaleY);
     }
     
     
