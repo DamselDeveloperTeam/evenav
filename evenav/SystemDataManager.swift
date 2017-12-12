@@ -27,7 +27,7 @@ class SystemDataManager
                 NSLog("reading json data...")
                 let data = try Data(contentsOf: url)
                 NSLog("reading json data done")
-            
+                
                 NSLog("decoding json data...")
                 let decoder = JSONDecoder()
                 let systems = try decoder.decode([SystemJSON].self, from: data)
@@ -39,17 +39,19 @@ class SystemDataManager
                     let xpos = Int(round(system.position.x/1000000000000))
                     let ypos = Int(round(system.position.y/1000000000000))
                     let zpos = Int(round(system.position.z/1000000000000))
-
+                    
                     //NSLog(system.star_id.description + ", " + system.name + ": " + xpos.description + ", " +  ypos.description + ", " +  zpos.description)
                     
                     var result: Bool;
                     if !checkStringFormat(inputString: system.name) {
                         result = DataBase.sharedInstance.addSystem(system: System(id: system.system_id,
-                                                                     name: system.name,
-                                                                     pX: xpos,
-                                                                     pY: ypos,
-                                                                     pZ: zpos));
-                    
+                                                                                  name: system.name,
+                                                                                  constellationID: system.constellation_id,
+                                                                                  securityStatus: system.security_status,
+                                                                                  pX: xpos,
+                                                                                  pY: ypos,
+                                                                                  pZ: zpos));
+                        
                         if result == false {
                             NSLog(system.star_id.description + ", " + system.name + ": " + xpos.description + ", " +  ypos.description + ", " +  zpos.description)
                         }
@@ -59,24 +61,24 @@ class SystemDataManager
                 NSLog("Adding systems to DB finished")
                 
                 /*
-                NSLog("Adding connections to DB...")
-                var result: Bool;
-                let conFinder = ConnectionFinder();
-                //let connections: [Int] = [];
-                for system in systems {
-                    if let connections = conFinder.findConnectionsFor(systemID: system.system_id) {
-                        for con in connections {
-                            result = DataBase.sharedInstance.addConnection(from: system.system_id, to: con);
-                        }
-                    }
-                    else {
-                        NSLog("Connections not found for: \(system.name)(\(system.star_id))");
-                    }
-                }
-                
-                
-                NSLog("Adding connections to DB finished")
-                */
+                 NSLog("Adding connections to DB...")
+                 var result: Bool;
+                 let conFinder = ConnectionFinder();
+                 //let connections: [Int] = [];
+                 for system in systems {
+                 if let connections = conFinder.findConnectionsFor(systemID: system.system_id) {
+                 for con in connections {
+                 result = DataBase.sharedInstance.addConnection(from: system.system_id, to: con);
+                 }
+                 }
+                 else {
+                 NSLog("Connections not found for: \(system.name)(\(system.star_id))");
+                 }
+                 }
+                 
+                 
+                 NSLog("Adding connections to DB finished")
+                 */
                 
                 
             }
@@ -135,8 +137,9 @@ class SystemDataManager
         
     }
     
-        /*
-            print(decodedMsg[0].star_id.description + ", " + decodedMsg[0].name + ": ")
-            print(String(Int(decodedMsg[0].position.x)) + " = " + String(decodedMsg[0].position.x.description) + ", " + decodedMsg[0].position.y.description + ", " + decodedMsg[0].position.z.description)
-        */
+    /*
+     print(decodedMsg[0].star_id.description + ", " + decodedMsg[0].name + ": ")
+     print(String(Int(decodedMsg[0].position.x)) + " = " + String(decodedMsg[0].position.x.description) + ", " + decodedMsg[0].position.y.description + ", " + decodedMsg[0].position.z.description)
+     */
 }
+
