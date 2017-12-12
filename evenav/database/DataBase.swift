@@ -388,6 +388,44 @@ class DataBase {
         }
     }
     
+    
+    private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {
+        var region: [Int] = [];
+        var constellation: [Int] = [];
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM RegionConstellations INNER JOIN ConstellationSystems ON RegionConstellations.constellation_id=ConstellationSystems.constellation_id WHERE ConstellationSystems.system_id=? OR ConstellationSystems.system_id=?;";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [systemID1, SystemID2]);
+                
+                while results.next() {
+                    region.append(Int(results.int(forColumn: table_regionConstellations.region_id)));
+                    constellation.append(Int(results.int(forColumn: table_constellationSystems.constellation_id)));
+                }
+                
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            
+            closeDatabase();
+        }
+        
+        if region.count == 2 && constellation.count == 2 {
+            if region[0] != region[1] {
+                return 2;  //Region changes in transition
+            }
+            if constellation[0] != constellation[1] {
+                return 1; //Constellation changes in transition
+            }
+        }
+        
+        // No region/constellation change in transition
+        return 0;
+    }
+    
     // Newer ConnectorArray creator.
     func CreateConnectorArray() {
         var from: [Int] = [];
@@ -421,6 +459,7 @@ class DataBase {
                 newConnection.sourceY = convertY(posY: systemFrom.pY);
                 newConnection.targetX = convertX(posX: systemTo.pX);
                 newConnection.targetY = convertY(posY: systemTo.pY);
+                newConnection.gateType = determineConnectionChange(systemID1: systemFrom.id, SystemID2: systemTo.id);
                 Connectors.append(newConnection);
             }
         }
