@@ -13,7 +13,7 @@ public let nc = NotificationCenter.default
 class ScrollView: UIScrollView {
 
     override func draw(_ rect: CGRect) {
-        print("SCROLLVIEW")
+        NSLog("SCROLLVIEW")
         
         // Local notification observer for focusToSystem.
         nc.addObserver(self, selector: #selector(focusToSystem), name: Notification.Name("focusToSystem"), object: nil)

@@ -327,14 +327,38 @@ class DataBase {
         return newConstellation
     }
     
-    
+    //  Function reads constellation data from database and stores it to an array of constellation objects.
+    func CreateConstellationsArray() {
+        
+        if openDataBase() {
+            let sqlStatement: String = "SELECT * FROM Constellation;";
+            
+            do {
+                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
+                
+                while results.next() {
+                    let newConstellation = ConstellationLabel() as ConstellationLabel
+                    newConstellation.id = Int(results.int(forColumn: "constellation_id"))
+                    newConstellation.name = results.string(forColumn: "name")!
+                    newConstellation.region = Int(results.int(forColumn: "region_id"))
+                    newConstellation.pX = origin + Int(results.int(forColumn: "positionX")) / constellationScale
+                    newConstellation.pY = origin - Int(results.int(forColumn: "positionY")) / constellationScale
+                    newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
+                    Constellations.append(newConstellation)
+                }
+                results.close();
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            
+            closeDatabase();
+        }
+        
+    }
+
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
-        let coordinateScaleY : Int = coordinateScale
-
-        /*
-         SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;
-         */
         if openDataBase() {
             //let sqlStatement: String = "SELECT * FROM System;";
             let sqlStatement: String = "SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;";
@@ -349,40 +373,9 @@ class DataBase {
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
-                    
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     Systems.append(newSystem)
-                }
-                results.close();
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-            
-            closeDatabase();
-        }
-        
-    }
-
-    //  Function reads constellation data from database and stores it to an array of constellation objects.
-    func CreateConstellationsArray() {
-
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM Constellation;";
-            
-            do {
-                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
-                
-                while results.next() {
-                    let newConstellation = ConstellationLabel() as ConstellationLabel
-                    newConstellation.id = Int(results.int(forColumn: "constellation_id"))
-                    newConstellation.name = results.string(forColumn: "name")!
-                    newConstellation.region = Int(results.int(forColumn: "region_id"))
-                    newConstellation.pX = Int(results.int(forColumn: "positionX")) / constellationScale
-                    newConstellation.pY = Int(results.int(forColumn: "positionY")) / constellationScale
-                    newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
-                    Constellations.append(newConstellation)
                 }
                 results.close();
             }

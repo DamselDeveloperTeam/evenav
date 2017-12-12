@@ -14,10 +14,10 @@ public var Constellations = [ConstellationLabel]()
 
 class SystemsView: UIView {
     var newLabel = SystemLabel() as SystemLabel
-    var conLabel = SystemLabel() as SystemLabel
+    var conLabel = ConstellationLabel() as ConstellationLabel
 
     override func draw(_ rect: CGRect) {
-        print("UIVIEW")
+        NSLog("UIVIEW")
         self.clearsContextBeforeDrawing = false
         self.isOpaque = true
         
@@ -25,6 +25,16 @@ class SystemsView: UIView {
         DataBase.sharedInstance.CreateConstellationsArray()
         DataBase.sharedInstance.CreateSystemsArray()
         DataBase.sharedInstance.CreateConnectorArray();
+        
+        //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
+        //
+        //  Drawing constellation labels.
+        for cIX in 0 ... Constellations.count - 1 {
+            conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 320, height: 48))
+            conLabel.text = Constellations[cIX].name
+            conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
+            self.addSubview(conLabel)
+        }
         
         //  Drawing connectors between systems according to Connectors array.
         var n: Int = 0;
@@ -37,7 +47,6 @@ class SystemsView: UIView {
         NSLog("...done.")
 
         //  Drawing systems and their names according to Systems array.
-        //UIColor.cyan.setStroke()
         NSLog("Drawing systems and system names...")
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.

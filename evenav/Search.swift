@@ -8,6 +8,33 @@
 
 import Foundation
 
+//  Locate constellation id from Constellations table and return index.
+public func locateConstellationIdByIndex(constellationIdToSearch: Int) -> Int {
+    var foundIndex : Int = -1
+    
+    for ix in 0 ... Constellations.count - 1 {
+        if Constellations[ix].id == constellationIdToSearch {
+            foundIndex = ix
+            return (foundIndex)
+        }
+    }
+    return (foundIndex)
+}
+
+//  Locate constellation name from Constellations table and return index.
+public func locateConstellationIndexByName(constellationNameToSearch: String) -> Int {
+    var foundIndex : Int = -1
+    let nameToSearch: String = constellationNameToSearch.uppercased()
+    
+    for ix in 0 ... Constellations.count - 1 {
+        if Constellations[ix].name.uppercased() == nameToSearch {
+            foundIndex = ix
+            return (foundIndex)
+        }
+    }
+    return (foundIndex)
+}
+
 //  Locate system name from Systems table and return index.
 public func locateSystemIndex(systemNameToSearch: String) -> Int {
     var foundIndex : Int = -1

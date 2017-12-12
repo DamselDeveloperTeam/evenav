@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VIEWCONTROLLER")
+        NSLog("VIEWCONTROLLER")
         
         resetButton.isHidden = true
         // PINCH Gesture
