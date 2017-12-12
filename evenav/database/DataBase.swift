@@ -326,7 +326,6 @@ class DataBase {
     
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
-        //let coordinateScaleY : Int = Int(Double(coordinateScale)/3.5)
         let coordinateScaleY : Int = coordinateScale
 
         /*
@@ -345,11 +344,23 @@ class DataBase {
                     //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
+
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
-                    newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
-                    
                     Systems.append(newSystem)
+
+                    //  Getting constellation coordinates.
+                    /*
+                    if let thisConstellation = DataBase.sharedInstance.getConstellationData(constellationID: newSystem.constellation) {
+                        newSystem.posX = origin + (thisConstellation.pX) + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                        newSystem.posY = origin + (thisConstellation.pY) + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                        newSystem.posZ = Int(results.int(forColumn: "PositionZ")) / coordinateScale
+                        
+                        Systems.append(newSystem)
+                    } else {
+                        NSLog("Constellation id", newSystem.constellation, "for system", newSystem.id, "not found.")
+                    }*/
+
                 }
                 results.close();
             }
@@ -470,7 +481,6 @@ class DataBase {
     }
     
     func convertY(posY: Int) -> Int {
-        //return origin + (posY / (Int(Double(coordinateScale)/3.5)));
         return origin + (posY / coordinateScaleY);
     }
     
