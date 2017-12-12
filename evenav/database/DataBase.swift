@@ -25,6 +25,8 @@ class DataBase {
     private struct table_system {
         static let ID: String = "system_id";
         static let name: String = "name";
+        static let constellationID: String = "constellation_id";
+        static let securityStatus: String = "security_status";
         static let pX: String = "positionX";
         static let pY: String = "positionY";
         static let pZ: String = "positionZ";
@@ -213,6 +215,8 @@ class DataBase {
     private func generateSystem(result: FMResultSet) -> System {
         let system = System(id: Int(result.int(forColumn: table_system.ID)),
                             name: result.string(forColumn: table_system.name)!,
+                            constellationID: Int(result.int(forColumn: table_system.constellationID)),
+                            securityStatus: Double(result.double(forColumn: table_system.securityStatus)),
                             pX: Int(result.int(forColumn: table_system.pX)),
                             pY: Int(result.int(forColumn: table_system.pY)),
                             pZ: Int(result.int(forColumn: table_system.pZ)));
@@ -344,7 +348,8 @@ class DataBase {
                     //newSystem.color = UIColor.white
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
-
+                    newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
+                    
                     newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                     newSystem.posY = origin + (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                     Systems.append(newSystem)
@@ -374,6 +379,7 @@ class DataBase {
     }
     
     // Old ConnectorArray creator.
+    /*
     func CreateConnectionsArray() {
         for sys in Systems {
             if let connections = DataBase.sharedInstance.getConnectionsTo(system: System(id: sys.id, name: "", pX: 0, pY: 0, pZ: 0)) {
@@ -398,6 +404,7 @@ class DataBase {
             
         }
     }
+     */
     
     
     private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {

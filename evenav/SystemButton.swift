@@ -18,6 +18,7 @@ public class SystemButton: UIButton {
     var constellation: Int = 0
     var region: Int = 0
     var connectsToSystem = [Int]()
+    var securityStatus: Double = 0.0;
     
     override public func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: rect)

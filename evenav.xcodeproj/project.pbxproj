@@ -12,6 +12,7 @@
 		401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B701FD02BBA0077F5BF /* FMDatabasePool.m */; };
 		401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B711FD02BBA0077F5BF /* FMResultSet.m */; };
 		401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B741FD02BBB0077F5BF /* FMDatabase.m */; };
+		407BEDC61FDFF39D00BC6F31 /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 407BEDC51FDFF39C00BC6F31 /* EveDB.db */; };
 		7720565A1FD563D3000B0833 /* SourceSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772056591FD563D3000B0833 /* SourceSearchBar.swift */; };
 		773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773300E11FD0475F00970D6E /* SystemLabel.swift */; };
 		7751F1291FD2CF75000F1516 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751F1281FD2CF75000F1516 /* Search.swift */; };
@@ -28,7 +29,6 @@
 		775954901FCAE0A400C92A1A /* DebugClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7759548F1FCAE0A400C92A1A /* DebugClasses.swift */; };
 		775954A41FCAFCF000C92A1A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954A31FCAFCF000C92A1A /* DataBase.swift */; };
 		775954A61FCAFCFF00C92A1A /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954A51FCAFCFF00C92A1A /* System.swift */; };
-		77AEC33E1FD9860900C5C986 /* EveDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 77AEC33D1FD9860500C5C986 /* EveDB.db */; };
 		77AEC3411FD989AE00C5C986 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC33F1FD989AD00C5C986 /* Region.swift */; };
 		77AEC3421FD989AE00C5C986 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3401FD989AE00C5C986 /* Constellation.swift */; };
 		77AEC3441FD989D400C5C986 /* EveSystemConnectionFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3431FD989D400C5C986 /* EveSystemConnectionFinder.swift */; };
@@ -55,6 +55,7 @@
 		401A5B731FD02BBB0077F5BF /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		401A5B741FD02BBB0077F5BF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		401A5B7A1FD02BF40077F5BF /* evenav-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "evenav-Bridging-Header.h"; sourceTree = "<group>"; };
+		407BEDC51FDFF39C00BC6F31 /* EveDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = EveDB.db; sourceTree = "<group>"; };
 		772056591FD563D3000B0833 /* SourceSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchBar.swift; sourceTree = "<group>"; };
 		773300E11FD0475F00970D6E /* SystemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLabel.swift; sourceTree = "<group>"; };
 		7751F1281FD2CF75000F1516 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		7759548F1FCAE0A400C92A1A /* DebugClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugClasses.swift; sourceTree = "<group>"; };
 		775954A31FCAFCF000C92A1A /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		775954A51FCAFCFF00C92A1A /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
-		77AEC33D1FD9860500C5C986 /* EveDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = EveDB.db; sourceTree = "<group>"; };
 		77AEC33F1FD989AD00C5C986 /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		77AEC3401FD989AE00C5C986 /* Constellation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
 		77AEC3431FD989D400C5C986 /* EveSystemConnectionFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EveSystemConnectionFinder.swift; sourceTree = "<group>"; };
@@ -169,8 +169,8 @@
 		775954A81FCAFD2800C92A1A /* database */ = {
 			isa = PBXGroup;
 			children = (
+				407BEDC51FDFF39C00BC6F31 /* EveDB.db */,
 				775954A31FCAFCF000C92A1A /* DataBase.swift */,
-				77AEC33D1FD9860500C5C986 /* EveDB.db */,
 				77AEC3401FD989AE00C5C986 /* Constellation.swift */,
 				77AEC33F1FD989AD00C5C986 /* Region.swift */,
 				775954A51FCAFCFF00C92A1A /* System.swift */,
@@ -238,9 +238,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77AEC33E1FD9860900C5C986 /* EveDB.db in Resources */,
 				775954801FCADB7A00C92A1A /* LaunchScreen.storyboard in Resources */,
 				7759547D1FCADB7A00C92A1A /* Assets.xcassets in Resources */,
+				407BEDC61FDFF39D00BC6F31 /* EveDB.db in Resources */,
 				775954781FCADB7A00C92A1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
