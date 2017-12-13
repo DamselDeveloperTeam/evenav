@@ -273,10 +273,13 @@ class DataBase {
     //  Function reads constellation data from database and stores it to an array of constellation objects.
     //  Constellation coordinates are adjusted to be relative to their respective region coordinates.
     func CreateConstellationsArray() {
-        
+
         if openDataBase() {
             let sqlStatement: String = "SELECT * FROM Constellation;";
-            
+            var regionIndex : Int = -1
+            var regX : Int = origin
+            var regY : Int = origin
+
             do {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
                 
@@ -285,8 +288,18 @@ class DataBase {
                     newConstellation.id = Int(results.int(forColumn: "constellation_id"))
                     newConstellation.name = results.string(forColumn: "name")!
                     newConstellation.region = Int(results.int(forColumn: "region_id"))
-                    newConstellation.pX = origin + Int(results.int(forColumn: "positionX")) / constellationScale
-                    newConstellation.pY = origin - Int(results.int(forColumn: "positionY")) / constellationScale
+                    
+                    //  Getting region coordinates from array.
+                    regionIndex = locateRegionById(regionIdToSearch: newConstellation.region)
+                    if regionIndex >= 0 {
+                        regX = RegionLabels[regionIndex].posX
+                        regY = RegionLabels[regionIndex].posY
+                    } else {
+                        regX = origin
+                        regY = origin
+                    }
+                    newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
+                    newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
                     newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
                     Constellations.append(newConstellation)
                 }
@@ -318,7 +331,6 @@ class DataBase {
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
-                    //newSystem.color = UIColor.white
 
                     conIndex = locateConstellationIdByIndex(constellationIdToSearch: newSystem.constellation)
                     if conIndex >= 0 {
@@ -326,7 +338,7 @@ class DataBase {
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                         Systems.append(newSystem)
                     } else {
-                        NSLog("CONSTELLATION NOT FOUND FOR SYSTEM")
+                        NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
                     }
                 }
                 results.close();
@@ -416,412 +428,478 @@ class DataBase {
         }
     }
 
-    //  Create region coordinates array.
+    //  Creating region coordinates array.
+    //  Region coordinates are absolute coordinates inside UIView.
     func CreateRegionArray() {
-        let labelElement = RegionLabel() as RegionLabel
-        
-        labelElement.id = 10000001
-        labelElement.name = "Derelik"
-        labelElement.posX = 3760
-        labelElement.posY = 4264
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000002
-        labelElement.name = "The Forge"
-        labelElement.posX = 3664
-        labelElement.posY = 2920
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000003
-        labelElement.name = "Vale of the Silent"
-        labelElement.posX = 3944
-        labelElement.posY = 2392
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000004
-        labelElement.name = "UUA-F4"
-        labelElement.posX = 5024
-        labelElement.posY = 1680
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000005
-        labelElement.name = "Detorid"
-        labelElement.posX = 5408
-        labelElement.posY = 5304
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000006
-        labelElement.name = "Wicked Creek"
-        labelElement.posX = 5104
-        labelElement.posY = 5040
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000007
-        labelElement.name = "Cache"
-        labelElement.posX = 6288
-        labelElement.posY = 4432
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000008
-        labelElement.name = "Scalding Pass"
-        labelElement.posX = 4848
-        labelElement.posY = 4832
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000009
-        labelElement.name = "Insmother"
-        labelElement.posX = 5552
-        labelElement.posY = 4896
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000010
-        labelElement.name = "Tribute"
-        labelElement.posX = 3432
-        labelElement.posY = 2064
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000011
-        labelElement.name = "Great Wildlands"
-        labelElement.posX = 4752
-        labelElement.posY = 4336
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000012
-        labelElement.name = "Curse"
-        labelElement.posX = 4472
-        labelElement.posY = 4936
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000013
-        labelElement.name = "Malpais"
-        labelElement.posX = 5696
-        labelElement.posY = 3072
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000014
-        labelElement.name = "Catch"
-        labelElement.posX = 3480
-        labelElement.posY = 5336
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000015
-        labelElement.name = "Venal"
-        labelElement.posX = 3408
-        labelElement.posY = 1424
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000016
-        labelElement.name = "Lonetrek"
-        labelElement.posX = 2904
-        labelElement.posY = 2584
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000017
-        labelElement.name = "J7HZ-F"
-        labelElement.posX = 4392
-        labelElement.posY = 2000
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000018
-        labelElement.name = "The Spire"
-        labelElement.posX = 6152
-        labelElement.posY = 3600
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000019
-        labelElement.name = "A821-A"
-        labelElement.posX = 4440
-        labelElement.posY = 1592
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000020
-        labelElement.name = "Tash-Murkon"
-        labelElement.posX = 2712
-        labelElement.posY = 4728
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000021
-        labelElement.name = "Outer Passage"
-        labelElement.posX = 6616
-        labelElement.posY = 3144
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000022
-        labelElement.name = "Stain"
-        labelElement.posX = 3128
-        labelElement.posY = 6136
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000023
-        labelElement.name = "Pure Blind"
-        labelElement.posX = 2376
-        labelElement.posY = 2080
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000025
-        labelElement.name = "Immensea"
-        labelElement.posX = 4512
-        labelElement.posY = 5376
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000027
-        labelElement.name = "Etherium Reach"
-        labelElement.posX = 5304
-        labelElement.posY = 3488
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000028
-        labelElement.name = "Molden Heath"
-        labelElement.posX = 4040
-        labelElement.posY = 3824
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000029
-        labelElement.name = "Geminate"
-        labelElement.posX = 4224
-        labelElement.posY = 2880
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000030
-        labelElement.name = "Heimatar"
-        labelElement.posX = 3640
-        labelElement.posY = 3576
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000031
-        labelElement.name = "Impass"
-        labelElement.posX = 4048
-        labelElement.posY = 6376
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000032
-        labelElement.name = "Sinq Laison"
-        labelElement.posX = 2968
-        labelElement.posY = 3456
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000033
-        labelElement.name = "The Citadel"
-        labelElement.posX = 3216
-        labelElement.posY = 2968
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000034
-        labelElement.name = "The Kalevala Expanse"
-        labelElement.posX = 5384
-        labelElement.posY = 3040
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000035
-        labelElement.name = "Deklein"
-        labelElement.posX = 2232
-        labelElement.posY = 1416
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000036
-        labelElement.name = "Devoid"
-        labelElement.posX = 3264
-        labelElement.posY = 4240
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000037
-        labelElement.name = "Everyshore"
-        labelElement.posX = 2832
-        labelElement.posY = 3608
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000038
-        labelElement.name = "The Bleak Lands"
-        labelElement.posX = 3128
-        labelElement.posY = 4160
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000039
-        labelElement.name = "Esoteria"
-        labelElement.posX = 3672
-        labelElement.posY = 7032
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000040
-        labelElement.name = "Oasa"
-        labelElement.posX = 6128
-        labelElement.posY = 2808
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000041
-        labelElement.name = "Syndicate"
-        labelElement.posX = 1872
-        labelElement.posY = 3200
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000042
-        labelElement.name = "Metropolis"
-        labelElement.posX = 3792
-        labelElement.posY = 3424
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000043
-        labelElement.name = "Domain"
-        labelElement.posX = 2824
-        labelElement.posY = 4384
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000044
-        labelElement.name = "Solitude"
-        labelElement.posX = 1864
-        labelElement.posY = 3640
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000045
-        labelElement.name = "Tenal"
-        labelElement.posX = 3800
-        labelElement.posY = 456
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000046
-        labelElement.name = "Fade"
-        labelElement.posX = 2080
-        labelElement.posY = 1784
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000047
-        labelElement.name = "Providence"
-        labelElement.posX = 3416
-        labelElement.posY = 4936
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000048
-        labelElement.name = "Placid"
-        labelElement.posX = 2280
-        labelElement.posY = 3024
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000049
-        labelElement.name = "Khanid"
-        labelElement.posX = 1872
-        labelElement.posY = 4792
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000050
-        labelElement.name = "Querious"
-        labelElement.posX = 1568
-        labelElement.posY = 5616
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000051
-        labelElement.name = "Cloud Ring"
-        labelElement.posX = 1904
-        labelElement.posY = 2640
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000052
-        labelElement.name = "Kador"
-        labelElement.posX = 2512
-        labelElement.posY = 4352
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000053
-        labelElement.name = "Cobalt Edge"
-        labelElement.posX = 6592
-        labelElement.posY = 2184
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000054
-        labelElement.name = "Aridia"
-        labelElement.posX = 1496
-        labelElement.posY = 4360
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000055
-        labelElement.name = "Branch"
-        labelElement.posX = 3232
-        labelElement.posY = 616
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000056
-        labelElement.name = "Feythabolis"
-        labelElement.posX = 4576
-        labelElement.posY = 6912
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000057
-        labelElement.name = "Outer Ring"
-        labelElement.posX = 1328
-        labelElement.posY = 3104
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000058
-        labelElement.name = "Fountain"
-        labelElement.posX = 880
-        labelElement.posY = 3824
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000059
-        labelElement.name = "Paragon Soul"
-        labelElement.posX = 3472
-        labelElement.posY = 7480
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000060
-        labelElement.name = "Delve"
-        labelElement.posX = 1048
-        labelElement.posY = 5744
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000061
-        labelElement.name = "Tenerifis"
-        labelElement.posX = 4712
-        labelElement.posY = 6000
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000062
-        labelElement.name = "Omist"
-        labelElement.posX = 5160
-        labelElement.posY = 6832
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000063
-        labelElement.name = "Period Basis"
-        labelElement.posX = 1168
-        labelElement.posY = 6736
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000064
-        labelElement.name = "Essence"
-        labelElement.posX = 2656
-        labelElement.posY = 3352
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000065
-        labelElement.name = "Kor-Azor"
-        labelElement.posX = 2056
-        labelElement.posY = 4584
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000066
-        labelElement.name = "Perrigen Falls"
-        labelElement.posX = 5976
-        labelElement.posY = 2944
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000067
-        labelElement.name = "Genesis"
-        labelElement.posX = 2352
-        labelElement.posY = 3888
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000068
-        labelElement.name = "Verge Vendor"
-        labelElement.posX = 2440
-        labelElement.posY = 3360
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
-        labelElement.id = 10000069
-        labelElement.name = "Black Rise"
-        labelElement.posX = 2656
-        labelElement.posY = 2736
-        labelElement.posZ = 0
-        RegionLabels.append(labelElement)
+        let labelR01 = RegionLabel() as RegionLabel
+        labelR01.id = 10000001
+        labelR01.name = "Derelik"
+        labelR01.posX = 3760
+        labelR01.posY = 4264
+        labelR01.posZ = 0
+        RegionLabels.append(labelR01)
+        let labelR02 = RegionLabel() as RegionLabel
+        labelR02.id = 10000002
+        labelR02.name = "The Forge"
+        labelR02.posX = 3664
+        labelR02.posY = 2920
+        labelR02.posZ = 0
+        RegionLabels.append(labelR02)
+        let labelR03 = RegionLabel() as RegionLabel
+        labelR03.id = 10000003
+        labelR03.name = "Vale of the Silent"
+        labelR03.posX = 3944
+        labelR03.posY = 2392
+        labelR03.posZ = 0
+        RegionLabels.append(labelR03)
+        let labelR04 = RegionLabel() as RegionLabel
+        labelR04.id = 10000004
+        labelR04.name = "UUA-F4"
+        labelR04.posX = 5024
+        labelR04.posY = 2000 // 1680
+        labelR04.posZ = 0
+        RegionLabels.append(labelR04)
+        let labelR05 = RegionLabel() as RegionLabel
+        labelR05.id = 10000005
+        labelR05.name = "Detorid"
+        labelR05.posX = 5408
+        labelR05.posY = 5304
+        labelR05.posZ = 0
+        RegionLabels.append(labelR05)
+        let labelR06 = RegionLabel() as RegionLabel
+        labelR06.id = 10000006
+        labelR06.name = "Wicked Creek"
+        labelR06.posX = 5104
+        labelR06.posY = 5040
+        labelR06.posZ = 0
+        RegionLabels.append(labelR06)
+        let labelR07 = RegionLabel() as RegionLabel
+        labelR07.id = 10000007
+        labelR07.name = "Cache"
+        labelR07.posX = 6288
+        labelR07.posY = 4432
+        labelR07.posZ = 0
+        RegionLabels.append(labelR07)
+        let labelR08 = RegionLabel() as RegionLabel
+        labelR08.id = 10000008
+        labelR08.name = "Scalding Pass"
+        labelR08.posX = 4848
+        labelR08.posY = 4832
+        labelR08.posZ = 0
+        RegionLabels.append(labelR08)
+        let labelR09 = RegionLabel() as RegionLabel
+        labelR09.id = 10000009
+        labelR09.name = "Insmother"
+        labelR09.posX = 5552
+        labelR09.posY = 4896
+        labelR09.posZ = 0
+        RegionLabels.append(labelR09)
+        let labelR10 = RegionLabel() as RegionLabel
+        labelR10.id = 10000010
+        labelR10.name = "Tribute"
+        labelR10.posX = 3432
+        labelR10.posY = 2064
+        labelR10.posZ = 0
+        RegionLabels.append(labelR10)
+        let labelR11 = RegionLabel() as RegionLabel
+        labelR11.id = 10000011
+        labelR11.name = "Great Wildlands"
+        labelR11.posX = 4752
+        labelR11.posY = 4336
+        labelR11.posZ = 0
+        RegionLabels.append(labelR11)
+        let labelR12 = RegionLabel() as RegionLabel
+        labelR12.id = 10000012
+        labelR12.name = "Curse"
+        labelR12.posX = 4472
+        labelR12.posY = 4936
+        labelR12.posZ = 0
+        RegionLabels.append(labelR12)
+        let labelR13 = RegionLabel() as RegionLabel
+        labelR13.id = 10000013
+        labelR13.name = "Malpais"
+        labelR13.posX = 5696
+        labelR13.posY = 3072
+        labelR13.posZ = 0
+        RegionLabels.append(labelR13)
+        let labelR14 = RegionLabel() as RegionLabel
+        labelR14.id = 10000014
+        labelR14.name = "Catch"
+        labelR14.posX = 3480
+        labelR14.posY = 5336
+        labelR14.posZ = 0
+        RegionLabels.append(labelR14)
+        let labelR15 = RegionLabel() as RegionLabel
+        labelR15.id = 10000015
+        labelR15.name = "Venal"
+        labelR15.posX = 3408
+        labelR15.posY = 2000 // 1424
+        labelR15.posZ = 0
+        RegionLabels.append(labelR15)
+        let labelR16 = RegionLabel() as RegionLabel
+        labelR16.id = 10000016
+        labelR16.name = "Lonetrek"
+        labelR16.posX = 2904
+        labelR16.posY = 2584
+        labelR16.posZ = 0
+        RegionLabels.append(labelR16)
+        let labelR17 = RegionLabel() as RegionLabel
+        labelR17.id = 10000017
+        labelR17.name = "J7HZ-F"
+        labelR17.posX = 4392
+        labelR17.posY = 2000
+        labelR17.posZ = 0
+        RegionLabels.append(labelR17)
+        let labelR18 = RegionLabel() as RegionLabel
+        labelR18.id = 10000018
+        labelR18.name = "The Spire"
+        labelR18.posX = 6152
+        labelR18.posY = 3600
+        labelR18.posZ = 0
+        RegionLabels.append(labelR18)
+        let labelR19 = RegionLabel() as RegionLabel
+        labelR19.id = 10000019
+        labelR19.name = "A821-A"
+        labelR19.posX = 4440
+        labelR19.posY = 2000 // 1592
+        labelR19.posZ = 0
+        RegionLabels.append(labelR19)
+        let labelR20 = RegionLabel() as RegionLabel
+        labelR20.id = 10000020
+        labelR20.name = "Tash-Murkon"
+        labelR20.posX = 2712
+        labelR20.posY = 4728
+        labelR20.posZ = 0
+        RegionLabels.append(labelR20)
+        let labelR21 = RegionLabel() as RegionLabel
+        labelR21.id = 10000021
+        labelR21.name = "Outer Passage"
+        labelR21.posX = 6616
+        labelR21.posY = 3144
+        labelR21.posZ = 0
+        RegionLabels.append(labelR21)
+        let labelR22 = RegionLabel() as RegionLabel
+        labelR22.id = 10000022
+        labelR22.name = "Stain"
+        labelR22.posX = 3128
+        labelR22.posY = 6136
+        labelR22.posZ = 0
+        RegionLabels.append(labelR22)
+        let labelR23 = RegionLabel() as RegionLabel
+        labelR23.id = 10000023
+        labelR23.name = "Pure Blind"
+        labelR23.posX = 2376
+        labelR23.posY = 2080
+        labelR23.posZ = 0
+        RegionLabels.append(labelR23)
+        let labelR25 = RegionLabel() as RegionLabel
+        labelR25.id = 10000025
+        labelR25.name = "Immensea"
+        labelR25.posX = 4512
+        labelR25.posY = 5376
+        labelR25.posZ = 0
+        RegionLabels.append(labelR25)
+        let labelR27 = RegionLabel() as RegionLabel
+        labelR27.id = 10000027
+        labelR27.name = "Etherium Reach"
+        labelR27.posX = 5304
+        labelR27.posY = 3488
+        labelR27.posZ = 0
+        RegionLabels.append(labelR27)
+        let labelR28 = RegionLabel() as RegionLabel
+        labelR28.id = 10000028
+        labelR28.name = "Molden Heath"
+        labelR28.posX = 4040
+        labelR28.posY = 3824
+        labelR28.posZ = 0
+        RegionLabels.append(labelR28)
+        let labelR29 = RegionLabel() as RegionLabel
+        labelR29.id = 10000029
+        labelR29.name = "Geminate"
+        labelR29.posX = 4224
+        labelR29.posY = 2880
+        labelR29.posZ = 0
+        RegionLabels.append(labelR29)
+        let labelR30 = RegionLabel() as RegionLabel
+        labelR30.id = 10000030
+        labelR30.name = "Heimatar"
+        labelR30.posX = 3640
+        labelR30.posY = 3576
+        labelR30.posZ = 0
+        RegionLabels.append(labelR30)
+        let labelR31 = RegionLabel() as RegionLabel
+        labelR31.id = 10000031
+        labelR31.name = "Impass"
+        labelR31.posX = 4048
+        labelR31.posY = 6376
+        labelR31.posZ = 0
+        RegionLabels.append(labelR31)
+        let labelR32 = RegionLabel() as RegionLabel
+        labelR32.id = 10000032
+        labelR32.name = "Sinq Laison"
+        labelR32.posX = 2968
+        labelR32.posY = 3456
+        labelR32.posZ = 0
+        RegionLabels.append(labelR32)
+        let labelR33 = RegionLabel() as RegionLabel
+        labelR33.id = 10000033
+        labelR33.name = "The Citadel"
+        labelR33.posX = 3216
+        labelR33.posY = 2968
+        labelR33.posZ = 0
+        RegionLabels.append(labelR33)
+        let labelR34 = RegionLabel() as RegionLabel
+        labelR34.id = 10000034
+        labelR34.name = "The Kalevala Expanse"
+        labelR34.posX = 5384
+        labelR34.posY = 3040
+        labelR34.posZ = 0
+        RegionLabels.append(labelR34)
+        let labelR35 = RegionLabel() as RegionLabel
+        labelR35.id = 10000035
+        labelR35.name = "Deklein"
+        labelR35.posX = 2232
+        labelR35.posY = 2000 // 1416
+        labelR35.posZ = 0
+        RegionLabels.append(labelR35)
+        let labelR36 = RegionLabel() as RegionLabel
+        labelR36.id = 10000036
+        labelR36.name = "Devoid"
+        labelR36.posX = 3264
+        labelR36.posY = 4240
+        labelR36.posZ = 0
+        RegionLabels.append(labelR36)
+        let labelR37 = RegionLabel() as RegionLabel
+        labelR37.id = 10000037
+        labelR37.name = "Everyshore"
+        labelR37.posX = 2832
+        labelR37.posY = 3608
+        labelR37.posZ = 0
+        RegionLabels.append(labelR37)
+        let labelR38 = RegionLabel() as RegionLabel
+        labelR38.id = 10000038
+        labelR38.name = "The Bleak Lands"
+        labelR38.posX = 3128
+        labelR38.posY = 4160
+        labelR38.posZ = 0
+        RegionLabels.append(labelR38)
+        let labelR39 = RegionLabel() as RegionLabel
+        labelR39.id = 10000039
+        labelR39.name = "Esoteria"
+        labelR39.posX = 3672
+        labelR39.posY = 7032
+        labelR39.posZ = 0
+        RegionLabels.append(labelR39)
+        let labelR40 = RegionLabel() as RegionLabel
+        labelR40.id = 10000040
+        labelR40.name = "Oasa"
+        labelR40.posX = 6128
+        labelR40.posY = 2808
+        labelR40.posZ = 0
+        RegionLabels.append(labelR40)
+        let labelR41 = RegionLabel() as RegionLabel
+        labelR41.id = 10000041
+        labelR41.name = "Syndicate"
+        labelR41.posX = 2000 // 1872
+        labelR41.posY = 3200
+        labelR41.posZ = 0
+        RegionLabels.append(labelR41)
+        let labelR42 = RegionLabel() as RegionLabel
+        labelR42.id = 10000042
+        labelR42.name = "Metropolis"
+        labelR42.posX = 3792
+        labelR42.posY = 3424
+        labelR42.posZ = 0
+        RegionLabels.append(labelR42)
+        let labelR43 = RegionLabel() as RegionLabel
+        labelR43.id = 10000043
+        labelR43.name = "Domain"
+        labelR43.posX = 2824
+        labelR43.posY = 4384
+        labelR43.posZ = 0
+        RegionLabels.append(labelR43)
+        let labelR44 = RegionLabel() as RegionLabel
+        labelR44.id = 10000044
+        labelR44.name = "Solitude"
+        labelR44.posX = 2000 // 1864
+        labelR44.posY = 3640
+        labelR44.posZ = 0
+        RegionLabels.append(labelR44)
+        let labelR45 = RegionLabel() as RegionLabel
+        labelR45.id = 10000045
+        labelR45.name = "Tenal"
+        labelR45.posX = 3800
+        labelR45.posY = 2000 // 456
+        labelR45.posZ = 0
+        RegionLabels.append(labelR45)
+        let labelR46 = RegionLabel() as RegionLabel
+        labelR46.id = 10000046
+        labelR46.name = "Fade"
+        labelR46.posX = 2080
+        labelR46.posY = 2000 // 1784
+        labelR46.posZ = 0
+        RegionLabels.append(labelR46)
+        let labelR47 = RegionLabel() as RegionLabel
+        labelR47.id = 10000047
+        labelR47.name = "Providence"
+        labelR47.posX = 3416
+        labelR47.posY = 4936
+        labelR47.posZ = 0
+        RegionLabels.append(labelR47)
+        let labelR48 = RegionLabel() as RegionLabel
+        labelR48.id = 10000048
+        labelR48.name = "Placid"
+        labelR48.posX = 2280
+        labelR48.posY = 3024
+        labelR48.posZ = 0
+        RegionLabels.append(labelR48)
+        let labelR49 = RegionLabel() as RegionLabel
+        labelR49.id = 10000049
+        labelR49.name = "Khanid"
+        labelR49.posX = 2000 // 1872
+        labelR49.posY = 4792
+        labelR49.posZ = 0
+        RegionLabels.append(labelR49)
+        let labelR50 = RegionLabel() as RegionLabel
+        labelR50.id = 10000050
+        labelR50.name = "Querious"
+        labelR50.posX = 2000 // 1568
+        labelR50.posY = 5616
+        labelR50.posZ = 0
+        RegionLabels.append(labelR50)
+        let labelR51 = RegionLabel() as RegionLabel
+        labelR51.id = 10000051
+        labelR51.name = "Cloud Ring"
+        labelR51.posX = 2000 // 1904
+        labelR51.posY = 2640
+        labelR51.posZ = 0
+        RegionLabels.append(labelR51)
+        let labelR52 = RegionLabel() as RegionLabel
+        labelR52.id = 10000052
+        labelR52.name = "Kador"
+        labelR52.posX = 2512
+        labelR52.posY = 4352
+        labelR52.posZ = 0
+        RegionLabels.append(labelR52)
+        let labelR53 = RegionLabel() as RegionLabel
+        labelR53.id = 10000053
+        labelR53.name = "Cobalt Edge"
+        labelR53.posX = 6592
+        labelR53.posY = 2184
+        labelR53.posZ = 0
+        RegionLabels.append(labelR53)
+        let labelR54 = RegionLabel() as RegionLabel
+        labelR54.id = 10000054
+        labelR54.name = "Aridia"
+        labelR54.posX = 2000 // 1496
+        labelR54.posY = 4360
+        labelR54.posZ = 0
+        RegionLabels.append(labelR54)
+        let labelR55 = RegionLabel() as RegionLabel
+        labelR55.id = 10000055
+        labelR55.name = "Branch"
+        labelR55.posX = 3232
+        labelR55.posY = 2000 // 616
+        labelR55.posZ = 0
+        RegionLabels.append(labelR55)
+        let labelR56 = RegionLabel() as RegionLabel
+        labelR56.id = 10000056
+        labelR56.name = "Feythabolis"
+        labelR56.posX = 4576
+        labelR56.posY = 6912
+        labelR56.posZ = 0
+        RegionLabels.append(labelR56)
+        let labelR57 = RegionLabel() as RegionLabel
+        labelR57.id = 10000057
+        labelR57.name = "Outer Ring"
+        labelR57.posX = 2328 // 1328
+        labelR57.posY = 3104
+        labelR57.posZ = 0
+        RegionLabels.append(labelR57)
+        let labelR58 = RegionLabel() as RegionLabel
+        labelR58.id = 10000058
+        labelR58.name = "Fountain"
+        labelR58.posX = 2000 // 880
+        labelR58.posY = 3824
+        labelR58.posZ = 0
+        RegionLabels.append(labelR58)
+        let labelR59 = RegionLabel() as RegionLabel
+        labelR59.id = 10000059
+        labelR59.name = "Paragon Soul"
+        labelR59.posX = 3472
+        labelR59.posY = 7480
+        labelR59.posZ = 0
+        RegionLabels.append(labelR59)
+        let labelR60 = RegionLabel() as RegionLabel
+        labelR60.id = 10000060
+        labelR60.name = "Delve"
+        labelR60.posX = 2048 // 1048
+        labelR60.posY = 5744
+        labelR60.posZ = 0
+        RegionLabels.append(labelR60)
+        let labelR61 = RegionLabel() as RegionLabel
+        labelR61.id = 10000061
+        labelR61.name = "Tenerifis"
+        labelR61.posX = 4712
+        labelR61.posY = 6000
+        labelR61.posZ = 0
+        RegionLabels.append(labelR61)
+        let labelR62 = RegionLabel() as RegionLabel
+        labelR62.id = 10000062
+        labelR62.name = "Omist"
+        labelR62.posX = 5160
+        labelR62.posY = 6832
+        labelR62.posZ = 0
+        RegionLabels.append(labelR62)
+        let labelR63 = RegionLabel() as RegionLabel
+        labelR63.id = 10000063
+        labelR63.name = "Period Basis"
+        labelR63.posX = 2168 // 1168
+        labelR63.posY = 6736
+        labelR63.posZ = 0
+        RegionLabels.append(labelR63)
+        let labelR64 = RegionLabel() as RegionLabel
+        labelR64.id = 10000064
+        labelR64.name = "Essence"
+        labelR64.posX = 2656
+        labelR64.posY = 3352
+        labelR64.posZ = 0
+        RegionLabels.append(labelR64)
+        let labelR65 = RegionLabel() as RegionLabel
+        labelR65.id = 10000065
+        labelR65.name = "Kor-Azor"
+        labelR65.posX = 2056
+        labelR65.posY = 4584
+        labelR65.posZ = 0
+        RegionLabels.append(labelR65)
+        let labelR66 = RegionLabel() as RegionLabel
+        labelR66.id = 10000066
+        labelR66.name = "Perrigen Falls"
+        labelR66.posX = 5976
+        labelR66.posY = 2944
+        labelR66.posZ = 0
+        RegionLabels.append(labelR66)
+        let labelR67 = RegionLabel() as RegionLabel
+        labelR67.id = 10000067
+        labelR67.name = "Genesis"
+        labelR67.posX = 2352
+        labelR67.posY = 3888
+        labelR67.posZ = 0
+        RegionLabels.append(labelR67)
+        let labelR68 = RegionLabel() as RegionLabel
+        labelR68.id = 10000068
+        labelR68.name = "Verge Vendor"
+        labelR68.posX = 2440
+        labelR68.posY = 3360
+        labelR68.posZ = 0
+        RegionLabels.append(labelR68)
+        let labelR69 = RegionLabel() as RegionLabel
+        labelR69.id = 10000069
+        labelR69.name = "Black Rise"
+        labelR69.posX = 2656
+        labelR69.posY = 2736
+        labelR69.posZ = 0
+        RegionLabels.append(labelR69)
     }  // CreateRegionLabels
 
 }

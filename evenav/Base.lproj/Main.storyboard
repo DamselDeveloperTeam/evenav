@@ -130,7 +130,6 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="id2-Rp-drV">
                                 <rect key="frame" x="78" y="74" width="163" height="144"/>
-                                <color key="backgroundColor" red="0.02696814761" green="0.083139874040000006" blue="0.23667484520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="EveOnline    Opiframe Edition">
                                         <attributes>
@@ -153,7 +152,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.026203013890000001" green="0.084212087000000005" blue="0.2335027707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ro5-IZ-6HQ" firstAttribute="trailing" secondItem="V3j-jP-Bib" secondAttribute="trailing" constant="141" id="6UD-Ko-9bV"/>
                             <constraint firstItem="Ro5-IZ-6HQ" firstAttribute="bottom" secondItem="Ba1-i8-rvI" secondAttribute="bottom" constant="81" id="S8P-Cm-A2S"/>

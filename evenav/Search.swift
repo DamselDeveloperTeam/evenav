@@ -68,7 +68,7 @@ public func locateSystemById(systemIdToSearch: Int) -> Int {
 public func locateRegionById(regionIdToSearch: Int) -> Int {
     var foundIndex : Int = -1
     
-    for ix in 0 ... Systems.count - 1 {
+    for ix in 0 ... RegionLabels.count - 1 {
         if RegionLabels[ix].id == regionIdToSearch {
             foundIndex = ix
             return (foundIndex)
