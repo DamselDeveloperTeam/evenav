@@ -271,6 +271,7 @@ class DataBase {
     }
     
     //  Function reads constellation data from database and stores it to an array of constellation objects.
+    //  Constellation coordinates are adjusted to be relative to their respective region coordinates.
     func CreateConstellationsArray() {
         
         if openDataBase() {
@@ -416,7 +417,7 @@ class DataBase {
     }
 
     //  Create region coordinates array.
-    func CreateRegionLabels() {
+    func CreateRegionArray() {
         let labelElement = RegionLabel() as RegionLabel
         
         labelElement.id = 10000001

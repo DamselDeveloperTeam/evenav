@@ -23,7 +23,7 @@ class SystemsView: UIView {
         self.isOpaque = true
         
         //  Appending constellations, systems and connectors to their respective arrays.
-        DataBase.sharedInstance.CreateRegionLabels()
+        DataBase.sharedInstance.CreateRegionArray()
         DataBase.sharedInstance.CreateConstellationsArray()
         DataBase.sharedInstance.CreateSystemsArray()
         DataBase.sharedInstance.CreateConnectorArray();
@@ -49,6 +49,7 @@ class SystemsView: UIView {
         NSLog("...done.")
 
         //  Drawing systems and their names according to Systems array.
+        //  Coordinates in Systems array are relative to constellation coordinates.
         NSLog("Drawing systems and system names...")
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
