@@ -17,6 +17,7 @@
 		7720565A1FD563D3000B0833 /* SourceSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772056591FD563D3000B0833 /* SourceSearchBar.swift */; };
 		773291891FE1362A00CF7757 /* ShowSplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773291881FE1362A00CF7757 /* ShowSplashScreen.swift */; };
 		773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773300E11FD0475F00970D6E /* SystemLabel.swift */; };
+		773AA6561FE1502900F32B28 /* RegionLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AA6551FE1502900F32B28 /* RegionLabels.swift */; };
 		7751F1291FD2CF75000F1516 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751F1281FD2CF75000F1516 /* Search.swift */; };
 		775954731FCADB7A00C92A1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954721FCADB7A00C92A1A /* AppDelegate.swift */; };
 		775954751FCADB7A00C92A1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775954741FCADB7A00C92A1A /* ViewController.swift */; };
@@ -63,6 +64,7 @@
 		772056591FD563D3000B0833 /* SourceSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceSearchBar.swift; sourceTree = "<group>"; };
 		773291881FE1362A00CF7757 /* ShowSplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowSplashScreen.swift; sourceTree = "<group>"; };
 		773300E11FD0475F00970D6E /* SystemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLabel.swift; sourceTree = "<group>"; };
+		773AA6551FE1502900F32B28 /* RegionLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionLabels.swift; sourceTree = "<group>"; };
 		7751F1281FD2CF75000F1516 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		7759546F1FCADB7A00C92A1A /* evenav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = evenav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		775954721FCADB7A00C92A1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				77AEC3401FD989AE00C5C986 /* Constellation.swift */,
 				77AEC33F1FD989AD00C5C986 /* Region.swift */,
 				775954A51FCAFCFF00C92A1A /* System.swift */,
+				773AA6551FE1502900F32B28 /* RegionLabels.swift */,
 			);
 			path = database;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				77AEC3461FD989E100C5C986 /* JsonHttpRequest.swift in Sources */,
 				77AEC34A1FD98A0300C5C986 /* SystemJSON.swift in Sources */,
 				773291891FE1362A00CF7757 /* ShowSplashScreen.swift in Sources */,
+				773AA6561FE1502900F32B28 /* RegionLabels.swift in Sources */,
 				773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */,
 				77AEC3441FD989D400C5C986 /* EveSystemConnectionFinder.swift in Sources */,
 				77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */,

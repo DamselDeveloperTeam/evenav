@@ -23,6 +23,7 @@ class SystemsView: UIView {
         self.isOpaque = true
         
         //  Appending constellations, systems and connectors to their respective arrays.
+        DataBase.sharedInstance.CreateRegionLabels()
         DataBase.sharedInstance.CreateConstellationsArray()
         DataBase.sharedInstance.CreateSystemsArray()
         DataBase.sharedInstance.CreateConnectorArray();

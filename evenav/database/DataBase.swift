@@ -414,145 +414,413 @@ class DataBase {
             Connectors.append(newConnection);
         }
     }
-    
+
     //  Create region coordinates array.
-    func CreateRegionCoordinates() {
-        let coordinateArray = RegionLabel() as RegionLabel
+    func CreateRegionLabels() {
+        let labelElement = RegionLabel() as RegionLabel
         
-        coordinateArray.id = 10000001
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 1024
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000002
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000003
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000004
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000005
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000006
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000007
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-        coordinateArray.id = 10000008
-        coordinateArray.posX = 1024
-        coordinateArray.posY = 2048
-        coordinateArray.posZ = 0
-        RegionLabels.append(coordinateArray)
-/*
-     10000009,
-     10000010,
-     10000011,
-     10000012,
-     10000013,
-     10000014,
-     10000015,
-     10000016,
-     10000017,
-     10000018,
-     10000019,
-     10000020,
-     10000021,
-     10000022,
-     10000023,
-     10000025,
-     10000027,
-     10000028,
-     10000029,
-     10000030,
-     10000031,
-     10000032,
-     10000033,
-     10000034,
-     10000035,
-     10000036,
-     10000037,
-     10000038,
-     10000039,
-     10000040,
-     10000041,
-     10000042,
-     10000043,
-     10000044,
-     10000045,
-     10000046,
-     10000047,
-     10000048,
-     10000049,
-     10000050,
-     10000051,
-     10000052,
-     10000053,
-     10000054,
-     10000055,
-     10000056,
-     10000057,
-     10000058,
-     10000059,
-     10000060,
-     10000061,
-     10000062,
-     10000063,
-     10000064,
-     10000065,
-     10000066,
-     10000067,
-     10000068,
-     10000069,
-     11000001,
-     11000002,
-     11000003,
-     11000004,
-     11000005,
-     11000006,
-     11000007,
-     11000008,
-     11000009,
-     11000010,
-     11000011,
-     11000012,
-     11000013,
-     11000014,
-     11000015,
-     11000016,
-     11000017,
-     11000018,
-     11000019,
-     11000020,
-     11000021,
-     11000022,
-     11000023,
-     11000024,
-     11000025,
-     11000026,
-     11000027,
-     11000028,
-     11000029,
-     11000030,
-     11000031,
-     11000032,
-     11000033
-     ] */
-    }  // CreateRegionCoordinates
-    
+        labelElement.id = 10000001
+        labelElement.name = "Derelik"
+        labelElement.posX = 3760
+        labelElement.posY = 4264
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000002
+        labelElement.name = "The Forge"
+        labelElement.posX = 3664
+        labelElement.posY = 2920
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000003
+        labelElement.name = "Vale of the Silent"
+        labelElement.posX = 3944
+        labelElement.posY = 2392
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000004
+        labelElement.name = "UUA-F4"
+        labelElement.posX = 5024
+        labelElement.posY = 1680
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000005
+        labelElement.name = "Detorid"
+        labelElement.posX = 5408
+        labelElement.posY = 5304
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000006
+        labelElement.name = "Wicked Creek"
+        labelElement.posX = 5104
+        labelElement.posY = 5040
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000007
+        labelElement.name = "Cache"
+        labelElement.posX = 6288
+        labelElement.posY = 4432
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000008
+        labelElement.name = "Scalding Pass"
+        labelElement.posX = 4848
+        labelElement.posY = 4832
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000009
+        labelElement.name = "Insmother"
+        labelElement.posX = 5552
+        labelElement.posY = 4896
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000010
+        labelElement.name = "Tribute"
+        labelElement.posX = 3432
+        labelElement.posY = 2064
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000011
+        labelElement.name = "Great Wildlands"
+        labelElement.posX = 4752
+        labelElement.posY = 4336
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000012
+        labelElement.name = "Curse"
+        labelElement.posX = 4472
+        labelElement.posY = 4936
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000013
+        labelElement.name = "Malpais"
+        labelElement.posX = 5696
+        labelElement.posY = 3072
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000014
+        labelElement.name = "Catch"
+        labelElement.posX = 3480
+        labelElement.posY = 5336
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000015
+        labelElement.name = "Venal"
+        labelElement.posX = 3408
+        labelElement.posY = 1424
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000016
+        labelElement.name = "Lonetrek"
+        labelElement.posX = 2904
+        labelElement.posY = 2584
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000017
+        labelElement.name = "J7HZ-F"
+        labelElement.posX = 4392
+        labelElement.posY = 2000
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000018
+        labelElement.name = "The Spire"
+        labelElement.posX = 6152
+        labelElement.posY = 3600
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000019
+        labelElement.name = "A821-A"
+        labelElement.posX = 4440
+        labelElement.posY = 1592
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000020
+        labelElement.name = "Tash-Murkon"
+        labelElement.posX = 2712
+        labelElement.posY = 4728
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000021
+        labelElement.name = "Outer Passage"
+        labelElement.posX = 6616
+        labelElement.posY = 3144
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000022
+        labelElement.name = "Stain"
+        labelElement.posX = 3128
+        labelElement.posY = 6136
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000023
+        labelElement.name = "Pure Blind"
+        labelElement.posX = 2376
+        labelElement.posY = 2080
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000025
+        labelElement.name = "Immensea"
+        labelElement.posX = 4512
+        labelElement.posY = 5376
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000027
+        labelElement.name = "Etherium Reach"
+        labelElement.posX = 5304
+        labelElement.posY = 3488
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000028
+        labelElement.name = "Molden Heath"
+        labelElement.posX = 4040
+        labelElement.posY = 3824
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000029
+        labelElement.name = "Geminate"
+        labelElement.posX = 4224
+        labelElement.posY = 2880
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000030
+        labelElement.name = "Heimatar"
+        labelElement.posX = 3640
+        labelElement.posY = 3576
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000031
+        labelElement.name = "Impass"
+        labelElement.posX = 4048
+        labelElement.posY = 6376
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000032
+        labelElement.name = "Sinq Laison"
+        labelElement.posX = 2968
+        labelElement.posY = 3456
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000033
+        labelElement.name = "The Citadel"
+        labelElement.posX = 3216
+        labelElement.posY = 2968
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000034
+        labelElement.name = "The Kalevala Expanse"
+        labelElement.posX = 5384
+        labelElement.posY = 3040
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000035
+        labelElement.name = "Deklein"
+        labelElement.posX = 2232
+        labelElement.posY = 1416
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000036
+        labelElement.name = "Devoid"
+        labelElement.posX = 3264
+        labelElement.posY = 4240
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000037
+        labelElement.name = "Everyshore"
+        labelElement.posX = 2832
+        labelElement.posY = 3608
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000038
+        labelElement.name = "The Bleak Lands"
+        labelElement.posX = 3128
+        labelElement.posY = 4160
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000039
+        labelElement.name = "Esoteria"
+        labelElement.posX = 3672
+        labelElement.posY = 7032
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000040
+        labelElement.name = "Oasa"
+        labelElement.posX = 6128
+        labelElement.posY = 2808
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000041
+        labelElement.name = "Syndicate"
+        labelElement.posX = 1872
+        labelElement.posY = 3200
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000042
+        labelElement.name = "Metropolis"
+        labelElement.posX = 3792
+        labelElement.posY = 3424
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000043
+        labelElement.name = "Domain"
+        labelElement.posX = 2824
+        labelElement.posY = 4384
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000044
+        labelElement.name = "Solitude"
+        labelElement.posX = 1864
+        labelElement.posY = 3640
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000045
+        labelElement.name = "Tenal"
+        labelElement.posX = 3800
+        labelElement.posY = 456
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000046
+        labelElement.name = "Fade"
+        labelElement.posX = 2080
+        labelElement.posY = 1784
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000047
+        labelElement.name = "Providence"
+        labelElement.posX = 3416
+        labelElement.posY = 4936
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000048
+        labelElement.name = "Placid"
+        labelElement.posX = 2280
+        labelElement.posY = 3024
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000049
+        labelElement.name = "Khanid"
+        labelElement.posX = 1872
+        labelElement.posY = 4792
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000050
+        labelElement.name = "Querious"
+        labelElement.posX = 1568
+        labelElement.posY = 5616
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000051
+        labelElement.name = "Cloud Ring"
+        labelElement.posX = 1904
+        labelElement.posY = 2640
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000052
+        labelElement.name = "Kador"
+        labelElement.posX = 2512
+        labelElement.posY = 4352
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000053
+        labelElement.name = "Cobalt Edge"
+        labelElement.posX = 6592
+        labelElement.posY = 2184
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000054
+        labelElement.name = "Aridia"
+        labelElement.posX = 1496
+        labelElement.posY = 4360
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000055
+        labelElement.name = "Branch"
+        labelElement.posX = 3232
+        labelElement.posY = 616
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000056
+        labelElement.name = "Feythabolis"
+        labelElement.posX = 4576
+        labelElement.posY = 6912
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000057
+        labelElement.name = "Outer Ring"
+        labelElement.posX = 1328
+        labelElement.posY = 3104
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000058
+        labelElement.name = "Fountain"
+        labelElement.posX = 880
+        labelElement.posY = 3824
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000059
+        labelElement.name = "Paragon Soul"
+        labelElement.posX = 3472
+        labelElement.posY = 7480
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000060
+        labelElement.name = "Delve"
+        labelElement.posX = 1048
+        labelElement.posY = 5744
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000061
+        labelElement.name = "Tenerifis"
+        labelElement.posX = 4712
+        labelElement.posY = 6000
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000062
+        labelElement.name = "Omist"
+        labelElement.posX = 5160
+        labelElement.posY = 6832
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000063
+        labelElement.name = "Period Basis"
+        labelElement.posX = 1168
+        labelElement.posY = 6736
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000064
+        labelElement.name = "Essence"
+        labelElement.posX = 2656
+        labelElement.posY = 3352
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000065
+        labelElement.name = "Kor-Azor"
+        labelElement.posX = 2056
+        labelElement.posY = 4584
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000066
+        labelElement.name = "Perrigen Falls"
+        labelElement.posX = 5976
+        labelElement.posY = 2944
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000067
+        labelElement.name = "Genesis"
+        labelElement.posX = 2352
+        labelElement.posY = 3888
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000068
+        labelElement.name = "Verge Vendor"
+        labelElement.posX = 2440
+        labelElement.posY = 3360
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+        labelElement.id = 10000069
+        labelElement.name = "Black Rise"
+        labelElement.posX = 2656
+        labelElement.posY = 2736
+        labelElement.posZ = 0
+        RegionLabels.append(labelElement)
+    }  // CreateRegionLabels
+
 }

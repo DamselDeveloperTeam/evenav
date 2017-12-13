@@ -10,6 +10,7 @@ import UIKit
 
 public class RegionLabel: UILabel {
     var id: Int = 0
+    var name: String = ""
     var posX: Int = 0
     var posY: Int = 0
     var posZ: Int = 0
