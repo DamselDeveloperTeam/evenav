@@ -18,6 +18,8 @@ public let origin : Int = 4096
 public let systemButtonSize : Int = 8
 public var systemButtonColor : UIColor = UIColor.white
 public let TopBarHeight : Int = 48
+public let nc = NotificationCenter.default
+public var messageString : String = "Loading..."
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

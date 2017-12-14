@@ -8,8 +8,6 @@
 
 import UIKit
 
-public let nc = NotificationCenter.default
-
 class ScrollView: UIScrollView {
 
     override func draw(_ rect: CGRect) {

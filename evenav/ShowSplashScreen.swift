@@ -16,27 +16,33 @@ class ShowSplashScreen: UIViewController {
     
     @IBOutlet var lblStatusMessage: UILabel!
     
+    // Local notification observer for focusToSystem.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nc.addObserver(self, selector: #selector(loadingMessage), name: Notification.Name("loadingMessage"), object: nil)
+        
         activityIndicator.isHidden = false
         lblStatusMessage.isHidden = false
         activityIndicator.startAnimating()
-
    
         perform(#selector(showViewController), with: nil, afterDelay: 4)
-
-        
-        // Do any additional setup after loading the view.
     }
     
     @objc func showViewController()
     {
         performSegue(withIdentifier: "showSplashScreen", sender: self)
       
-
         //UIApplication.shared.endIgnoringInteractionEvents()
     }
     
+    @objc func loadingMessage() {
+        lblStatusMessage.text = messageString
+        lblStatusMessage.setNeedsDisplay()
+        lblStatusMessage.setNeedsLayout()
+        NSLog("\(lblStatusMessage.text ?? "Loading...")")
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         activityIndicator.stopAnimating()

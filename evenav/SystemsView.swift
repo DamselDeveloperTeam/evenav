@@ -24,13 +24,21 @@ class SystemsView: UIView {
         self.isOpaque = true
         
         //  Appending regions, constellations, systems and connectors to their respective arrays.
-        NSLog("Populating region array...");
+        //NSLog("Populating region array...");
+        messageString = "Populating region array..."
+        nc.post(name: Notification.Name("loadingMessage"), object: nil)
         DataBase.sharedInstance.CreateRegionArray()
-        NSLog("Populating constellation array...");
+        //NSLog("Populating constellation array...");
+        messageString = "Populating constellation array..."
+        nc.post(name: Notification.Name("loadingMessage"), object: nil)
         DataBase.sharedInstance.CreateConstellationsArray()
-        NSLog("Populating system array...");
+        //NSLog("Populating system array...");
+        messageString = "Populating system array..."
+        nc.post(name: Notification.Name("loadingMessage"), object: nil)
         DataBase.sharedInstance.CreateSystemsArray()
-        NSLog("Populating connection array...");
+        //NSLog("Populating connection array...");
+        messageString = "Populating connection array..."
+        nc.post(name: Notification.Name("loadingMessage"), object: nil)
         DataBase.sharedInstance.CreateConnectorArray();
         
         //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
