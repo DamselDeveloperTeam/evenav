@@ -275,11 +275,11 @@ class DataBase {
     func CreateConstellationsArray() {
 
         if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM Constellation;";
             var regionIndex : Int = -1
             var regX : Int = origin
             var regY : Int = origin
 
+            let sqlStatement: String = "SELECT * FROM Constellation;";
             do {
                 let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: nil)
                 
