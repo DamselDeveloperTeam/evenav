@@ -353,6 +353,7 @@ class DataBase {
         
     }
     
+    /*
     private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {
         var region: [Int] = [];
         var constellation: [Int] = [];
@@ -384,6 +385,19 @@ class DataBase {
             if constellation[0] != constellation[1] {
                 return 1; //Constellation changes in transition
             }
+        }
+        
+        // No region/constellation change in transition
+        return 0;
+    }
+     */
+    
+    private func determineConnectionChange(system1: SystemButton, System2: SystemButton) -> Int {
+        if system1.region != System2.region {
+            return 2;  //Region changes in transition
+        }
+        if system1.constellation != System2.constellation {
+            return 1; //Constellation changes in transition
         }
         
         // No region/constellation change in transition
@@ -424,7 +438,7 @@ class DataBase {
             newConnection.sourceY = Systems[systemFrom].posY;
             newConnection.targetX = Systems[systemTo].posX;
             newConnection.targetY = Systems[systemTo].posY;
-            newConnection.gateType = determineConnectionChange(systemID1: Systems[systemFrom].id, SystemID2: Systems[systemTo].id);
+            newConnection.gateType = determineConnectionChange(system1: Systems[systemFrom], System2: Systems[systemTo]);
             Connectors.append(newConnection);
         }
     }
