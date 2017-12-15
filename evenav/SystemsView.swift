@@ -55,7 +55,8 @@ class SystemsView: UIView {
         //  Drawing constellation labels.
         NSLog("Drawing \(Constellations.count) constellation labels...");
         for cIX in 0 ... Constellations.count - 1 {
-            conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 240, height: 24))
+            //conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 240, height: 24))
+            conLabel = ConstellationLabel(frame: CGRect(x: Constellations[cIX].pX / 2, y: Constellations[cIX].pY / 2, width: 240, height: 24))
             conLabel.text = Constellations[cIX].name
             conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
             self.addSubview(conLabel)

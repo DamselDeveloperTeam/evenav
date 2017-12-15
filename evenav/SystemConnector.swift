@@ -29,6 +29,6 @@ public class SystemConnector: UIBezierPath {
 
         move(to: CGPoint(x: sourceX + (systemButtonSize / 2), y: sourceY + (systemButtonSize / 2)))
         addLine(to: CGPoint(x: targetX + (systemButtonSize / 2), y: targetY + (systemButtonSize / 2)))
-        stroke()
+        stroke(with: CGBlendMode.normal, alpha: 0.7)
     }
 }

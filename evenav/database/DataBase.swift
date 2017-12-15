@@ -336,6 +336,7 @@ class DataBase {
                     if conIndex >= 0 {
                         newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
+                        newSystem.region = Constellations[conIndex].region
                         Systems.append(newSystem)
                     } else {
                         NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
