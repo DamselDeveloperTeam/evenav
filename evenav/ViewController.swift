@@ -53,6 +53,8 @@ class ViewController: UIViewController {
         viewPinch.isUserInteractionEnabled = true
         viewPinch.addGestureRecognizer(pinchGesture)
         
+             self.viewPinch.center = CGPoint(x: viewPinch.frame.size.width  / 2, y: viewPinch.frame.size.height / 2);
+        
         DataBase.sharedInstance.displayDBPath();
     }
     

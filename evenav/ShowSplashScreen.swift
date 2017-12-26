@@ -15,18 +15,37 @@ class ShowSplashScreen: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var lblStatusMessage: UILabel!
-    
     // Local notification observer for focusToSystem.
+    
+    var timer: DispatchSourceTimer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let messageStrings = ["Welcome to EveOnline", "Connecting to database...", "Populating region array...", "Populating constellation array...", "Populating system array...", "Populating connection array...", "Drawing 67 region labels...", "Drawing 1120 constellation labels...", "Drawing 6913 connections...", "Drawing 5433 systems...", "Loading.....", "...all drawing done"]
+        var index = messageStrings.startIndex
+        timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now(), repeating: .seconds(3))
+        timer.setEventHandler { [weak self] in
+            self?.lblStatusMessage.text = messageStrings[index]
+            index = index.advanced(by: 1)
+            if index == messageStrings.endIndex {
+               
+                
+                self?.timer.cancel() //Stops timmer and does not repeat lopping through string array.
+                self?.perform(#selector(self?.showViewController), with: nil)
+            }
+        }
+        timer.resume()
+
+       
         nc.addObserver(self, selector: #selector(loadingMessage), name: Notification.Name("loadingMessage"), object: nil)
         
         activityIndicator.isHidden = false
         lblStatusMessage.isHidden = false
         activityIndicator.startAnimating()
    
-        perform(#selector(showViewController), with: nil, afterDelay: 4)
+        
     }
     
     @objc func showViewController()
@@ -53,6 +72,8 @@ class ShowSplashScreen: UIViewController {
 
     }
     
+
+
 
     /*
     // MARK: - Navigation
