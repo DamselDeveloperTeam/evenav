@@ -31,7 +31,7 @@ class ConnectionFinder {
     
     private func handleError(error: Error) {
         switch error {
-        case JsonHttpRequest.HttpError.solarSystemNotfound(let errorMsg):
+        case JsonHttpRequest.HttpError.error404(let errorMsg):
             NSLog("httpError: " + errorMsg);
         case JsonHttpRequest.HttpError.internalServerError(let errorMsg):
             NSLog("httpError: " + errorMsg);

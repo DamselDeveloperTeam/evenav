@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var systemView: SystemsView!
     @IBOutlet weak var sourceSystem: UISearchBar!
     
     @IBAction func targetSystem(_ sender: UITextField) {
@@ -38,6 +39,7 @@ class ViewController: UIViewController {
             //NSLog("system:", systemName, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
             nc.post(name: Notification.Name("focusToSystem"), object: nil)
+            highlightRoute(originID: Systems[focusOnSystem].id, destinationID: 30002772);
         } else {
             NSLog("system '\(String(describing: systemName))' not found")
         }
@@ -56,6 +58,25 @@ class ViewController: UIViewController {
              self.viewPinch.center = CGPoint(x: viewPinch.frame.size.width  / 2, y: viewPinch.frame.size.height / 2);
         
         DataBase.sharedInstance.displayDBPath();
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //RouteFinder Testing....
+        /*
+        let rFinder: RouteFinder = RouteFinder();
+        DispatchQueue.global(qos: .userInitiated).async {
+            if (rFinder.findRouteFor(origin: 30002771, destination: 30002772)) {
+                DispatchQueue.main.async {
+                    self.systemView.setNeedsDisplay();                }
+            }
+        }
+         */
+        
+        //_ = rFinder.findRouteFor(origin: 30002771, destination: 30002772);
+        //systemView.setNeedsDisplay();
+        
+        //highlightRoute(originID: 30002771, destinationID: 30002772);
     }
     
     @objc func handlePinchGesture(recognizer: UIPinchGestureRecognizer) {
@@ -89,6 +110,16 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func highlightRoute(originID: Int, destinationID: Int) {
+        let rFinder: RouteFinder = RouteFinder();
+        DispatchQueue.global(qos: .userInitiated).async {
+            if (rFinder.findRouteFor(origin: originID, destination: destinationID)) {
+                DispatchQueue.main.async {
+                    self.systemView.setNeedsDisplay();                }
+            }
+        }
     }
 }
 

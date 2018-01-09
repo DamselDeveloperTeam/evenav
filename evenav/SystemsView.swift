@@ -18,11 +18,16 @@ class SystemsView: UIView {
     var conLabel = ConstellationLabel() as ConstellationLabel
     var regLabel = RegionLabel() as RegionLabel
 
+    var createArrays: Bool = true;
+    
     override func draw(_ rect: CGRect) {
         NSLog("UIVIEW")
         self.clearsContextBeforeDrawing = false
         self.isOpaque = true
         
+        
+        
+        if (createArrays) {
         //  Appending regions, constellations, systems and connectors to their respective arrays.
         //NSLog("Populating region array...");
         messageString = "Populating region array..."
@@ -40,7 +45,10 @@ class SystemsView: UIView {
         messageString = "Populating connection array..."
         nc.post(name: Notification.Name("loadingMessage"), object: nil)
         DataBase.sharedInstance.CreateConnectorArray();
+        }
+        self.createArrays = false;
         
+ 
         //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
         //
         //  Drawing region labels.
@@ -70,6 +78,9 @@ class SystemsView: UIView {
             //NSLog("Drew connection: \(n)")
             Connectors[ix].plot()
         }
+        NSLog("Finished drawing \(Connectors.count) connections...");
+        
+        
 
         //  Drawing systems and their names according to Systems array.
         //  Coordinates in Systems array are relative to constellation coordinates.
@@ -85,6 +96,7 @@ class SystemsView: UIView {
             self.addSubview(newLabel)
         }
         NSLog("...all drawing done.")
+ 
     }
-
+    
 }

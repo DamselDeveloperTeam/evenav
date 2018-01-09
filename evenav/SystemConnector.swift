@@ -16,15 +16,23 @@ public class SystemConnector: UIBezierPath {
     lazy var targetY : Int = 0
     //  gate types: 0 = regular, 1 = constellation, 2 = region
     lazy var gateType : Int = 0
+    lazy var isHighlighted: Bool = false;
     
     func plot() {
-        switch self.gateType {
-        case 1:
-            UIColor.magenta.setStroke()
-        case 2:
-            UIColor.red.setStroke()
-        default:
-            UIColor.cyan.setStroke()
+        
+        if(isHighlighted) {
+            UIColor.yellow.setStroke();
+        } else {
+            switch self.gateType {
+            case 1:
+                UIColor.magenta.setStroke()
+            case 2:
+                UIColor.red.setStroke()
+            //case 3: //Route highlight color
+            //    UIColor.yellow.setStroke()
+            default:
+                UIColor.cyan.setStroke()
+            }
         }
 
         move(to: CGPoint(x: sourceX + (systemButtonSize / 2), y: sourceY + (systemButtonSize / 2)))

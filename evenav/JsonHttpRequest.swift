@@ -42,7 +42,7 @@ class JsonHttpRequest {
     }
     
     enum HttpError: Error {
-        case solarSystemNotfound(String);
+        case error404(String);
         case internalServerError(String);
         case otherHttpError(Int);
     }
@@ -55,7 +55,7 @@ class JsonHttpRequest {
             guard let error = json as? [String:Any], let errorMsg = error["error"] as? String else {
                 throw HttpError.otherHttpError(statusCode);
             }
-            throw HttpError.solarSystemNotfound(errorMsg);
+            throw HttpError.error404(errorMsg);
         case 500:
             guard let error = json as? [String:Any], let errorMsg = error["error"] as? String else {
                 throw HttpError.otherHttpError(statusCode);
