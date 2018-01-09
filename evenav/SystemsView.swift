@@ -28,48 +28,47 @@ class SystemsView: UIView {
         
         
         if (createArrays) {
-        //  Appending regions, constellations, systems and connectors to their respective arrays.
-        //NSLog("Populating region array...");
-        messageString = "Populating region array..."
-        nc.post(name: Notification.Name("loadingMessage"), object: nil)
-        DataBase.sharedInstance.CreateRegionArray()
-        //NSLog("Populating constellation array...");
-        messageString = "Populating constellation array..."
-        nc.post(name: Notification.Name("loadingMessage"), object: nil)
-        DataBase.sharedInstance.CreateConstellationsArray()
-        //NSLog("Populating system array...");
-        messageString = "Populating system array..."
-        nc.post(name: Notification.Name("loadingMessage"), object: nil)
-        DataBase.sharedInstance.CreateSystemsArray()
-        //NSLog("Populating connection array...");
-        messageString = "Populating connection array..."
-        nc.post(name: Notification.Name("loadingMessage"), object: nil)
-        DataBase.sharedInstance.CreateConnectorArray();
+            //  Appending regions, constellations, systems and connectors to their respective arrays.
+            //NSLog("Populating region array...");
+            messageString = "Populating region array..."
+            nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateRegionArray()
+            //NSLog("Populating constellation array...");
+            messageString = "Populating constellation array..."
+            nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateConstellationsArray()
+            //NSLog("Populating system array...");
+            messageString = "Populating system array..."
+            nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateSystemsArray()
+            //NSLog("Populating connection array...");
+            messageString = "Populating connection array..."
+            nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateConnectorArray();
+
+            //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
+            //
+            //  Drawing region labels.
+            NSLog("Drawing \(RegionLabels.count) region labels...");
+            for rIX in 0 ... RegionLabels.count - 1 {
+                regLabel = RegionLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 640, height: 64))
+                regLabel.text = RegionLabels[rIX].name
+                regLabel.center = CGPoint(x: RegionLabels[rIX].posX, y: RegionLabels[rIX].posY)
+                self.addSubview(regLabel)
+            }
+
+            //  Drawing constellation labels.
+            NSLog("Drawing \(Constellations.count) constellation labels...");
+            for cIX in 0 ... Constellations.count - 1 {
+                //conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 240, height: 24))
+                conLabel = ConstellationLabel(frame: CGRect(x: Constellations[cIX].pX / 2, y: Constellations[cIX].pY / 2, width: 240, height: 24))
+                conLabel.text = Constellations[cIX].name
+                conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
+                self.addSubview(conLabel)
+            }
         }
         self.createArrays = false;
-        
- 
-        //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
-        //
-        //  Drawing region labels.
-        NSLog("Drawing \(RegionLabels.count) region labels...");
-        for rIX in 0 ... RegionLabels.count - 1 {
-            regLabel = RegionLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 640, height: 64))
-            regLabel.text = RegionLabels[rIX].name
-            regLabel.center = CGPoint(x: RegionLabels[rIX].posX, y: RegionLabels[rIX].posY)
-            self.addSubview(regLabel)
-        }
 
-        //  Drawing constellation labels.
-        NSLog("Drawing \(Constellations.count) constellation labels...");
-        for cIX in 0 ... Constellations.count - 1 {
-            //conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 240, height: 24))
-            conLabel = ConstellationLabel(frame: CGRect(x: Constellations[cIX].pX / 2, y: Constellations[cIX].pY / 2, width: 240, height: 24))
-            conLabel.text = Constellations[cIX].name
-            conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
-            self.addSubview(conLabel)
-        }
-        
         //  Drawing connectors between systems according to Connectors array.
         var n: Int = 0;
         NSLog("Drawing \(Connectors.count) connections...");

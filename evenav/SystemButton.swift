@@ -19,8 +19,10 @@ public class SystemButton: UIButton {
     var region: Int = 0
     var connectsToSystem = [Int]()
     var securityStatus: Double = 0.0;
+    //var needsRedraw: Bool = true
     
     override public func draw(_ rect: CGRect) {
+        //if (!needsRedraw) { return }
         let path = UIBezierPath(ovalIn: rect)
         
         switch color {
@@ -32,5 +34,6 @@ public class SystemButton: UIButton {
 
         path.fill()
         path.close()
+        //needsRedraw = false
     }
 }

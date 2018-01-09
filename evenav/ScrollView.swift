@@ -30,8 +30,8 @@ class ScrollView: UIScrollView {
         //setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY), animated: true)
         setContentOffset(CGPoint(x: Systems[currentSystemIndex].posX - (Int(screenWidth) / 2), y: Systems[currentSystemIndex].posY + verticalOffset - (Int(screenHeight) / 2)), animated: true)
         
-        Systems[currentSystemIndex].color = UIColor.blue
-        systemButtonColor = UIColor.blue
-        Systems[currentSystemIndex].draw(CGRect(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY, width: systemButtonSize, height: systemButtonSize))
+        //Systems[currentSystemIndex].color = UIColor.blue
+        //systemButtonColor = UIColor.blue
+        //Systems[currentSystemIndex].draw(CGRect(x: Systems[currentSystemIndex].posX, y: Systems[currentSystemIndex].posY, width: systemButtonSize, height: systemButtonSize))
     }
 }

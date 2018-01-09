@@ -17,9 +17,10 @@ public class SystemConnector: UIBezierPath {
     //  gate types: 0 = regular, 1 = constellation, 2 = region
     lazy var gateType : Int = 0
     lazy var isHighlighted: Bool = false;
+    //lazy var needsRedraw : Bool = true
     
     func plot() {
-        
+        //if (!needsRedraw) { return }
         if(isHighlighted) {
             UIColor.yellow.setStroke();
         } else {
@@ -38,5 +39,6 @@ public class SystemConnector: UIBezierPath {
         move(to: CGPoint(x: sourceX + (systemButtonSize / 2), y: sourceY + (systemButtonSize / 2)))
         addLine(to: CGPoint(x: targetX + (systemButtonSize / 2), y: targetY + (systemButtonSize / 2)))
         stroke(with: CGBlendMode.normal, alpha: 0.7)
+        //needsRedraw = false
     }
 }
