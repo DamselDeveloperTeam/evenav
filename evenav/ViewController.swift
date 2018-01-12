@@ -50,8 +50,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let systemID = filtered[indexPath.row].id
             let systemName = filtered[indexPath.row].name
             
-            cell.systemIDLabel.text = systemID.description
-            cell.systemNameLabel.text = systemName
+            cell.systemIDLabel?.text = systemID.description
+            cell.systemNameLabel?.text = systemName
         }
         
         return cell
