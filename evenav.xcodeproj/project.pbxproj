@@ -44,6 +44,7 @@
 		77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */; };
 		77AEC3541FD98A4E00C5C986 /* ConstellationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */; };
 		77D92BB41FE080B6000FDF13 /* RegionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92BB31FE080B6000FDF13 /* RegionLabel.swift */; };
+		77DC95FE2004EA6A0021B60A /* SystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC95FD2004EA6A0021B60A /* SystemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		77AEC3511FD98A4000C5C986 /* ConstellationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationDataManager.swift; sourceTree = "<group>"; };
 		77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstellationJSON.swift; sourceTree = "<group>"; };
 		77D92BB31FE080B6000FDF13 /* RegionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionLabel.swift; sourceTree = "<group>"; };
+		77DC95FD2004EA6A0021B60A /* SystemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				775954761FCADB7A00C92A1A /* Main.storyboard */,
 				7759547E1FCADB7A00C92A1A /* LaunchScreen.storyboard */,
 				773291881FE1362A00CF7757 /* ShowSplashScreen.swift */,
+				77DC95FD2004EA6A0021B60A /* SystemTableViewCell.swift */,
 				775954871FCADF0C00C92A1A /* ScrollView.swift */,
 				775954891FCADFAE00C92A1A /* SystemsView.swift */,
 				773300E11FD0475F00970D6E /* SystemLabel.swift */,
@@ -268,6 +271,7 @@
 				77AEC3461FD989E100C5C986 /* JsonHttpRequest.swift in Sources */,
 				77AEC34A1FD98A0300C5C986 /* SystemJSON.swift in Sources */,
 				773291891FE1362A00CF7757 /* ShowSplashScreen.swift in Sources */,
+				77DC95FE2004EA6A0021B60A /* SystemTableViewCell.swift in Sources */,
 				773300E21FD0475F00970D6E /* SystemLabel.swift in Sources */,
 				77AEC3441FD989D400C5C986 /* EveSystemConnectionFinder.swift in Sources */,
 				77AEC3521FD98A4100C5C986 /* ConstellationDataManager.swift in Sources */,
