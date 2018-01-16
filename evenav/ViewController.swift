@@ -82,8 +82,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchController.dimsBackgroundDuringPresentation = false
         topBarUIView.addSubview(searchController.searchBar)
         tableView.tableFooterView = UIView(frame: .zero)
-        //tableView.register(SystemTableViewCell.self, forCellReuseIdentifier: "systemNameCellIdentifier")
-        //tableView.reloadData()
         
         //RouteFinder Testing....
         /*
@@ -174,7 +172,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "systemNameCellIdentifier", for: indexPath) as! SystemTableViewCell
-                
+        
         if let filtered = filteredSystems {
             let systemID = filtered[indexPath.row].id
             let systemName = filtered[indexPath.row].name
@@ -211,9 +209,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let selectedSystemName = selectedSystem.name
         searchController.searchBar.text = selectedSystemName
         initiateSearch(systemName: selectedSystem.name)
+        tableView.isHidden = true
     }
-    
-    
-    
 }
 

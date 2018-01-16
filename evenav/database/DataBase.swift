@@ -349,6 +349,7 @@ class DataBase {
             }
             
             closeDatabase();
+            Systems = Systems.sorted(by: {$0.name < $1.name})
         }
         
     }
