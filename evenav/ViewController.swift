@@ -19,72 +19,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var filteredSystems : [SystemButton]?
     let searchController = UISearchController(searchResultsController: nil)
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let filtered = filteredSystems else {
-            return 0
-        }
-        
-        if filtered.count == 0 || filtered.count == systems.count
-        {
-            tableView.isHidden = true
-            tableView.layer.zPosition = 0
-            NSLog("Tableview hidden")
-        }
-        else
-        {
-            let systemsCount = systems.count
-            if filtered.count > 0 && filtered.count < systemsCount
-            {
-                tableView.isHidden = false
-                tableView.layer.zPosition = 10
-                NSLog("Tableview shown, number of filtered systems: " + filtered.count.description)
-            }
-        }
-        return filtered.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "systemNameCellIdentifier") as! SystemTableViewCell
-        
-        if let filtered = filteredSystems {
-            let systemID = filtered[indexPath.row].id
-            let systemName = filtered[indexPath.row].name
-            
-            cell.systemIDLabel?.text = systemID.description
-            cell.systemNameLabel?.text = systemName
-        }
-        
-        return cell
-    }
-    
-    func updateSearchResults(for searchController: UISearchController)
-    {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            filteredSystems = systems.filter { system in
-                let systemName = system.name
-                return systemName.lowercased().contains(searchText.lowercased())
-            }
-        }
-        else
-        {
-            filteredSystems = systems
-        }
-        
-        tableView.reloadData()
-        tableView.setNeedsDisplay();
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = indexPath.item
-        let selectedSystem = filteredSystems![selectedItem]
-        NSLog(selectedSystem.id.description)
-        let selectedSystemName = selectedSystem.name
-        searchController.searchBar.text = selectedSystemName
-        tableView.isHidden = true
-        tableView.layer.zPosition = 0
-        initiateSearch(systemName: selectedSystem.name)
-    }
-    
     @IBAction func targetSystem(_ sender: UITextField) {
         sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
         if sender.text != "" {
@@ -132,17 +66,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
              self.viewPinch.center = CGPoint(x: viewPinch.frame.size.width  / 2, y: viewPinch.frame.size.height / 2);
         
-        DataBase.sharedInstance.displayDBPath();
-        
-        
-        
+        DataBase.sharedInstance.displayDBPath()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //systems = Systems
-        
         systems = Systems
         NSLog("Systems count: " + systems.count.description)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -152,7 +82,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchController.dimsBackgroundDuringPresentation = false
         topBarUIView.addSubview(searchController.searchBar)
         tableView.tableFooterView = UIView(frame: .zero)
-        
+        //tableView.register(SystemTableViewCell.self, forCellReuseIdentifier: "systemNameCellIdentifier")
+        //tableView.reloadData()
         
         //RouteFinder Testing....
         /*
@@ -213,5 +144,76 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let filtered = filteredSystems else {
+            return 0
+        }
+        
+        if filtered.count == 0 || filtered.count == systems.count
+        {
+            tableView.isHidden = true
+            tableView.layer.zPosition = 0
+            NSLog("Tableview hidden")
+        }
+        else
+        {
+            let systemsCount = systems.count
+            if filtered.count > 0 && filtered.count < systemsCount
+            {
+                tableView.isHidden = false
+                tableView.layer.zPosition = 10
+                NSLog("Tableview shown, number of filtered systems: " + filtered.count.description)
+            }
+        }
+ 
+        return filtered.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "systemNameCellIdentifier", for: indexPath) as! SystemTableViewCell
+                
+        if let filtered = filteredSystems {
+            let systemID = filtered[indexPath.row].id
+            let systemName = filtered[indexPath.row].name
+
+            cell.systemIDLabel?.text = systemID.description
+            cell.systemNameLabel?.text = systemName
+            
+            cell.textLabel?.text = systemName
+        }
+        
+        return cell
+    }
+    
+    func updateSearchResults(for searchController: UISearchController)
+    {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredSystems = systems.filter { system in
+                let systemName = system.name
+                return systemName.lowercased().contains(searchText.lowercased())
+            }
+        }
+        else
+        {
+            filteredSystems = systems
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = indexPath.item
+        let selectedSystem = filteredSystems![selectedItem]
+        NSLog(selectedSystem.id.description)
+        let selectedSystemName = selectedSystem.name
+        searchController.searchBar.text = selectedSystemName
+        initiateSearch(systemName: selectedSystem.name)
+    }
+    
+    
+    
 }
 
