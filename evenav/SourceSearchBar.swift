@@ -9,9 +9,20 @@
 import UIKit
 
 class SourceSearchBar: UISearchBar {
-    /*
-    override func draw(_ rect: CGRect) {
-        self.text = "kukku"
-    }
-    */
+    let identifier: String = "Source";
+    var selectedSystemID: Int?;
+    var isBeingEdited: Bool = false;
 }
+
+/*
+extension UISearchBar {
+    static var testVar: String {
+        get {
+            return self.testVar;
+        }
+        set {
+            self.testVar = newValue;
+        }
+    }
+}
+*/

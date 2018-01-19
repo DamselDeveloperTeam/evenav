@@ -8,12 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     @IBOutlet weak var systemView: SystemsView!
-    @IBOutlet weak var sourceSystem: UISearchBar!
+    @IBOutlet weak var sourceSystem: SourceSearchBar!
+    @IBOutlet weak var destinationBar: DestinationSearchBar!
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topBarUIView: UIView!
+    
+    @IBAction func searchButton(_ sender: UIButton) {
+        if (bothSystemsSelectedInSearchBar()) {
+            initiateSearch(systemName: sourceSystem.text!);
+            highlightRoute(originID: sourceSystem.selectedSystemID!, destinationID: destinationBar.selectedSystemID!);
+        }
+    }
+    
+    private func bothSystemsSelectedInSearchBar() -> Bool {
+        if (sourceSystem.selectedSystemID == nil || destinationBar.selectedSystemID == nil) {
+            return false
+        }
+        return true
+    }
     
     var systems : [SystemButton] = []
     var filteredSystems : [SystemButton]?
@@ -50,8 +66,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let systemID = filtered[indexPath.row].id
             let systemName = filtered[indexPath.row].name
             
-            cell.systemIDLabel.text = systemID.description
-            cell.systemNameLabel.text = systemName
+            cell.systemIDLabel?.text = systemID.description;
+            cell.systemNameLabel?.text = systemName;
+            cell.textLabel?.text = systemName;
         }
         
         return cell
@@ -71,7 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         tableView.reloadData()
-        tableView.setNeedsDisplay();
+        //tableView.setNeedsDisplay();
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -79,10 +96,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let selectedSystem = filteredSystems![selectedItem]
         NSLog(selectedSystem.id.description)
         let selectedSystemName = selectedSystem.name
-        searchController.searchBar.text = selectedSystemName
+        //searchController.searchBar.text = selectedSystemName
         tableView.isHidden = true
-        tableView.layer.zPosition = 0
-        initiateSearch(systemName: selectedSystem.name)
+        
+        if(sourceSystem.isBeingEdited) {
+            sourceSystem.selectedSystemID = selectedSystem.id;
+            sourceSystem.text = selectedSystemName;
+            sourceSystem.barTintColor = UIColor.green;
+            NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
+        }
+        
+        if(destinationBar.isBeingEdited) {
+            destinationBar.selectedSystemID = selectedSystem.id;
+            destinationBar.text = selectedSystemName;
+            destinationBar.barTintColor = UIColor.green;
+            NSLog("Set \(String(describing: destinationBar.selectedSystemID)) for \(destinationBar.identifier)");
+        }
+        
+        //tableView.layer.zPosition = 0
+        //self.sourceSystem.text = "";
+        
+        //initiateSearch(systemName: selectedSystem.name)
     }
     
     @IBAction func targetSystem(_ sender: UITextField) {
@@ -112,10 +146,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //NSLog("system:", systemName, "system index:", currentSystemIndex)
             focusOnSystem = currentSystemIndex
             nc.post(name: Notification.Name("focusToSystem"), object: nil)
-            highlightRoute(originID: Systems[focusOnSystem].id, destinationID: 30002772);
+            //highlightRoute(originID: Systems[focusOnSystem].id, destinationID: 30002772);
         } else {
             NSLog("system '\(String(describing: systemName))' not found")
         }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        NSLog("Search bar test2!");
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSLog("Search bar test!: \(searchText)");
+        
+        //NSLog("ac id: \(searchBar.accessibilityIdentifier)");
+        if (searchBar.accessibilityLabel == "Source") {
+            sourceSystem.isBeingEdited = true;
+            destinationBar.isBeingEdited = false;
+            NSLog("\(sourceSystem.identifier) is being edited");
+        }
+        
+        if (searchBar.accessibilityLabel == "Destination") {
+            sourceSystem.isBeingEdited = false;
+            destinationBar.isBeingEdited = true;
+            NSLog("\(destinationBar.identifier) is being edited");
+        }
+        
+        if (!searchText.isEmpty) {
+            filteredSystems = systems.filter { system in
+                let systemName = system.name
+                return systemName.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            filteredSystems = systems
+        }
+        
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -135,24 +201,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         DataBase.sharedInstance.displayDBPath();
         
         
+        NSLog("Systems count: " + systems.count.description)
+        tableView.dataSource = self
+        tableView.delegate = self
+        //tableView.isScrollEnabled = true;
+        //tableView.isUserInteractionEnabled = true;
+        //tableView.allowsSelection = true;
         
+        filteredSystems = systems
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.searchBar.widthAnchor.constraint(equalToConstant: 150).isActive = true;
+        //topBarUIView.addSubview(searchController.searchBar)
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        self.sourceSystem.delegate = self;
+        self.sourceSystem.accessibilityLabel = "Source";
+        self.sourceSystem.isAccessibilityElement = true;
+        
+        self.destinationBar.delegate = self;
+        self.destinationBar.accessibilityLabel = "Destination";
+        self.destinationBar.isAccessibilityElement = true;
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //systems = Systems
         
         systems = Systems
-        NSLog("Systems count: " + systems.count.description)
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        filteredSystems = systems
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        topBarUIView.addSubview(searchController.searchBar)
-        tableView.tableFooterView = UIView(frame: .zero)
-        
         
         //RouteFinder Testing....
         /*
