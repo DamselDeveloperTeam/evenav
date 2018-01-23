@@ -102,15 +102,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if(sourceSystem.isBeingEdited) {
             sourceSystem.selectedSystemID = selectedSystem.id;
             sourceSystem.text = selectedSystemName;
-            sourceSystem.barTintColor = UIColor.green;
+            //sourceSystem.barTintColor = UIColor.green;
             NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
+            initiateSearch(systemName: sourceSystem.text!)
         }
         
         if(destinationBar.isBeingEdited) {
             destinationBar.selectedSystemID = selectedSystem.id;
             destinationBar.text = selectedSystemName;
-            destinationBar.barTintColor = UIColor.green;
+            //destinationBar.barTintColor = UIColor.green;
             NSLog("Set \(String(describing: destinationBar.selectedSystemID)) for \(destinationBar.identifier)");
+            initiateSearch(systemName: destinationBar.text!)
         }
         
         //tableView.layer.zPosition = 0
