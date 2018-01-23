@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,7 +53,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n77-Ty-44L" userLabel="Top bar">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" barStyle="black" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iau-6P-aOC" userLabel="sourceSystem" customClass="SourceSearchBar" customModule="evenav" customModuleProvider="target">
+                                    <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Iau-6P-aOC" userLabel="sourceSystem" customClass="SourceSearchBar" customModule="evenav" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="V02-RN-JJj"/>

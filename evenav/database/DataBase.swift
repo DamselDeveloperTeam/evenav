@@ -469,13 +469,13 @@ class DataBase {
         labelR03.posY = 2392
         labelR03.posZ = 0
         RegionLabels.append(labelR03)
-        let labelR04 = RegionLabel() as RegionLabel
+        /*let labelR04 = RegionLabel() as RegionLabel
         labelR04.id = 10000004
         labelR04.name = "UUA-F4"
         labelR04.posX = 5024
         labelR04.posY = 2000 // 1680
         labelR04.posZ = 0
-        RegionLabels.append(labelR04)
+        RegionLabels.append(labelR04)*/
         let labelR05 = RegionLabel() as RegionLabel
         labelR05.id = 10000005
         labelR05.name = "Detorid"
@@ -560,13 +560,13 @@ class DataBase {
         labelR16.posY = 2584
         labelR16.posZ = 0
         RegionLabels.append(labelR16)
-        let labelR17 = RegionLabel() as RegionLabel
+        /*let labelR17 = RegionLabel() as RegionLabel
         labelR17.id = 10000017
         labelR17.name = "J7HZ-F"
         labelR17.posX = 4392
         labelR17.posY = 2000
         labelR17.posZ = 0
-        RegionLabels.append(labelR17)
+        RegionLabels.append(labelR17)*/
         let labelR18 = RegionLabel() as RegionLabel
         labelR18.id = 10000018
         labelR18.name = "The Spire"
@@ -574,13 +574,13 @@ class DataBase {
         labelR18.posY = 3600
         labelR18.posZ = 0
         RegionLabels.append(labelR18)
-        let labelR19 = RegionLabel() as RegionLabel
+        /*let labelR19 = RegionLabel() as RegionLabel
         labelR19.id = 10000019
         labelR19.name = "A821-A"
         labelR19.posX = 4440
         labelR19.posY = 2000 // 1592
         labelR19.posZ = 0
-        RegionLabels.append(labelR19)
+        RegionLabels.append(labelR19)*/
         let labelR20 = RegionLabel() as RegionLabel
         labelR20.id = 10000020
         labelR20.name = "Tash-Murkon"
