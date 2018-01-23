@@ -294,14 +294,16 @@ class DataBase {
                     if regionIndex >= 0 {
                         regX = RegionLabels[regionIndex].posX
                         regY = RegionLabels[regionIndex].posY
-                    } else {
-                        regX = origin
-                        regY = origin
+                        newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
+                        newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
+                        
+                        if newConstellation.pX < 1 || newConstellation.pX > 8192 || newConstellation.pY < 1 || newConstellation.pY > 8192 {
+                            print("CONST OFF GRID:", newConstellation.name, newConstellation.pX, newConstellation.pY)
+                        }
+                        
+                        newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
+                        Constellations.append(newConstellation)
                     }
-                    newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
-                    newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
-                    newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
-                    Constellations.append(newConstellation)
                 }
                 results.close();
             }
@@ -338,8 +340,8 @@ class DataBase {
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                         newSystem.region = Constellations[conIndex].region
                         Systems.append(newSystem)
-                    } else {
-                        NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
+                    //} else {
+                    //    NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
                     }
                 }
                 results.close();
@@ -354,45 +356,6 @@ class DataBase {
         }
         
     }
-    
-    /*
-    private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {
-        var region: [Int] = [];
-        var constellation: [Int] = [];
-        
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM RegionConstellations INNER JOIN ConstellationSystems ON RegionConstellations.constellation_id=ConstellationSystems.constellation_id WHERE ConstellationSystems.system_id=? OR ConstellationSystems.system_id=?;";
-            
-            do {
-                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [systemID1, SystemID2]);
-                
-                while results.next() {
-                    region.append(Int(results.int(forColumn: table_regionConstellations.region_id)));
-                    constellation.append(Int(results.int(forColumn: table_constellationSystems.constellation_id)));
-                }
-                
-                results.close();
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-            
-            closeDatabase();
-        }
-        
-        if region.count == 2 && constellation.count == 2 {
-            if region[0] != region[1] {
-                return 2;  //Region changes in transition
-            }
-            if constellation[0] != constellation[1] {
-                return 1; //Constellation changes in transition
-            }
-        }
-        
-        // No region/constellation change in transition
-        return 0;
-    }
-     */
     
     private func determineConnectionChange(system1: SystemButton, System2: SystemButton) -> Int {
         if system1.region != System2.region {
@@ -434,14 +397,16 @@ class DataBase {
         for index in 0..<from.count {
             let systemFrom = locateSystemById(systemIdToSearch: from[index])
             let systemTo = locateSystemById(systemIdToSearch: to[index])
-            let newConnection: SystemConnector = SystemConnector();
-            newConnection.connection_id = [from[index], to[index]];
-            newConnection.sourceX = Systems[systemFrom].posX;
-            newConnection.sourceY = Systems[systemFrom].posY;
-            newConnection.targetX = Systems[systemTo].posX;
-            newConnection.targetY = Systems[systemTo].posY;
-            newConnection.gateType = determineConnectionChange(system1: Systems[systemFrom], System2: Systems[systemTo]);
-            Connectors.append(newConnection);
+            if systemFrom >= 0 && systemTo >= 0 {
+                let newConnection: SystemConnector = SystemConnector();
+                newConnection.connection_id = [from[index], to[index]];
+                newConnection.sourceX = Systems[systemFrom].posX;
+                newConnection.sourceY = Systems[systemFrom].posY;
+                newConnection.targetX = Systems[systemTo].posX;
+                newConnection.targetY = Systems[systemTo].posY;
+                newConnection.gateType = determineConnectionChange(system1: Systems[systemFrom], System2: Systems[systemTo]);
+                Connectors.append(newConnection);
+            }
         }
     }
 
