@@ -54,9 +54,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="48"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Iau-6P-aOC" userLabel="sourceSystem" customClass="SourceSearchBar" customModule="evenav" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="V02-RN-JJj"/>
+                                            <constraint firstAttribute="width" constant="200" id="V02-RN-JJj"/>
                                             <constraint firstAttribute="height" constant="48" id="pno-iu-mfX"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -82,31 +82,32 @@
                                         </constraints>
                                         <state key="normal" image="logo_32"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRm-pn-WUf">
-                                        <rect key="frame" x="314" y="8" width="57" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRm-pn-WUf">
+                                        <rect key="frame" x="408" y="9" width="48" height="30"/>
                                         <state key="normal" title="Search"/>
                                         <connections>
                                             <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rtg-7I-Rvm"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="JF7-i4-yRN" customClass="DestinationSearchBar" customModule="evenav" customModuleProvider="target">
-                                        <rect key="frame" x="150" y="0.0" width="150" height="48"/>
+                                        <rect key="frame" x="200" y="0.0" width="200" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="DeP-W4-0aJ"/>
-                                            <constraint firstAttribute="width" constant="150" id="lZs-tH-dLk"/>
+                                            <constraint firstAttribute="width" constant="200" id="lZs-tH-dLk"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.2912868924" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="bRm-pn-WUf" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="FMD-Qa-bQu"/>
                                     <constraint firstItem="JF7-i4-yRN" firstAttribute="leading" secondItem="Iau-6P-aOC" secondAttribute="trailing" id="Gyw-9Y-tb5"/>
                                     <constraint firstItem="t3l-5b-eEL" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="Iu8-YQ-As6"/>
                                     <constraint firstItem="Aqb-pO-3fj" firstAttribute="leading" secondItem="t3l-5b-eEL" secondAttribute="trailing" constant="16" id="LqT-Ry-Awt"/>
                                     <constraint firstItem="Iau-6P-aOC" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="TZC-gX-gO8"/>
                                     <constraint firstItem="Aqb-pO-3fj" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="XGQ-Tt-C6G"/>
                                     <constraint firstItem="JF7-i4-yRN" firstAttribute="centerY" secondItem="n77-Ty-44L" secondAttribute="centerY" id="cuc-bf-1F0"/>
+                                    <constraint firstItem="bRm-pn-WUf" firstAttribute="leading" secondItem="JF7-i4-yRN" secondAttribute="trailing" constant="8" id="hxQ-4i-hhq"/>
                                     <constraint firstItem="Iau-6P-aOC" firstAttribute="leading" secondItem="n77-Ty-44L" secondAttribute="leading" id="ovo-oP-djT"/>
                                     <constraint firstAttribute="trailing" secondItem="Aqb-pO-3fj" secondAttribute="trailing" constant="8" id="uNN-hk-dNX"/>
                                     <constraint firstAttribute="height" constant="48" id="uR8-T3-kfL"/>
