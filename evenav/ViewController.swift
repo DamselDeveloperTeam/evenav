@@ -104,7 +104,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if(sourceSystem.isBeingEdited) {
             sourceSystem.selectedSystemID = selectedSystem.id;
             sourceSystem.text = selectedSystemName;
-            sourceSystem.barTintColor = UIColor.green;
+            //sourceSystem.barTintColor = UIColor.green;
             //
             NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
             initiateSearch(systemName: sourceSystem.text!)
