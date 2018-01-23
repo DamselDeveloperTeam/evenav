@@ -25,8 +25,6 @@ class SystemsView: UIView {
         self.clearsContextBeforeDrawing = false
         self.isOpaque = true
         
-        
-        
         if (createArrays) {
             //  Appending regions, constellations, systems and connectors to their respective arrays.
             //NSLog("Populating region array...");
@@ -79,15 +77,12 @@ class SystemsView: UIView {
         }
         NSLog("Finished drawing \(Connectors.count) connections...");
         
-        
-
         //  Drawing systems and their names according to Systems array.
         //  Coordinates in Systems array are relative to constellation coordinates.
         NSLog("Drawing \(Systems.count) systems...");
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
             Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
-
             //  Drawing system name.
             newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
             newLabel.text = Systems[ix].name
