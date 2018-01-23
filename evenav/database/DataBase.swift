@@ -292,16 +292,20 @@ class DataBase {
                     //  Getting region coordinates from array.
                     regionIndex = locateRegionById(regionIdToSearch: newConstellation.region)
                     if regionIndex >= 0 {
-                        regX = RegionLabels[regionIndex].posX
+                        //regX = RegionLabels[regionIndex].posX
                         regY = RegionLabels[regionIndex].posY
-                    } else {
                         regX = origin
-                        regY = origin
+                        //regY = origin
+                        newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
+                        newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
+                        
+                        if newConstellation.pX < 1 || newConstellation.pX > 8192 || newConstellation.pY < 1 || newConstellation.pY > 8192 {
+                            print("CONST OFF GRID:", newConstellation.name, newConstellation.pX, newConstellation.pY)
+                        }
+                        
+                        newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
+                        Constellations.append(newConstellation)
                     }
-                    newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
-                    newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
-                    newConstellation.pZ = Int(results.int(forColumn: "positionZ")) / constellationScale
-                    Constellations.append(newConstellation)
                 }
                 results.close();
             }
@@ -331,15 +335,24 @@ class DataBase {
                     newSystem.name = results.string(forColumn: "name")!
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
-
                     conIndex = locateConstellationIdByIndex(constellationIdToSearch: newSystem.constellation)
                     if conIndex >= 0 {
+                        let sysX = (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                        let sysY = (Int(results.int(forColumn: "PositionY")) / coordinateScale)
+                        
                         newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                         newSystem.region = Constellations[conIndex].region
+                        
+                        if newSystem.id == 30001984 {
+                            print("CONSTL:", Constellations[conIndex].name, Constellations[conIndex].pX, Constellations[conIndex].pY)
+                            print("SYSTEM_d:", newSystem.name, sysX, sysY)
+                            print("SYSTEM_m:", newSystem.name, newSystem.posX, newSystem.posY)
+                        }
+                        
                         Systems.append(newSystem)
-                    } else {
-                        NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
+                    //} else {
+                    //    NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
                     }
                 }
                 results.close();
@@ -354,45 +367,6 @@ class DataBase {
         }
         
     }
-    
-    /*
-    private func determineConnectionChange(systemID1: Int, SystemID2: Int) -> Int {
-        var region: [Int] = [];
-        var constellation: [Int] = [];
-        
-        if openDataBase() {
-            let sqlStatement: String = "SELECT * FROM RegionConstellations INNER JOIN ConstellationSystems ON RegionConstellations.constellation_id=ConstellationSystems.constellation_id WHERE ConstellationSystems.system_id=? OR ConstellationSystems.system_id=?;";
-            
-            do {
-                let results = try self.connectionToFMDB.executeQuery(sqlStatement, values: [systemID1, SystemID2]);
-                
-                while results.next() {
-                    region.append(Int(results.int(forColumn: table_regionConstellations.region_id)));
-                    constellation.append(Int(results.int(forColumn: table_constellationSystems.constellation_id)));
-                }
-                
-                results.close();
-            }
-            catch {
-                print(error.localizedDescription)
-            }
-            
-            closeDatabase();
-        }
-        
-        if region.count == 2 && constellation.count == 2 {
-            if region[0] != region[1] {
-                return 2;  //Region changes in transition
-            }
-            if constellation[0] != constellation[1] {
-                return 1; //Constellation changes in transition
-            }
-        }
-        
-        // No region/constellation change in transition
-        return 0;
-    }
-     */
     
     private func determineConnectionChange(system1: SystemButton, System2: SystemButton) -> Int {
         if system1.region != System2.region {
@@ -434,14 +408,16 @@ class DataBase {
         for index in 0..<from.count {
             let systemFrom = locateSystemById(systemIdToSearch: from[index])
             let systemTo = locateSystemById(systemIdToSearch: to[index])
-            let newConnection: SystemConnector = SystemConnector();
-            newConnection.connection_id = [from[index], to[index]];
-            newConnection.sourceX = Systems[systemFrom].posX;
-            newConnection.sourceY = Systems[systemFrom].posY;
-            newConnection.targetX = Systems[systemTo].posX;
-            newConnection.targetY = Systems[systemTo].posY;
-            newConnection.gateType = determineConnectionChange(system1: Systems[systemFrom], System2: Systems[systemTo]);
-            Connectors.append(newConnection);
+            if systemFrom >= 0 && systemTo >= 0 {
+                let newConnection: SystemConnector = SystemConnector();
+                newConnection.connection_id = [from[index], to[index]];
+                newConnection.sourceX = Systems[systemFrom].posX;
+                newConnection.sourceY = Systems[systemFrom].posY;
+                newConnection.targetX = Systems[systemTo].posX;
+                newConnection.targetY = Systems[systemTo].posY;
+                newConnection.gateType = determineConnectionChange(system1: Systems[systemFrom], System2: Systems[systemTo]);
+                Connectors.append(newConnection);
+            }
         }
     }
 
@@ -550,7 +526,7 @@ class DataBase {
         labelR15.id = 10000015
         labelR15.name = "Venal"
         labelR15.posX = 3408
-        labelR15.posY = 2000 // 1424
+        labelR15.posY = 1424
         labelR15.posZ = 0
         RegionLabels.append(labelR15)
         let labelR16 = RegionLabel() as RegionLabel
@@ -578,7 +554,7 @@ class DataBase {
         labelR19.id = 10000019
         labelR19.name = "A821-A"
         labelR19.posX = 4440
-        labelR19.posY = 2000 // 1592
+        labelR19.posY = 1592
         labelR19.posZ = 0
         RegionLabels.append(labelR19)*/
         let labelR20 = RegionLabel() as RegionLabel
@@ -676,7 +652,7 @@ class DataBase {
         labelR35.id = 10000035
         labelR35.name = "Deklein"
         labelR35.posX = 2232
-        labelR35.posY = 2000 // 1416
+        labelR35.posY = 1416
         labelR35.posZ = 0
         RegionLabels.append(labelR35)
         let labelR36 = RegionLabel() as RegionLabel
@@ -717,7 +693,7 @@ class DataBase {
         let labelR41 = RegionLabel() as RegionLabel
         labelR41.id = 10000041
         labelR41.name = "Syndicate"
-        labelR41.posX = 2000 // 1872
+        labelR41.posX = 1872
         labelR41.posY = 3200
         labelR41.posZ = 0
         RegionLabels.append(labelR41)
@@ -738,7 +714,7 @@ class DataBase {
         let labelR44 = RegionLabel() as RegionLabel
         labelR44.id = 10000044
         labelR44.name = "Solitude"
-        labelR44.posX = 2000 // 1864
+        labelR44.posX = 1864
         labelR44.posY = 3640
         labelR44.posZ = 0
         RegionLabels.append(labelR44)
@@ -746,14 +722,14 @@ class DataBase {
         labelR45.id = 10000045
         labelR45.name = "Tenal"
         labelR45.posX = 3800
-        labelR45.posY = 2000 // 456
+        labelR45.posY = 1000 // 456
         labelR45.posZ = 0
         RegionLabels.append(labelR45)
         let labelR46 = RegionLabel() as RegionLabel
         labelR46.id = 10000046
         labelR46.name = "Fade"
         labelR46.posX = 2080
-        labelR46.posY = 2000 // 1784
+        labelR46.posY = 1784
         labelR46.posZ = 0
         RegionLabels.append(labelR46)
         let labelR47 = RegionLabel() as RegionLabel
@@ -773,21 +749,21 @@ class DataBase {
         let labelR49 = RegionLabel() as RegionLabel
         labelR49.id = 10000049
         labelR49.name = "Khanid"
-        labelR49.posX = 2000 // 1872
+        labelR49.posX = 1872
         labelR49.posY = 4792
         labelR49.posZ = 0
         RegionLabels.append(labelR49)
         let labelR50 = RegionLabel() as RegionLabel
         labelR50.id = 10000050
         labelR50.name = "Querious"
-        labelR50.posX = 2000 // 1568
+        labelR50.posX = 1568
         labelR50.posY = 5616
         labelR50.posZ = 0
         RegionLabels.append(labelR50)
         let labelR51 = RegionLabel() as RegionLabel
         labelR51.id = 10000051
         labelR51.name = "Cloud Ring"
-        labelR51.posX = 2000 // 1904
+        labelR51.posX = 1904
         labelR51.posY = 2640
         labelR51.posZ = 0
         RegionLabels.append(labelR51)
@@ -808,7 +784,7 @@ class DataBase {
         let labelR54 = RegionLabel() as RegionLabel
         labelR54.id = 10000054
         labelR54.name = "Aridia"
-        labelR54.posX = 2000 // 1496
+        labelR54.posX = 1496
         labelR54.posY = 4360
         labelR54.posZ = 0
         RegionLabels.append(labelR54)
@@ -816,7 +792,7 @@ class DataBase {
         labelR55.id = 10000055
         labelR55.name = "Branch"
         labelR55.posX = 3232
-        labelR55.posY = 2000 // 616
+        labelR55.posY = 1000 // 616
         labelR55.posZ = 0
         RegionLabels.append(labelR55)
         let labelR56 = RegionLabel() as RegionLabel
@@ -829,14 +805,14 @@ class DataBase {
         let labelR57 = RegionLabel() as RegionLabel
         labelR57.id = 10000057
         labelR57.name = "Outer Ring"
-        labelR57.posX = 2328 // 1328
+        labelR57.posX = 1328
         labelR57.posY = 3104
         labelR57.posZ = 0
         RegionLabels.append(labelR57)
         let labelR58 = RegionLabel() as RegionLabel
         labelR58.id = 10000058
         labelR58.name = "Fountain"
-        labelR58.posX = 2000 // 880
+        labelR58.posX = 1000 // 880
         labelR58.posY = 3824
         labelR58.posZ = 0
         RegionLabels.append(labelR58)
@@ -850,7 +826,7 @@ class DataBase {
         let labelR60 = RegionLabel() as RegionLabel
         labelR60.id = 10000060
         labelR60.name = "Delve"
-        labelR60.posX = 2048 // 1048
+        labelR60.posX = 1048
         labelR60.posY = 5744
         labelR60.posZ = 0
         RegionLabels.append(labelR60)
@@ -871,7 +847,7 @@ class DataBase {
         let labelR63 = RegionLabel() as RegionLabel
         labelR63.id = 10000063
         labelR63.name = "Period Basis"
-        labelR63.posX = 2168 // 1168
+        labelR63.posX = 1168
         labelR63.posY = 6736
         labelR63.posZ = 0
         RegionLabels.append(labelR63)

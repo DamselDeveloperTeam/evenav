@@ -19,21 +19,20 @@ public class SystemButton: UIButton {
     var region: Int = 0
     var connectsToSystem = [Int]()
     var securityStatus: Double = 0.0;
-    //var needsRedraw: Bool = true
     
     override public func draw(_ rect: CGRect) {
-        //if (!needsRedraw) { return }
         let path = UIBezierPath(ovalIn: rect)
         
         switch color {
         case UIColor.blue:
             UIColor.blue.set()
+        case UIColor.red:
+            UIColor.red.set()
         default:
             UIColor.white.set()
         }
 
         path.fill()
         path.close()
-        //needsRedraw = false
     }
 }
