@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             initiateSearch(systemName: sourceSystem.text!);
             highlightRoute(originID: sourceSystem.selectedSystemID!, destinationID: destinationBar.selectedSystemID!);
         }
+    
+        //AlertDisplayer.customAlert(title: "Test Title", message: "Test message.")
     }
     
     private func bothSystemsSelectedInSearchBar() -> Bool {
@@ -103,6 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             sourceSystem.selectedSystemID = selectedSystem.id;
             sourceSystem.text = selectedSystemName;
             sourceSystem.barTintColor = UIColor.green;
+            //
             NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
         }
         
@@ -224,6 +227,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.destinationBar.delegate = self;
         self.destinationBar.accessibilityLabel = "Destination";
         self.destinationBar.isAccessibilityElement = true;
+        
+        AlertDisplayer.viewToDisplayAlert = self;
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -286,7 +291,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         DispatchQueue.global(qos: .userInitiated).async {
             if (rFinder.findRouteFor(origin: originID, destination: destinationID)) {
                 DispatchQueue.main.async {
-                    self.systemView.setNeedsDisplay();                }
+                    self.systemView.setNeedsDisplay();
+                }
             }
         }
     }

@@ -52,6 +52,7 @@ class RouteFinder {
             NSLog("jsonParsingFailedError");
         default:
             NSLog(error.localizedDescription);
+            AlertDisplayer.noInternetConnectionRouteAlert();
         }
     }
     
