@@ -86,7 +86,7 @@ class SystemsView: UIView {
             //  Drawing system name.
             newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
             newLabel.text = Systems[ix].name
-            newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 18)
+            newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 12)
             self.addSubview(newLabel)
         }
         NSLog("...all drawing done.")
