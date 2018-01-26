@@ -292,9 +292,14 @@ class DataBase {
                     //  Getting region coordinates from array.
                     regionIndex = locateRegionById(regionIdToSearch: newConstellation.region)
                     if regionIndex >= 0 {
+                        if RegionLabels[regionIndex].name == "Outer Ring" || RegionLabels[regionIndex].name == "Fountain" || RegionLabels[regionIndex].name == "Delve" || RegionLabels[regionIndex].name == "Aridia" || RegionLabels[regionIndex].name == "Querious" || RegionLabels[regionIndex].name == "Period Basis" {
+                            print(RegionLabels[regionIndex].name, RegionLabels[regionIndex].posX, RegionLabels[regionIndex].posY)
+                            regX = 5200
+                        } else {
+                            regX = origin
+                        }
                         //regX = RegionLabels[regionIndex].posX
                         regY = RegionLabels[regionIndex].posY
-                        regX = origin
                         //regY = origin
                         newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
                         newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
@@ -337,19 +342,9 @@ class DataBase {
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
                     conIndex = locateConstellationIdByIndex(constellationIdToSearch: newSystem.constellation)
                     if conIndex >= 0 {
-                        let sysX = (Int(results.int(forColumn: "PositionX")) / coordinateScale)
-                        let sysY = (Int(results.int(forColumn: "PositionY")) / coordinateScale)
-                        
                         newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                         newSystem.region = Constellations[conIndex].region
-                        
-                        if newSystem.id == 30001984 {
-                            print("CONSTL:", Constellations[conIndex].name, Constellations[conIndex].pX, Constellations[conIndex].pY)
-                            print("SYSTEM_d:", newSystem.name, sysX, sysY)
-                            print("SYSTEM_m:", newSystem.name, newSystem.posX, newSystem.posY)
-                        }
-                        
                         Systems.append(newSystem)
                     //} else {
                     //    NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
@@ -722,7 +717,7 @@ class DataBase {
         labelR45.id = 10000045
         labelR45.name = "Tenal"
         labelR45.posX = 3800
-        labelR45.posY = 1000 // 456
+        labelR45.posY = 1200 // 456
         labelR45.posZ = 0
         RegionLabels.append(labelR45)
         let labelR46 = RegionLabel() as RegionLabel
@@ -812,7 +807,7 @@ class DataBase {
         let labelR58 = RegionLabel() as RegionLabel
         labelR58.id = 10000058
         labelR58.name = "Fountain"
-        labelR58.posX = 1000 // 880
+        labelR58.posX = 4000 // 880
         labelR58.posY = 3824
         labelR58.posZ = 0
         RegionLabels.append(labelR58)
@@ -847,7 +842,7 @@ class DataBase {
         let labelR63 = RegionLabel() as RegionLabel
         labelR63.id = 10000063
         labelR63.name = "Period Basis"
-        labelR63.posX = 1168
+        labelR63.posX = 2168
         labelR63.posY = 6736
         labelR63.posZ = 0
         RegionLabels.append(labelR63)
