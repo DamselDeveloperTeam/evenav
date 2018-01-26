@@ -293,7 +293,7 @@ class DataBase {
                     regionIndex = locateRegionById(regionIdToSearch: newConstellation.region)
                     if regionIndex >= 0 {
                         if RegionLabels[regionIndex].name == "Outer Ring" || RegionLabels[regionIndex].name == "Fountain" || RegionLabels[regionIndex].name == "Delve" || RegionLabels[regionIndex].name == "Aridia" || RegionLabels[regionIndex].name == "Querious" || RegionLabels[regionIndex].name == "Period Basis" {
-                            print(RegionLabels[regionIndex].name, RegionLabels[regionIndex].posX, RegionLabels[regionIndex].posY)
+                            //print(RegionLabels[regionIndex].name, RegionLabels[regionIndex].posX, RegionLabels[regionIndex].posY)
                             regX = 5200
                         } else {
                             regX = origin
