@@ -25,11 +25,11 @@ public class SystemButton: UIButton {
         
         switch color {
         case UIColor.blue:
-            UIColor.blue.set()
+            UIColor.blue.withAlphaComponent(0.6).set()
         case UIColor.red:
-            UIColor.red.set()
+            UIColor.red.withAlphaComponent(0.6).set()
         default:
-            UIColor.white.set()
+            UIColor.white.withAlphaComponent(0.6).set()
         }
 
         path.fill()

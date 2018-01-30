@@ -29,7 +29,7 @@ public class ConstellationLabel: UILabel {
     func initializeLabel() {
         self.textAlignment = .center
         self.font = UIFont(name: "Helvetica", size: 24)
-        self.textColor = UIColor.white.withAlphaComponent(0.16)
+        self.textColor = UIColor.white.withAlphaComponent(0.12)
         self.isOpaque = true
     }
 }
