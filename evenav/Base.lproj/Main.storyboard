@@ -120,14 +120,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pek-7E-bZc">
-                                <rect key="frame" x="0.0" y="48" width="200" height="235"/>
-                                <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="48" width="200" height="272"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="235" id="5Yy-IE-tRe"/>
-                                </constraints>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="0.2912868924" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="systemNameCellIdentifier" id="eEU-rp-dV5" customClass="SystemTableViewCell" customModule="evenav" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="200" height="44"/>
@@ -147,19 +144,19 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFC-Tz-TSD">
                                                     <rect key="frame" x="15" y="12" width="537" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.2912868924" alpha="0.75197988013698636" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <outlet property="systemIDLabel" destination="Ccj-Ow-lse" id="0nx-fU-ngM"/>
                                                 <outlet property="systemNameLabel" destination="OFC-Tz-TSD" id="Jt0-sG-bO2"/>
                                             </connections>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.2912868924" alpha="0.75197988010000005" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -172,6 +169,7 @@
                             <constraint firstItem="n77-Ty-44L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7w6-g3-UfE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="psW-V4-K6Q" secondAttribute="trailing" id="MuU-5c-OAz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n77-Ty-44L" secondAttribute="trailing" id="ThM-zv-8MX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pek-7E-bZc" secondAttribute="bottom" id="YV1-MI-Hhs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psW-V4-K6Q" secondAttribute="bottom" id="Z49-Ao-0Ii"/>
                             <constraint firstItem="psW-V4-K6Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZmE-EE-AJl"/>
                             <constraint firstItem="JF7-i4-yRN" firstAttribute="leading" secondItem="Pek-7E-bZc" secondAttribute="trailing" id="glZ-hc-INj"/>
