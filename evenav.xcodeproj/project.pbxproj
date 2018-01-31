@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4019CEAE2020F95F00F71C88 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019CEAD2020F95F00F71C88 /* SplashView.swift */; };
 		401A5B751FD02BBB0077F5BF /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B6D1FD02BB90077F5BF /* FMDatabaseAdditions.m */; };
 		401A5B761FD02BBB0077F5BF /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B6F1FD02BBA0077F5BF /* FMDatabaseQueue.m */; };
 		401A5B771FD02BBB0077F5BF /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B701FD02BBA0077F5BF /* FMDatabasePool.m */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4019CEAD2020F95F00F71C88 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		401A5B6A1FD02BB90077F5BF /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		401A5B6B1FD02BB90077F5BF /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
 		401A5B6C1FD02BB90077F5BF /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				77AEC3531FD98A4E00C5C986 /* ConstellationJSON.swift */,
 				407ADDF820173CD70076022D /* AlertDisplayer.swift */,
 				775954741FCADB7A00C92A1A /* ViewController.swift */,
+				4019CEAD2020F95F00F71C88 /* SplashView.swift */,
 				775954761FCADB7A00C92A1A /* Main.storyboard */,
 				7759547E1FCADB7A00C92A1A /* LaunchScreen.storyboard */,
 				773291881FE1362A00CF7757 /* ShowSplashScreen.swift */,
@@ -294,6 +297,7 @@
 				4060247D2011ECD400733F0A /* DestinationSearchBar.swift in Sources */,
 				77D92BB41FE080B6000FDF13 /* RegionLabel.swift in Sources */,
 				775954A41FCAFCF000C92A1A /* DataBase.swift in Sources */,
+				4019CEAE2020F95F00F71C88 /* SplashView.swift in Sources */,
 				775954881FCADF0C00C92A1A /* ScrollView.swift in Sources */,
 				401A5B761FD02BBB0077F5BF /* FMDatabaseQueue.m in Sources */,
 				404A6B7C1FFF78520044E8E9 /* RouteFinder.swift in Sources */,

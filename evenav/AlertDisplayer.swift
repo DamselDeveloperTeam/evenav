@@ -29,4 +29,10 @@ class AlertDisplayer {
         }
     }
     
+    static func syncAlert(title: String, message: String) {
+        let alertMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.viewToDisplayAlert?.present(alertMessage, animated: true, completion: nil)
+    }
+    
 }

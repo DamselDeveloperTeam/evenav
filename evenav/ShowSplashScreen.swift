@@ -21,7 +21,7 @@ class ShowSplashScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
         let messageStrings = ["Welcome to EveOnline", "Connecting to database...", "Populating region array...", "Populating constellation array...", "Populating system array...", "Populating connection array...", "Drawing 67 region labels...", "Drawing 1120 constellation labels...", "Drawing 6913 connections...", "Drawing 5433 systems...", "Loading.....", "...all drawing done"]
         var index = messageStrings.startIndex
         timer = DispatchSource.makeTimerSource(queue: .main)
@@ -37,16 +37,21 @@ class ShowSplashScreen: UIViewController {
             }
         }
         timer.resume()
-
+ 
        
         nc.addObserver(self, selector: #selector(loadingMessage), name: Notification.Name("loadingMessage"), object: nil)
         
-        activityIndicator.isHidden = false
-        lblStatusMessage.isHidden = false
-        activityIndicator.startAnimating()
-   
+        activityIndicator?.isHidden = false
+        lblStatusMessage?.isHidden = false
+        activityIndicator?.startAnimating()
+       */
         
     }
+    
+    func moveToMapView() {
+        present((self.storyboard?.instantiateViewController(withIdentifier: "map"))!, animated: true, completion: nil);
+    }
+    
     
     @objc func showViewController()
     {

@@ -13,6 +13,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var sourceSystem: SourceSearchBar!
     @IBOutlet weak var destinationBar: DestinationSearchBar!
     
+    @IBOutlet weak var splashView: UIView!
+    @IBOutlet weak var splashActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var splashLoadingLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topBarUIView: UIView!
@@ -231,29 +234,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.destinationBar.isAccessibilityElement = true;
         
         AlertDisplayer.viewToDisplayAlert = self;
+        
+        self.updateLoadingLabelText(text: "Loading started...");
+        self.splashActivityIndicator.startAnimating();
+        self.view.addSubview(self.splashView);
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //systems = Systems
-        
-        systems = Systems
-        
-        //RouteFinder Testing....
-        /*
-        let rFinder: RouteFinder = RouteFinder();
-        DispatchQueue.global(qos: .userInitiated).async {
-            if (rFinder.findRouteFor(origin: 30002771, destination: 30002772)) {
-                DispatchQueue.main.async {
-                    self.systemView.setNeedsDisplay();                }
-            }
-        }
-         */
-        
-        //_ = rFinder.findRouteFor(origin: 30002771, destination: 30002772);
-        //systemView.setNeedsDisplay();
-        
-        //highlightRoute(originID: 30002771, destinationID: 30002772);
+        self.createArrays();
     }
+    
+    
+    
+    func updateLoadingLabelText(text: String) {
+        DispatchQueue.main.async {
+            self.splashLoadingLabel.text = text;
+            //self.splashLoadingLabel.setNeedsDisplay();
+        }
+    }
+    
+    func returnToMapView() {
+        if (self.splashView != nil) {
+            self.splashView.removeFromSuperview();
+        }
+    }
+    
     
     @objc func handlePinchGesture(recognizer: UIPinchGestureRecognizer) {
         
@@ -295,6 +300,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 DispatchQueue.main.async {
                     self.systemView.setNeedsDisplay();
                 }
+            }
+        }
+    }
+    
+    func createArrays() {
+        DispatchQueue.global().async {
+            //  Appending regions, constellations, systems and connectors to their respective arrays.
+            NSLog("Populating region array...");
+            self.updateLoadingLabelText(text: "Populating region array...");
+            //messageString = "Populating region array..."
+            //nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateRegionArray()
+            NSLog("Populating constellation array...");
+            self.updateLoadingLabelText(text: "Populating constellation array...");
+            //messageString = "Populating constellation array..."
+            //nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateConstellationsArray()
+            NSLog("Populating system array...");
+            self.updateLoadingLabelText(text: "Populating system array...");
+            //messageString = "Populating system array..."
+            //nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateSystemsArray()
+            NSLog("Populating connection array...");
+            self.updateLoadingLabelText(text: "Populating connection array...");
+            //messageString = "Populating connection array..."
+            //nc.post(name: Notification.Name("loadingMessage"), object: nil)
+            DataBase.sharedInstance.CreateConnectorArray();
+            
+            self.updateLoadingLabelText(text: "Drawing map...");
+            NSLog("All arrays populated....");
+            
+            DispatchQueue.main.async {
+                self.systems = Systems;
+                self.systemView.setNeedsDisplay();
             }
         }
     }
