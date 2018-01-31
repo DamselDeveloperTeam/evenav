@@ -292,15 +292,8 @@ class DataBase {
                     //  Getting region coordinates from array.
                     regionIndex = locateRegionById(regionIdToSearch: newConstellation.region)
                     if regionIndex >= 0 {
-                        if RegionLabels[regionIndex].name == "Outer Ring" || RegionLabels[regionIndex].name == "Fountain" || RegionLabels[regionIndex].name == "Delve" || RegionLabels[regionIndex].name == "Aridia" || RegionLabels[regionIndex].name == "Querious" || RegionLabels[regionIndex].name == "Period Basis" {
-                            //print(RegionLabels[regionIndex].name, RegionLabels[regionIndex].posX, RegionLabels[regionIndex].posY)
-                            regX = 5200
-                        } else {
-                            regX = origin
-                        }
-                        //regX = RegionLabels[regionIndex].posX
+                        regX = RegionLabels[regionIndex].posX
                         regY = RegionLabels[regionIndex].posY
-                        //regY = origin
                         newConstellation.pX = regX + (Int(results.int(forColumn: "positionX")) / constellationScale)
                         newConstellation.pY = regY - (Int(results.int(forColumn: "positionY")) / constellationScale)
                         
@@ -326,7 +319,8 @@ class DataBase {
     //  Function reads systems data from database and stores it to an array of system objects.
     func CreateSystemsArray() {
         var conIndex : Int = -1     // Constellation index.
-        
+        var regIndex : Int = -1     // Region index.
+
         if openDataBase() {
             //let sqlStatement: String = "SELECT * FROM System;";
             let sqlStatement: String = "SELECT * FROM System INNER JOIN ConstellationSystems ON System.system_id=ConstellationSystems.system_id;";
@@ -341,8 +335,11 @@ class DataBase {
                     newSystem.constellation = Int(results.int(forColumn: table_constellationSystems.constellation_id));
                     newSystem.securityStatus = Double(results.double(forColumn: table_system.securityStatus));
                     conIndex = locateConstellationIdByIndex(constellationIdToSearch: newSystem.constellation)
-                    if conIndex >= 0 {
-                        newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                    if conIndex >= 0 {  // system must belong to a constellation
+                        regIndex = locateRegionById(regionIdToSearch: Constellations[conIndex].region)
+                        newSystem.posX = RegionLabels[regIndex].posX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                        //newSystem.posX = origin + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
+                        //newSystem.posX = Constellations[conIndex].pX + (Int(results.int(forColumn: "PositionX")) / coordinateScale)
                         newSystem.posY = Constellations[conIndex].pY - (Int(results.int(forColumn: "PositionY")) / coordinateScaleY)
                         newSystem.region = Constellations[conIndex].region
                         Systems.append(newSystem)
@@ -521,7 +518,7 @@ class DataBase {
         labelR15.id = 10000015
         labelR15.name = "Venal"
         labelR15.posX = 3408
-        labelR15.posY = 1424
+        labelR15.posY = 2000 //1424
         labelR15.posZ = 0
         RegionLabels.append(labelR15)
         let labelR16 = RegionLabel() as RegionLabel
@@ -647,7 +644,7 @@ class DataBase {
         labelR35.id = 10000035
         labelR35.name = "Deklein"
         labelR35.posX = 2232
-        labelR35.posY = 1416
+        labelR35.posY = 1600 //1416
         labelR35.posZ = 0
         RegionLabels.append(labelR35)
         let labelR36 = RegionLabel() as RegionLabel
@@ -717,7 +714,7 @@ class DataBase {
         labelR45.id = 10000045
         labelR45.name = "Tenal"
         labelR45.posX = 3800
-        labelR45.posY = 1200 // 456
+        labelR45.posY = 1100 //456
         labelR45.posZ = 0
         RegionLabels.append(labelR45)
         let labelR46 = RegionLabel() as RegionLabel
@@ -787,7 +784,7 @@ class DataBase {
         labelR55.id = 10000055
         labelR55.name = "Branch"
         labelR55.posX = 3232
-        labelR55.posY = 1000 // 616
+        labelR55.posY = 1400 //616
         labelR55.posZ = 0
         RegionLabels.append(labelR55)
         let labelR56 = RegionLabel() as RegionLabel

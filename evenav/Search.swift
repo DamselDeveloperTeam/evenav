@@ -66,13 +66,10 @@ public func locateSystemById(systemIdToSearch: Int) -> Int {
 
 //  Locate region Id from RegionLabels array and return index.
 public func locateRegionById(regionIdToSearch: Int) -> Int {
-    var foundIndex : Int = -1
-    
     for ix in 0 ... RegionLabels.count - 1 {
         if RegionLabels[ix].id == regionIdToSearch {
-            foundIndex = ix
-            return (foundIndex)
+            return (ix)
         }
     }
-    return (foundIndex)
+    return (-1)
 }

@@ -24,6 +24,6 @@ class SystemLabel: UILabel {
         self.textAlignment = .center
         self.font = UIFont(name: "HelveticaNeue", size: 11)
         self.textColor = UIColor.white
-        self.textColor = UIColor.white.withAlphaComponent(0.7)
+        self.textColor = UIColor.white.withAlphaComponent(0.8)
     }
 }

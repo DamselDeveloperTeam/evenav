@@ -74,6 +74,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.systemIDLabel?.text = systemID.description;
             cell.systemNameLabel?.text = systemName;
             cell.textLabel?.text = systemName;
+            cell.textLabel?.textColor = UIColor.white
         }
         
         return cell
