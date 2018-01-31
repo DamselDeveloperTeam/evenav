@@ -112,7 +112,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //
             NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
             initiateSearch(systemName: sourceSystem.text!)
-            self.view.endEditing(true)
+            self.view.endEditing(true)  // remove keyboard from view
         }
         
         if(destinationBar.isBeingEdited) {
@@ -121,7 +121,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //destinationBar.barTintColor = UIColor.green;
             NSLog("Set \(String(describing: destinationBar.selectedSystemID)) for \(destinationBar.identifier)");
             initiateSearch(systemName: destinationBar.text!)
-            self.view.endEditing(true)
+            self.view.endEditing(true)  // remove keyboard from view
         }
         
         //tableView.layer.zPosition = 0
