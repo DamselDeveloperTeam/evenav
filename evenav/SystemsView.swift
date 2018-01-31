@@ -69,6 +69,14 @@ class SystemsView: UIView {
                 self.conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
                 self.addSubview(self.conLabel)
             }
+
+            //  Drawing system labels.
+            for ix in 0 ... Systems.count - 1 {
+                self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
+                self.newLabel.text = Systems[ix].name
+                self.newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 12)
+                self.addSubview(self.newLabel)
+            }
         }
         self.createArrays = false;
 
@@ -89,10 +97,10 @@ class SystemsView: UIView {
             //  Drawing system.
             Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
             //  Drawing system name.
-            self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
+            /*self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
             self.newLabel.text = Systems[ix].name
             self.newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 12)
-            self.addSubview(self.newLabel)
+            self.addSubview(self.newLabel)*/
         }
         NSLog("...all drawing done.")
         
