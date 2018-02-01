@@ -30,31 +30,12 @@ class SystemsView: UIView {
         }
         
         if (self.createArrays) {
-            /*
-            //  Appending regions, constellations, systems and connectors to their respective arrays.
-            //NSLog("Populating region array...");
-            messageString = "Populating region array..."
-            nc.post(name: Notification.Name("loadingMessage"), object: nil)
-            DataBase.sharedInstance.CreateRegionArray()
-            //NSLog("Populating constellation array...");
-            messageString = "Populating constellation array..."
-            nc.post(name: Notification.Name("loadingMessage"), object: nil)
-            DataBase.sharedInstance.CreateConstellationsArray()
-            //NSLog("Populating system array...");
-            messageString = "Populating system array..."
-            nc.post(name: Notification.Name("loadingMessage"), object: nil)
-            DataBase.sharedInstance.CreateSystemsArray()
-            //NSLog("Populating connection array...");
-            messageString = "Populating connection array..."
-            nc.post(name: Notification.Name("loadingMessage"), object: nil)
-            DataBase.sharedInstance.CreateConnectorArray();
-             */
             //  When drawing, order matters; first drawn will be overwritten by any objects to be drawn later.
             //
             //  Drawing region labels.
             NSLog("Drawing \(RegionLabels.count) region labels...");
             for rIX in 0 ... RegionLabels.count - 1 {
-                self.regLabel = RegionLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 640, height: 64))
+                self.regLabel = RegionLabel(frame: CGRect(x: 1, y: 1, width: 640, height: 64))
                 self.regLabel.text = RegionLabels[rIX].name
                 self.regLabel.center = CGPoint(x: RegionLabels[rIX].posX, y: RegionLabels[rIX].posY)
                 self.addSubview(self.regLabel)
@@ -64,15 +45,18 @@ class SystemsView: UIView {
             NSLog("Drawing \(Constellations.count) constellation labels...");
             for cIX in 0 ... Constellations.count - 1 {
                 //conLabel = ConstellationLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 240, height: 24))
-                self.conLabel = ConstellationLabel(frame: CGRect(x: Constellations[cIX].pX / 2, y: Constellations[cIX].pY / 2, width: 240, height: 24))
+                self.conLabel = ConstellationLabel(frame: CGRect(x: 1, y: 1, width: 240, height: 24))
+                //self.conLabel = ConstellationLabel(frame: CGRect(x: Constellations[cIX].pX / 2, y: Constellations[cIX].pY / 2, width: 240, height: 24))
                 self.conLabel.text = Constellations[cIX].name
                 self.conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
                 self.addSubview(self.conLabel)
             }
 
             //  Drawing system labels.
+            NSLog("Drawing \(Systems.count) system labels...");
             for ix in 0 ... Systems.count - 1 {
-                self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
+                self.newLabel = SystemLabel(frame: CGRect(x: 1, y: 1, width: 150, height: 11))
+                //self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
                 self.newLabel.text = Systems[ix].name
                 self.newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 12)
                 self.addSubview(self.newLabel)
@@ -96,11 +80,6 @@ class SystemsView: UIView {
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
             Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
-            //  Drawing system name.
-            /*self.newLabel = SystemLabel(frame: CGRect(x: self.frame.size.width / 2, y: self.frame.size.height / 2, width: 150, height: 15))
-            self.newLabel.text = Systems[ix].name
-            self.newLabel.center = CGPoint(x: Systems[ix].posX + (systemButtonSize / 2), y: Systems[ix].posY + 12)
-            self.addSubview(self.newLabel)*/
         }
         NSLog("...all drawing done.")
         
