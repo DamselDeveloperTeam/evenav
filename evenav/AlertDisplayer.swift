@@ -2,7 +2,6 @@
 //  AlertDisplayer.swift
 //  evenav
 //
-//  Created by Janne Kemppi on 23.1.2018.
 //  Copyright © 2018 Koulutus. All rights reserved.
 //
 

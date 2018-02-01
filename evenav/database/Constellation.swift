@@ -2,7 +2,6 @@
 //  Constellation.swift
 //  EveDatabase
 //
-//  Created by Janne Kemppi on 6.12.2017.
 //  Copyright © 2017 ?. All rights reserved.
 //
 

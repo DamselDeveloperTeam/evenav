@@ -17,6 +17,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var splashActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var splashLoadingLabel: UILabel!
     
+    
+    @IBOutlet weak var detailView: UIView!
+    @IBOutlet weak var detailTextView: UITextView!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topBarUIView: UIView!
     
@@ -111,6 +115,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //sourceSystem.barTintColor = UIColor.green;
             //
             NSLog("Set \(String(describing: sourceSystem.selectedSystemID)) for \(sourceSystem.identifier)");
+            
+            
+            let dHandler: DetailHander = DetailHander();
+            self.detailTextView.text = dHandler.getDetailsForSystem(systemID: selectedSystem.id);
+            self.detailView.isHidden = false;
+            
             initiateSearch(systemName: sourceSystem.text!)
             self.view.endEditing(true)  // remove keyboard from view
         }
@@ -120,6 +130,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destinationBar.text = selectedSystemName;
             //destinationBar.barTintColor = UIColor.green;
             NSLog("Set \(String(describing: destinationBar.selectedSystemID)) for \(destinationBar.identifier)");
+            
+            let dHandler: DetailHander = DetailHander();
+            self.detailTextView.text = dHandler.getDetailsForSystem(systemID: selectedSystem.id);
+            self.detailView.isHidden = false;
+            
             initiateSearch(systemName: destinationBar.text!)
             self.view.endEditing(true)  // remove keyboard from view
         }
@@ -163,14 +178,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    /*
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         NSLog("Search bar test2!");
     }
+    */
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSLog("Search bar test!: \(searchText)");
         
-        //NSLog("ac id: \(searchBar.accessibilityIdentifier)");
+        self.detailView.isHidden = true;
+        
         if (searchBar.accessibilityLabel == "Source") {
             sourceSystem.isBeingEdited = true;
             destinationBar.isBeingEdited = false;
@@ -237,6 +255,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.destinationBar.isAccessibilityElement = true;
         
         AlertDisplayer.viewToDisplayAlert = self;
+        
+        self.detailView.isHidden = true;
+        self.detailView.isUserInteractionEnabled = true;
         
         self.updateLoadingLabelText(text: "Loading started...");
         self.splashActivityIndicator.startAnimating();
