@@ -26,9 +26,9 @@ public class SystemConnector: UIBezierPath {
         } else {
             switch self.gateType {
             case 1:
-                UIColor.magenta.withAlphaComponent(0.8).setStroke()
+                UIColor.magenta.withAlphaComponent(0.6).setStroke()
             case 2:
-                UIColor.red.withAlphaComponent(0.8).setStroke()
+                UIColor.red.withAlphaComponent(0.6).setStroke()
             //case 3: //Route highlight color
             //    UIColor.yellow.setStroke()
             default:
