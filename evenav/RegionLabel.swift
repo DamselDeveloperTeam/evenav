@@ -30,7 +30,8 @@ public class RegionLabel: UILabel {
     func initializeLabel() {
         self.textAlignment = .center
         self.font = UIFont(name: "Helvetica-Bold", size: 64)
-        self.textColor = UIColor.white.withAlphaComponent(0.04)
+        self.textColor = UIColor.orange.withAlphaComponent(0.5)
+        //self.textColor = UIColor.white.withAlphaComponent(0.04)
         self.isOpaque = true
     }
 }
