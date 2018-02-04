@@ -73,3 +73,37 @@ public func locateRegionById(regionIdToSearch: Int) -> Int {
     }
     return (-1)
 }
+
+
+// Finds a specific system from Systems array based on system id.
+public func findSystemById(systemIdToSearch: Int) -> SystemButton? {
+    for system in Systems {
+        if (system.id == systemIdToSearch) {
+            return system
+        }
+    }
+    return nil
+}
+
+// Finds a specific constellation from Constellations array based on constellation id.
+public func findConstellationById(constellationIdToSearch: Int) -> ConstellationLabel? {
+    for constellation in Constellations {
+        if (constellation.id == constellationIdToSearch) {
+            return constellation
+        }
+    }
+    return nil
+}
+
+// Finds a specific region from Regions array based on region id.
+public func findRegionById(regionIdToSearch: Int) -> RegionLabel? {
+    for region in RegionLabels {
+        if (region.id == regionIdToSearch) {
+            return region
+        }
+    }
+    return nil
+}
+
+
+

@@ -2,7 +2,6 @@
 //  Region.swift
 //  EveDatabase
 //
-//  Created by Janne Kemppi on 4.12.2017.
 //  Copyright © 2017 ?. All rights reserved.
 //
 

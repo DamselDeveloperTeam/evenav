@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -191,6 +191,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujg-Sh-Alo" userLabel="Detail View">
+                                <rect key="frame" x="268" y="48" width="300" height="272"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1y-wR-ego" userLabel="Detail Text">
+                                        <rect key="frame" x="10" y="10" width="280" height="252"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="0.69648972602739723" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.69871040239726023" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="p1y-wR-ego" secondAttribute="bottom" constant="10" id="IGA-Sd-GAn"/>
+                                    <constraint firstItem="p1y-wR-ego" firstAttribute="leading" secondItem="ujg-Sh-Alo" secondAttribute="leading" constant="10" id="YOg-dV-b8Q"/>
+                                    <constraint firstItem="p1y-wR-ego" firstAttribute="top" secondItem="ujg-Sh-Alo" secondAttribute="top" constant="10" id="a3t-c3-Sac"/>
+                                    <constraint firstAttribute="trailing" secondItem="p1y-wR-ego" secondAttribute="trailing" constant="10" id="kHM-tp-uFN"/>
+                                    <constraint firstAttribute="width" constant="300" id="rJf-D5-Hrc"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="MT6-7l-Zrf" appends="YES" id="4N4-Kg-nYJ"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.099599911489999998" green="0.16841657439999999" blue="0.34083752490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -200,13 +225,16 @@
                             <constraint firstItem="Pek-7E-bZc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="39A-xL-dli"/>
                             <constraint firstItem="16e-fR-htJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7kS-cC-fnt"/>
                             <constraint firstItem="n77-Ty-44L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7w6-g3-UfE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ujg-Sh-Alo" secondAttribute="bottom" id="7z3-I1-htL"/>
                             <constraint firstItem="16e-fR-htJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IsG-N3-n4j"/>
                             <constraint firstItem="16e-fR-htJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KCK-4m-T2g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="psW-V4-K6Q" secondAttribute="trailing" id="MuU-5c-OAz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n77-Ty-44L" secondAttribute="trailing" id="ThM-zv-8MX"/>
                             <constraint firstItem="16e-fR-htJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Twk-Nx-yeB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="psW-V4-K6Q" secondAttribute="bottom" id="Z49-Ao-0Ii"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ujg-Sh-Alo" secondAttribute="trailing" id="Zh3-ai-vUg"/>
                             <constraint firstItem="psW-V4-K6Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZmE-EE-AJl"/>
+                            <constraint firstItem="ujg-Sh-Alo" firstAttribute="top" secondItem="n77-Ty-44L" secondAttribute="bottom" id="dih-FL-n8F"/>
                             <constraint firstItem="JF7-i4-yRN" firstAttribute="leading" secondItem="Pek-7E-bZc" secondAttribute="trailing" id="glZ-hc-INj"/>
                             <constraint firstItem="psW-V4-K6Q" firstAttribute="top" secondItem="n77-Ty-44L" secondAttribute="bottom" id="hUk-ss-2kK"/>
                         </constraints>
@@ -214,6 +242,8 @@
                     </view>
                     <connections>
                         <outlet property="destinationBar" destination="JF7-i4-yRN" id="Wyo-0N-Jev"/>
+                        <outlet property="detailTextView" destination="p1y-wR-ego" id="hvk-u5-qzU"/>
+                        <outlet property="detailView" destination="ujg-Sh-Alo" id="tQZ-vE-lZw"/>
                         <outlet property="resetButton" destination="t3l-5b-eEL" id="BAn-tc-TLp"/>
                         <outlet property="sourceSystem" destination="Iau-6P-aOC" id="R1A-d4-HHj"/>
                         <outlet property="splashActivityIndicator" destination="9qI-tz-Nfc" id="lkm-V0-90o"/>
@@ -226,6 +256,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MT6-7l-Zrf"/>
             </objects>
             <point key="canvasLocation" x="-15.845070422535212" y="-753.75"/>
         </scene>
