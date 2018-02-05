@@ -478,14 +478,7 @@ class DataBase {
         labelR30.posY = 3576
         labelR30.posZ = 0
         RegionLabels.append(labelR30)*/
-        /*let labelR32 = RegionLabel() as RegionLabel
-        labelR32.id = 10000032
-        labelR32.name = "Sinq Laison"
-        labelR32.posX = 2968
-        labelR32.posY = 3456
-        labelR32.posZ = 0
-        RegionLabels.append(labelR32)
-        let labelR33 = RegionLabel() as RegionLabel
+        /*let labelR33 = RegionLabel() as RegionLabel
         labelR33.id = 10000033
         labelR33.name = "The Citadel"
         labelR33.posX = 3216
@@ -556,6 +549,15 @@ class DataBase {
         labelR37.labelX = -1270
         labelR37.labelY = -40
         RegionLabels.append(labelR37)
+        let labelR32 = RegionLabel() as RegionLabel
+        labelR32.id = 10000032
+        labelR32.name = "Sinq Laison"
+        labelR32.posX = 4000 //2968
+        labelR32.posY = 3310 //3456
+        labelR32.posZ = 0
+        labelR32.labelX = -1100
+        labelR32.labelY = -250
+        RegionLabels.append(labelR32)
         let labelR44 = RegionLabel() as RegionLabel
         labelR44.id = 10000044
         labelR44.name = "Solitude"
