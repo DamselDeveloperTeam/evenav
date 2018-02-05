@@ -20,6 +20,22 @@ public class SystemButton: UIButton {
     var connectsToSystem = [Int]()
     var securityStatus: Double = 0.0;
     
+    /*
+    func systemButtonClicked(sender: UIButton) {
+        NSLog("System Button clicked!");
+    }
+    */
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame);
+        self.addTarget(getCurrentViewController(), action: #selector(getCurrentViewController().systemButtonClicked(_:)), for: UIControlEvents.allTouchEvents);
+        self.isUserInteractionEnabled = true;
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder);
+    }
+    
     override public func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: rect)
         
@@ -35,4 +51,10 @@ public class SystemButton: UIButton {
         path.fill()
         path.close()
     }
+    
+    private func getCurrentViewController() -> ViewController {
+        let currentViewController = UIApplication.shared.keyWindow?.rootViewController as! ViewController;
+        return currentViewController
+    }
+    
 }

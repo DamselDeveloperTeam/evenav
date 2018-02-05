@@ -39,6 +39,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         detailView.isHidden = true;
     }
     
+    @objc func systemButtonClicked(_ sender: AnyObject) {
+        NSLog("System Button clicked!");
+    }
+    
     private func bothSystemsSelectedInSearchBar() -> Bool {
         if (sourceSystem.selectedSystemID == nil || destinationBar.selectedSystemID == nil) {
             return false
@@ -268,6 +272,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.updateLoadingLabelText(text: "Loading started...");
         self.splashActivityIndicator.startAnimating();
         self.view.addSubview(self.splashView);
+        
+        //self.systemView.clipsToBounds = true;
     }
     
     override func viewDidAppear(_ animated: Bool) {
