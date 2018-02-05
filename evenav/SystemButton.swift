@@ -27,7 +27,7 @@ public class SystemButton: UIButton {
         case UIColor.blue:
             UIColor.blue.withAlphaComponent(0.6).set()
         case UIColor.red:
-            UIColor.red.withAlphaComponent(0.6).set()
+            UIColor.red.withAlphaComponent(0.3).set()
         default:
             UIColor.white.withAlphaComponent(0.6).set()
         }

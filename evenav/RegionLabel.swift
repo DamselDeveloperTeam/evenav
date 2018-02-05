@@ -14,7 +14,9 @@ public class RegionLabel: UILabel {
     var posX: Int = 0
     var posY: Int = 0
     var posZ: Int = 0
-    
+    var labelX: Int = 0
+    var labelY: Int = 0
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initializeLabel()
@@ -27,8 +29,9 @@ public class RegionLabel: UILabel {
     
     func initializeLabel() {
         self.textAlignment = .center
-        self.font = UIFont(name: "Helvetica", size: 64)
-        self.textColor = UIColor.white.withAlphaComponent(0.04)
+        self.font = UIFont(name: "Helvetica-Bold", size: 64)
+        self.textColor = UIColor.orange.withAlphaComponent(0.5)
+        //self.textColor = UIColor.white.withAlphaComponent(0.04)
         self.isOpaque = true
     }
 }
