@@ -17,7 +17,7 @@ class DetailHander {
             return nil
         }
         
-        detailInformation = detailInformation + "Name:\n" + foundSystem.name + "\n\nSecurity Status:\n" + String(format:"%.2f", foundSystem.securityStatus);
+        detailInformation = detailInformation + "Name:\n" + foundSystem.name + "\n\nSecurity status:\n" + String(format:"%.2f", foundSystem.securityStatus);
         
         //String(format:"%.2f", foundSystem.securityStatus)
         
