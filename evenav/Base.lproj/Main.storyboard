@@ -53,7 +53,7 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="am3-xQ-m6i"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="psW-V4-K6Q" customClass="ScrollView" customModule="evenav" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" indicatorStyle="white" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psW-V4-K6Q" customClass="ScrollView" customModule="evenav" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="48" width="568" height="272"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OvB-bA-NTp">
@@ -80,7 +80,9 @@
                                     <constraint firstItem="OvB-bA-NTp" firstAttribute="leading" secondItem="psW-V4-K6Q" secondAttribute="leading" id="5xM-bz-8MV"/>
                                     <constraint firstAttribute="bottom" secondItem="OvB-bA-NTp" secondAttribute="bottom" id="6Kw-JS-e41"/>
                                     <constraint firstItem="bai-45-imm" firstAttribute="top" secondItem="psW-V4-K6Q" secondAttribute="top" id="Lxo-yv-fV3"/>
+                                    <constraint firstAttribute="height" constant="272" id="Mj6-sp-8Pr"/>
                                     <constraint firstItem="bai-45-imm" firstAttribute="leading" secondItem="psW-V4-K6Q" secondAttribute="leading" id="lbU-Ek-E2p"/>
+                                    <constraint firstAttribute="width" constant="568" id="yi2-CX-WXF"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n77-Ty-44L" userLabel="Top bar">
@@ -194,7 +196,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujg-Sh-Alo" userLabel="Detail View">
                                 <rect key="frame" x="268" y="48" width="300" height="272"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1y-wR-ego" userLabel="Detail Text">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1y-wR-ego" userLabel="Detail Text">
                                         <rect key="frame" x="10" y="10" width="280" height="252"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="0.69648972602739723" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -245,6 +247,7 @@
                         <outlet property="detailTextView" destination="p1y-wR-ego" id="hvk-u5-qzU"/>
                         <outlet property="detailView" destination="ujg-Sh-Alo" id="tQZ-vE-lZw"/>
                         <outlet property="resetButton" destination="t3l-5b-eEL" id="BAn-tc-TLp"/>
+                        <outlet property="scrollView" destination="psW-V4-K6Q" id="cfT-yC-TL4"/>
                         <outlet property="sourceSystem" destination="Iau-6P-aOC" id="R1A-d4-HHj"/>
                         <outlet property="splashActivityIndicator" destination="9qI-tz-Nfc" id="lkm-V0-90o"/>
                         <outlet property="splashLoadingLabel" destination="akO-XD-YmJ" id="VLr-JY-Jmq"/>
@@ -256,7 +259,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="MT6-7l-Zrf"/>
+                <tapGestureRecognizer id="MT6-7l-Zrf">
+                    <connections>
+                        <action selector="handleTapWithRecognizer:" destination="BYZ-38-t0r" id="g8h-hl-GVs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-15.845070422535212" y="-753.75"/>
         </scene>

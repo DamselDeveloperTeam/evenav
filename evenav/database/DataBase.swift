@@ -342,6 +342,7 @@ class DataBase {
                         Systems.append(newSystem)
                     //} else {
                     //    NSLog("CONSTELLATION NOT FOUND FOR SYSTEM: \(newSystem.name)")
+                        
                     }
                 }
                 results.close();

@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var splashActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var splashLoadingLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var detailTextView: UITextView!
@@ -26,12 +27,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func searchButton(_ sender: UIButton) {
         if (bothSystemsSelectedInSearchBar()) {
+            detailView.isHidden = true;
             initiateSearch(systemName: sourceSystem.text!);
             highlightRoute(originID: sourceSystem.selectedSystemID!, destinationID: destinationBar.selectedSystemID!);
         }
     
         //AlertDisplayer.customAlert(title: "Test Title", message: "Test message.")
     }
+    
+    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
+        NSLog("DetailView tapped!");
+        detailView.isHidden = true;
+    }
+    
+    @objc func systemButtonClicked(sender: SystemButton) {
+        NSLog("System Button clicked: \(sender.tag)");
+        
+        let dHandler: DetailHander = DetailHander();
+        self.detailTextView.text = dHandler.getDetailsForSystem(systemID: sender.tag);
+        self.detailView.isHidden = false;
+    }
+    
     
     private func bothSystemsSelectedInSearchBar() -> Bool {
         if (sourceSystem.selectedSystemID == nil || destinationBar.selectedSystemID == nil) {
@@ -262,6 +278,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.updateLoadingLabelText(text: "Loading started...");
         self.splashActivityIndicator.startAnimating();
         self.view.addSubview(self.splashView);
+        
+        self.scrollView.delaysContentTouches = false;
+        
+        /*
+        //self.scrollView.canCancelContentTouches = false;
+        //self.scrollView.translatesAutoresizingMaskIntoConstraints = true;
+        
+        let cancel: Bool = self.scrollView.touchesShouldCancel(in: self.systemView);
+        NSLog("Scroll view touchesShouldCancel: \(cancel)");
+        
+        
+        //self.scrollView.contentSize = CGSize(width: 6000, height: 6000);
+        NSLog("Scroll view content size: \(self.scrollView.contentSize)");
+        NSLog("System view frame size: \(self.systemView.frame)");
+         */
     }
     
     override func viewDidAppear(_ animated: Bool) {
