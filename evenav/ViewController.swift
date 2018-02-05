@@ -26,11 +26,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func searchButton(_ sender: UIButton) {
         if (bothSystemsSelectedInSearchBar()) {
+            detailView.isHidden = true;
             initiateSearch(systemName: sourceSystem.text!);
             highlightRoute(originID: sourceSystem.selectedSystemID!, destinationID: destinationBar.selectedSystemID!);
         }
     
         //AlertDisplayer.customAlert(title: "Test Title", message: "Test message.")
+    }
+    
+    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
+        NSLog("DetailView tapped!");
+        detailView.isHidden = true;
     }
     
     private func bothSystemsSelectedInSearchBar() -> Bool {
