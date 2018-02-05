@@ -40,9 +40,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         detailView.isHidden = true;
     }
     
-    @objc func systemButtonClicked(_ sender: SystemButton) {
-        NSLog("System Button clicked: \(sender.name)");
+    @objc func systemButtonClicked(sender: SystemButton) {
+        NSLog("System Button clicked: \(sender.tag)");
+        
+        let dHandler: DetailHander = DetailHander();
+        self.detailTextView.text = dHandler.getDetailsForSystem(systemID: sender.tag);
+        self.detailView.isHidden = false;
     }
+    
     
     private func bothSystemsSelectedInSearchBar() -> Bool {
         if (sourceSystem.selectedSystemID == nil || destinationBar.selectedSystemID == nil) {

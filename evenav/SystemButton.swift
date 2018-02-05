@@ -28,8 +28,10 @@ public class SystemButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame);
-        self.addTarget(getCurrentViewController(), action: #selector(getCurrentViewController().systemButtonClicked(_:)), for: UIControlEvents.allTouchEvents);
-        self.isUserInteractionEnabled = true;
+        //self.addTarget(getCurrentViewController(), action: #selector(getCurrentViewController().systemButtonClicked(_:)), for: UIControlEvents.allTouchEvents);
+        //self.tag = 999;
+        //self.addTarget(getCurrentViewController(), action: #selector(getCurrentViewController().systemButtonClicked(sender:)), for: UIControlEvents.allTouchEvents);
+        //self.isUserInteractionEnabled = true;
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -50,11 +52,6 @@ public class SystemButton: UIButton {
 
         path.fill()
         path.close()
-    }
-    
-    private func getCurrentViewController() -> ViewController {
-        let currentViewController = UIApplication.shared.keyWindow?.rootViewController as! ViewController;
-        return currentViewController
     }
     
 }

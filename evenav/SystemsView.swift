@@ -91,11 +91,13 @@ class SystemsView: UIView {
         NSLog("Drawing \(Systems.count) systems...");
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
-            //Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
+            let sysButton: SystemButton = SystemButton(frame: CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize));
+                
+            sysButton.tag = Systems[ix].id;
+            sysButton.addTarget(getCurrentViewController(), action: #selector(getCurrentViewController().systemButtonClicked(sender:)), for: UIControlEvents.allTouchEvents);
+            sysButton.isUserInteractionEnabled = true;
             
-            self.addSubview(SystemButton(frame: CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize)));
-            
-            
+            self.addSubview(sysButton);
         }
         NSLog("...all drawing done.")
         
