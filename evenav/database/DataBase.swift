@@ -414,110 +414,64 @@ class DataBase {
     //  Creating region coordinates array.
     //  Region coordinates are absolute coordinates inside UIView.
     func CreateRegionArray() {
-        /*let labelR02 = RegionLabel() as RegionLabel
-        labelR02.id = 10000002
-        labelR02.name = "The Forge"
-        labelR02.posX = 3664
-        labelR02.posY = 2920
-        labelR02.posZ = 0
-        RegionLabels.append(labelR02)
-        let labelR03 = RegionLabel() as RegionLabel
-        labelR03.id = 10000003
-        labelR03.name = "Vale of the Silent"
-        labelR03.posX = 3944
-        labelR03.posY = 2392
-        labelR03.posZ = 0
-        RegionLabels.append(labelR03)*/
         let labelR10 = RegionLabel() as RegionLabel
         labelR10.id = 10000010
         labelR10.name = "Tribute"
-        labelR10.posX = 3900 //3432
-        labelR10.posY = 2500 //2064
+        labelR10.posX = 4050 //3432
+        labelR10.posY = 2200 //2064
         labelR10.posZ = 0
         labelR10.labelX = -750
         labelR10.labelY = -570
         RegionLabels.append(labelR10)
-        /*let labelR13 = RegionLabel() as RegionLabel
-        labelR13.id = 10000013
-        labelR13.name = "Malpais"
-        labelR13.posX = 5000 //5696
-        labelR13.posY = 3072
-        labelR13.posZ = 0
-        RegionLabels.append(labelR13)
+        let labelR03 = RegionLabel() as RegionLabel
+        labelR03.id = 10000003
+        labelR03.name = "Vale of the Silent"
+        labelR03.posX = 4450 //3944
+        labelR03.posY = 2000 //2392
+        labelR03.posZ = 0
+        labelR03.labelX = -230
+        labelR03.labelY = -590
+        RegionLabels.append(labelR03)
         let labelR16 = RegionLabel() as RegionLabel
         labelR16.id = 10000016
         labelR16.name = "Lonetrek"
-        labelR16.posX = 2904
-        labelR16.posY = 2584
+        labelR16.posX = 4000 //2904
+        labelR16.posY = 2520 //2584
         labelR16.posZ = 0
+        labelR16.labelX = -1200
+        labelR16.labelY = -550
         RegionLabels.append(labelR16)
-        let labelR27 = RegionLabel() as RegionLabel
-        labelR27.id = 10000027
-        labelR27.name = "Etherium Reach"
-        labelR27.posX = 5000 //5304
-        labelR27.posY = 3488
-        labelR27.posZ = 0
-        RegionLabels.append(labelR27)
-        let labelR28 = RegionLabel() as RegionLabel
-        labelR28.id = 10000028
-        labelR28.name = "Molden Heath"
-        labelR28.posX = 4040
-        labelR28.posY = 3824
-        labelR28.posZ = 0
-        RegionLabels.append(labelR28)
+        let labelR02 = RegionLabel() as RegionLabel
+        labelR02.id = 10000002
+        labelR02.name = "The Forge"
+        labelR02.posX = 4200 //3664
+        labelR02.posY = 2470 //2920
+        labelR02.posZ = 0
+        labelR02.labelX = -800
+        labelR02.labelY = -580
+        RegionLabels.append(labelR02)
         let labelR29 = RegionLabel() as RegionLabel
         labelR29.id = 10000029
         labelR29.name = "Geminate"
-        labelR29.posX = 4224
-        labelR29.posY = 2880
+        labelR29.posX = 4300 //4224
+        labelR29.posY = 2400 //2880
         labelR29.posZ = 0
+        labelR29.labelX = -200
+        labelR29.labelY = -430
         RegionLabels.append(labelR29)
-        let labelR30 = RegionLabel() as RegionLabel
-        labelR30.id = 10000030
-        labelR30.name = "Heimatar"
-        labelR30.posX = 3640
-        labelR30.posY = 3576
-        labelR30.posZ = 0
-        RegionLabels.append(labelR30)*/
-        /*let labelR33 = RegionLabel() as RegionLabel
+        let labelR33 = RegionLabel() as RegionLabel
         labelR33.id = 10000033
         labelR33.name = "The Citadel"
-        labelR33.posX = 3216
+        labelR33.posX = 4100 //3216
         labelR33.posY = 2968
         labelR33.posZ = 0
+        labelR33.labelX = -1170
+        labelR33.labelY = -650
         RegionLabels.append(labelR33)
-        let labelR34 = RegionLabel() as RegionLabel
-        labelR34.id = 10000034
-        labelR34.name = "The Kalevala Expanse"
-        labelR34.posX = 5000 //5384
-        labelR34.posY = 3040
-        labelR34.posZ = 0
-        RegionLabels.append(labelR34)
-        let labelR40 = RegionLabel() as RegionLabel
-        labelR40.id = 10000040
-        labelR40.name = "Oasa"
-        labelR40.posX = 5000 //6128
-        labelR40.posY = 2808
-        labelR40.posZ = 0
-        RegionLabels.append(labelR40)
-        let labelR42 = RegionLabel() as RegionLabel
-        labelR42.id = 10000042
-        labelR42.name = "Metropolis"
-        labelR42.posX = 3792
-        labelR42.posY = 3424
-        labelR42.posZ = 0
-        RegionLabels.append(labelR42)
-        let labelR43 = RegionLabel() as RegionLabel
-        labelR43.id = 10000043
-        labelR43.name = "Domain"
-        labelR43.posX = 2824
-        labelR43.posY = 4384
-        labelR43.posZ = 0
-        RegionLabels.append(labelR43)*/
         let labelR41 = RegionLabel() as RegionLabel
         labelR41.id = 10000041
         labelR41.name = "Syndicate"
-        labelR41.posX = 3550 //1872
+        labelR41.posX = 3350 //1872
         labelR41.posY = 2830
         labelR41.posZ = 0
         labelR41.labelX = -2140
@@ -553,12 +507,30 @@ class DataBase {
         let labelR32 = RegionLabel() as RegionLabel
         labelR32.id = 10000032
         labelR32.name = "Sinq Laison"
-        labelR32.posX = 4000 //2968
+        labelR32.posX = 4080 //2968
         labelR32.posY = 3310 //3456
         labelR32.posZ = 0
         labelR32.labelX = -1100
         labelR32.labelY = -250
         RegionLabels.append(labelR32)
+        let labelR30 = RegionLabel() as RegionLabel
+        labelR30.id = 10000030
+        labelR30.name = "Heimatar"
+        labelR30.posX = 4020 //3640
+        labelR30.posY = 3050 //3576
+        labelR30.posZ = 0
+        labelR30.labelX = -740
+        labelR30.labelY = -170
+        RegionLabels.append(labelR30)
+        let labelR42 = RegionLabel() as RegionLabel
+        labelR42.id = 10000042
+        labelR42.name = "Metropolis"
+        labelR42.posX = 4200 //3792
+        labelR42.posY = 2800 //3424
+        labelR42.posZ = 0
+        labelR42.labelX = -500
+        labelR42.labelY = -260
+        RegionLabels.append(labelR42)
         let labelR44 = RegionLabel() as RegionLabel
         labelR44.id = 10000044
         labelR44.name = "Solitude"
@@ -577,18 +549,11 @@ class DataBase {
         labelR67.labelX = -1680
         labelR67.labelY = -140
         RegionLabels.append(labelR67)
-        /*let labelR48 = RegionLabel() as RegionLabel
-        labelR48.id = 10000048
-        labelR48.name = "Placid"
-        labelR48.posX = 2280
-        labelR48.posY = 3024
-        labelR48.posZ = 0
-        RegionLabels.append(labelR48)*/
         let labelR53 = RegionLabel() as RegionLabel
         labelR53.id = 10000053
         labelR53.name = "Cobalt Edge"
-        labelR53.posX = 3700 //6592
-        labelR53.posY = 2550 //2184
+        labelR53.posX = 3800 //6592
+        labelR53.posY = 2350 //2184
         labelR53.posZ = 0
         labelR53.labelX = 1900
         labelR53.labelY = -400
@@ -599,13 +564,58 @@ class DataBase {
         labelR21.posX = 3700 //6616
         labelR21.posY = 3050 //3144
         labelR21.posZ = 0
-        labelR21.labelX = 1900
+        labelR21.labelX = 2000
         labelR21.labelY = 0
         RegionLabels.append(labelR21)
+        let labelR27 = RegionLabel() as RegionLabel
+        labelR27.id = 10000027
+        labelR27.name = "Etherium Reach"
+        labelR27.posX = 3470 //5304
+        labelR27.posY = 3630
+        labelR27.posZ = 0
+        labelR27.labelX = 900
+        labelR27.labelY = -420
+        RegionLabels.append(labelR27)
+        let labelR34 = RegionLabel() as RegionLabel
+        labelR34.id = 10000034
+        labelR34.name = "The Kalevala Expanse"
+        labelR34.posX = 3300 //5384
+        labelR34.posY = 3050 //3040
+        labelR34.posZ = 0
+        labelR34.labelX = 900
+        labelR34.labelY = -370
+        RegionLabels.append(labelR34)
+        let labelR13 = RegionLabel() as RegionLabel
+        labelR13.id = 10000013
+        labelR13.name = "Malpais"
+        labelR13.posX = 3530 //5696
+        labelR13.posY = 3270 //3072
+        labelR13.posZ = 0
+        labelR13.labelX = 1170
+        labelR13.labelY = -420
+        RegionLabels.append(labelR13)
+        let labelR66 = RegionLabel() as RegionLabel
+        labelR66.id = 10000066
+        labelR66.name = "Perrigen Falls"
+        labelR66.posX = 3800 //5976
+        labelR66.posY = 2944
+        labelR66.posZ = 0
+        labelR66.labelX = 1370
+        labelR66.labelY = -220
+        RegionLabels.append(labelR66)
+        let labelR40 = RegionLabel() as RegionLabel
+        labelR40.id = 10000040
+        labelR40.name = "Oasa"
+        labelR40.posX = 3890 //6128
+        labelR40.posY = 2750 //2808
+        labelR40.posZ = 0
+        labelR40.labelX = 1415
+        labelR40.labelY = -420
+        RegionLabels.append(labelR40)
         let labelR18 = RegionLabel() as RegionLabel
         labelR18.id = 10000018
         labelR18.name = "The Spire"
-        labelR18.posX = 3400 //6152
+        labelR18.posX = 3600 //6152
         labelR18.posY = 3600
         labelR18.posZ = 0
         labelR18.labelX = 1500
@@ -632,8 +642,8 @@ class DataBase {
         let labelR15 = RegionLabel() as RegionLabel
         labelR15.id = 10000015
         labelR15.name = "Venal"
-        labelR15.posX = 3900 //3408
-        labelR15.posY = 2000 //1424
+        labelR15.posX = 4000 //3408
+        labelR15.posY = 1900 //1424
         labelR15.posZ = 0
         labelR15.labelX = -750
         labelR15.labelY = -700
@@ -642,7 +652,7 @@ class DataBase {
         labelR35.id = 10000035
         labelR35.name = "Deklein"
         labelR35.posX = 3600 //2232
-        labelR35.posY = 1700 //1416
+        labelR35.posY = 1400 //1416
         labelR35.posZ = 0
         labelR35.labelX = -1900
         labelR35.labelY = -600
@@ -651,7 +661,7 @@ class DataBase {
         labelR46.id = 10000046
         labelR46.name = "Fade"
         labelR46.posX = 3500 //2080
-        labelR46.posY = 2150 //1784
+        labelR46.posY = 1850 //1784
         labelR46.posZ = 0
         labelR46.labelX = -1950
         labelR46.labelY = -500
@@ -660,11 +670,20 @@ class DataBase {
         labelR23.id = 10000023
         labelR23.name = "Pure Blind"
         labelR23.posX = 3700 //2376
-        labelR23.posY = 2500 //2080
+        labelR23.posY = 2000 //2080
         labelR23.posZ = 0
-        labelR23.labelX = -1600
-        labelR23.labelY = -460
+        labelR23.labelX = -1650
+        labelR23.labelY = -640
         RegionLabels.append(labelR23)
+        let labelR69 = RegionLabel() as RegionLabel
+        labelR69.id = 10000069
+        labelR69.name = "Black Rise"
+        labelR69.posX = 3620 //2656
+        labelR69.posY = 2380 //2736
+        labelR69.posZ = 0
+        labelR69.labelX = -1430
+        labelR69.labelY = -585
+        RegionLabels.append(labelR69)
         let labelR51 = RegionLabel() as RegionLabel
         labelR51.id = 10000051
         labelR51.name = "Cloud Ring"
@@ -674,10 +693,19 @@ class DataBase {
         labelR51.labelX = -2150
         labelR51.labelY = -500
         RegionLabels.append(labelR51)
+        let labelR48 = RegionLabel() as RegionLabel
+        labelR48.id = 10000048
+        labelR48.name = "Placid"
+        labelR48.posX = 3710 //2280
+        labelR48.posY = 2700 //3024
+        labelR48.posZ = 0
+        labelR48.labelX = -1900
+        labelR48.labelY = -460
+        RegionLabels.append(labelR48)
         let labelR57 = RegionLabel() as RegionLabel
         labelR57.id = 10000057
         labelR57.name = "Outer Ring"
-        labelR57.posX = 3300 //1328
+        labelR57.posX = 3100 //1328
         labelR57.posY = 2800 //3104
         labelR57.posZ = 0
         labelR57.labelX = -2770
@@ -704,12 +732,21 @@ class DataBase {
         let labelR52 = RegionLabel() as RegionLabel
         labelR52.id = 10000052
         labelR52.name = "Kador"
-        labelR52.posX = 3140 //2512
+        labelR52.posX = 3040 //2512
         labelR52.posY = 4020 //4352
         labelR52.posZ = 0
         labelR52.labelX = -1530
         labelR52.labelY = -260
         RegionLabels.append(labelR52)
+        let labelR43 = RegionLabel() as RegionLabel
+        labelR43.id = 10000043
+        labelR43.name = "Domain"
+        labelR43.posX = 3050 //2824
+        labelR43.posY = 4020 //4384
+        labelR43.posZ = 0
+        labelR43.labelX = -1230
+        labelR43.labelY = -460
+        RegionLabels.append(labelR43)
         let labelR65 = RegionLabel() as RegionLabel
         labelR65.id = 10000065
         labelR65.name = "Kor-Azor"
@@ -794,7 +831,7 @@ class DataBase {
         let labelR38 = RegionLabel() as RegionLabel
         labelR38.id = 10000038
         labelR38.name = "The Bleak Lands"
-        labelR38.posX = 3160 //3128
+        labelR38.posX = 3240 //3128
         labelR38.posY = 3970 //4160
         labelR38.posZ = 0
         labelR38.labelX = -1010
@@ -818,6 +855,15 @@ class DataBase {
         labelR01.labelX = -550
         labelR01.labelY = -350
         RegionLabels.append(labelR01)
+        let labelR28 = RegionLabel() as RegionLabel
+        labelR28.id = 10000028
+        labelR28.name = "Molden Heath"
+        labelR28.posX = 3400 //4040
+        labelR28.posY = 3330 //3824
+        labelR28.posZ = 0
+        labelR28.labelX = -250
+        labelR28.labelY = 50
+        RegionLabels.append(labelR28)
         let labelR11 = RegionLabel() as RegionLabel
         labelR11.id = 10000011
         labelR11.name = "Great Wildlands"
@@ -944,21 +990,6 @@ class DataBase {
         labelR07.labelX = 1640
         labelR07.labelY = 20
         RegionLabels.append(labelR07)
-        /*let labelR66 = RegionLabel() as RegionLabel
-        labelR66.id = 10000066
-        labelR66.name = "Perrigen Falls"
-        labelR66.posX = 5000 //5976
-        labelR66.posY = 2944
-        labelR66.posZ = 0
-        RegionLabels.append(labelR66)
-        let labelR69 = RegionLabel() as RegionLabel
-        labelR69.id = 10000069
-        labelR69.name = "Black Rise"
-        labelR69.posX = 2656
-        labelR69.posY = 2736
-        labelR69.posZ = 0
-        RegionLabels.append(labelR69)
-        */
         /*let labelR04 = RegionLabel() as RegionLabel
          labelR04.id = 10000004
          labelR04.name = "UUA-F4"

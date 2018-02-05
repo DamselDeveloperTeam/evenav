@@ -26,14 +26,14 @@ class DetailHander {
             return nil
         }
         
-        detailInformation = detailInformation + "\n\nConstellation name:\n" + foundConstellation.name;
+        detailInformation = detailInformation + "\n\nConstellation:\n" + foundConstellation.name;
         
         guard let foundRegion = findRegionById(regionIdToSearch: foundSystem.region) else {
             NSLog("No region by id: \(foundSystem.region) found from array!");
             return nil
         }
         
-        detailInformation = detailInformation + "\n\nRegion name:\n" + foundRegion.name;
+        detailInformation = detailInformation + "\n\nRegion:\n" + foundRegion.name;
         
         /*
         var connectedSystemNames: [String] = [];
@@ -52,7 +52,7 @@ class DetailHander {
             return nil
         }
         
-        detailInformation = detailInformation + "\n\nConnections:\n";
+        detailInformation = detailInformation + "\n\nAdjacent systems:\n";
         
         for connectedSystem in connectedSystems {
             detailInformation = detailInformation + connectedSystem.name + "\n";

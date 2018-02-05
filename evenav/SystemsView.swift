@@ -48,13 +48,10 @@ class SystemsView: UIView {
     private func drawRegionLabels() {
         NSLog("Drawing \(RegionLabels.count) region labels...");
         for rIX in 0 ... RegionLabels.count - 1 {
-            self.regLabel = RegionLabel(frame: CGRect(x: 1, y: 1, width: 640, height: 64))
+            self.regLabel = RegionLabel(frame: CGRect(x: 1, y: 1, width: 680, height: 64))
             self.regLabel.text = RegionLabels[rIX].name
             self.regLabel.center = CGPoint(x: RegionLabels[rIX].posX + RegionLabels[rIX].labelX, y: RegionLabels[rIX].posY + RegionLabels[rIX].labelY)
             self.addSubview(self.regLabel)
-            if regLabel.text == "Deklein" {
-                print(regLabel.text!, regLabel.center, "x:", RegionLabels[rIX].posX, "y:", RegionLabels[rIX].posY)
-            }
         }
     }
     
@@ -62,7 +59,7 @@ class SystemsView: UIView {
     private func drawConstellationLabels() {
         NSLog("Drawing \(Constellations.count) constellation labels...");
         for cIX in 0 ... Constellations.count - 1 {
-            self.conLabel = ConstellationLabel(frame: CGRect(x: 1, y: 1, width: 240, height: 24))
+            self.conLabel = ConstellationLabel(frame: CGRect(x: 1, y: 1, width: 280, height: 24))
             self.conLabel.text = Constellations[cIX].name
             self.conLabel.center = CGPoint(x: Constellations[cIX].pX, y: Constellations[cIX].pY)
             self.addSubview(self.conLabel)
