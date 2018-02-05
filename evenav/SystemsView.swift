@@ -91,7 +91,11 @@ class SystemsView: UIView {
         NSLog("Drawing \(Systems.count) systems...");
         for ix in 0 ... Systems.count - 1 {
             //  Drawing system.
-            Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
+            //Systems[ix].draw(CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize))
+            
+            self.addSubview(SystemButton(frame: CGRect(x: Systems[ix].posX, y: Systems[ix].posY, width: systemButtonSize, height: systemButtonSize)));
+            
+            
         }
         NSLog("...all drawing done.")
         

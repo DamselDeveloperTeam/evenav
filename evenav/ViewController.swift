@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var splashActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var splashLoadingLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var detailTextView: UITextView!
@@ -39,8 +40,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         detailView.isHidden = true;
     }
     
-    @objc func systemButtonClicked(_ sender: AnyObject) {
-        NSLog("System Button clicked!");
+    @objc func systemButtonClicked(_ sender: SystemButton) {
+        NSLog("System Button clicked: \(sender.name)");
     }
     
     private func bothSystemsSelectedInSearchBar() -> Bool {
@@ -273,7 +274,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.splashActivityIndicator.startAnimating();
         self.view.addSubview(self.splashView);
         
-        //self.systemView.clipsToBounds = true;
+        self.scrollView.delaysContentTouches = false;
+        
+        /*
+        //self.scrollView.canCancelContentTouches = false;
+        //self.scrollView.translatesAutoresizingMaskIntoConstraints = true;
+        
+        let cancel: Bool = self.scrollView.touchesShouldCancel(in: self.systemView);
+        NSLog("Scroll view touchesShouldCancel: \(cancel)");
+        
+        
+        //self.scrollView.contentSize = CGSize(width: 6000, height: 6000);
+        NSLog("Scroll view content size: \(self.scrollView.contentSize)");
+        NSLog("System view frame size: \(self.systemView.frame)");
+         */
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -341,7 +355,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func createArrays() {
-        DispatchQueue.global().async {
+        //DispatchQueue.global().async {
             //  Appending regions, constellations, systems and connectors to their respective arrays.
             NSLog("Populating region array...");
             self.updateLoadingLabelText(text: "Populating region array...");
@@ -371,7 +385,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.systems = Systems;
                 self.systemView.setNeedsDisplay();
             }
-        }
+        //}
     }
 }
 
