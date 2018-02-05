@@ -360,7 +360,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func createArrays() {
-        //DispatchQueue.global().async {
+        DispatchQueue.global().async {
             //  Appending regions, constellations, systems and connectors to their respective arrays.
             NSLog("Populating region array...");
             self.updateLoadingLabelText(text: "Populating region array...");
@@ -390,7 +390,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.systems = Systems;
                 self.systemView.setNeedsDisplay();
             }
-        //}
+        }
     }
 }
 
