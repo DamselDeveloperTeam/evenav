@@ -14,6 +14,18 @@
 		401A5B781FD02BBB0077F5BF /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B711FD02BBA0077F5BF /* FMResultSet.m */; };
 		401A5B791FD02BBB0077F5BF /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 401A5B741FD02BBB0077F5BF /* FMDatabase.m */; };
 		4033B2782029A70900E2CB1E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2772029A70800E2CB1E /* README.md */; };
+		4033B2862029A76D00E2CB1E /* EVE Online License Agreement.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2792029A76D00E2CB1E /* EVE Online License Agreement.txt */; };
+		4033B2872029A76D00E2CB1E /* defaultview.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B27C2029A76D00E2CB1E /* defaultview.png */; };
+		4033B2882029A76D00E2CB1E /* loadingscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B27D2029A76D00E2CB1E /* loadingscreen.png */; };
+		4033B2892029A76D00E2CB1E /* routeplotter.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B27E2029A76D00E2CB1E /* routeplotter.png */; };
+		4033B28A2029A76D00E2CB1E /* searchsystem01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B27F2029A76D00E2CB1E /* searchsystem01.png */; };
+		4033B28B2029A76D00E2CB1E /* searchsystem02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2802029A76D00E2CB1E /* searchsystem02.png */; };
+		4033B28C2029A76D00E2CB1E /* searchsystem03.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2812029A76D00E2CB1E /* searchsystem03.png */; };
+		4033B28D2029A76D00E2CB1E /* systemdetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2822029A76D00E2CB1E /* systemdetails.png */; };
+		4033B28E2029A76D00E2CB1E /* zoomedout.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2832029A76D00E2CB1E /* zoomedout.png */; };
+		4033B28F2029A76D00E2CB1E /* zoomedview.png in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2842029A76D00E2CB1E /* zoomedview.png */; };
+		4033B2902029A76D00E2CB1E /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2852029A76D00E2CB1E /* README.html */; };
+		4033B2922029A79B00E2CB1E /* gpl-3.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4033B2912029A79B00E2CB1E /* gpl-3.0.txt */; };
 		404A6B7C1FFF78520044E8E9 /* RouteFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404A6B7B1FFF78520044E8E9 /* RouteFinder.swift */; };
 		405C061A2023110A00C007CC /* DetailHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405C06192023110A00C007CC /* DetailHandler.swift */; };
 		4060247D2011ECD400733F0A /* DestinationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4060247C2011ECD400733F0A /* DestinationSearchBar.swift */; };
@@ -67,6 +79,18 @@
 		401A5B741FD02BBB0077F5BF /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		401A5B7A1FD02BF40077F5BF /* evenav-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "evenav-Bridging-Header.h"; sourceTree = "<group>"; };
 		4033B2772029A70800E2CB1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4033B2792029A76D00E2CB1E /* EVE Online License Agreement.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EVE Online License Agreement.txt"; sourceTree = "<group>"; };
+		4033B27C2029A76D00E2CB1E /* defaultview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultview.png; sourceTree = "<group>"; };
+		4033B27D2029A76D00E2CB1E /* loadingscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingscreen.png; sourceTree = "<group>"; };
+		4033B27E2029A76D00E2CB1E /* routeplotter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeplotter.png; sourceTree = "<group>"; };
+		4033B27F2029A76D00E2CB1E /* searchsystem01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchsystem01.png; sourceTree = "<group>"; };
+		4033B2802029A76D00E2CB1E /* searchsystem02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchsystem02.png; sourceTree = "<group>"; };
+		4033B2812029A76D00E2CB1E /* searchsystem03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchsystem03.png; sourceTree = "<group>"; };
+		4033B2822029A76D00E2CB1E /* systemdetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = systemdetails.png; sourceTree = "<group>"; };
+		4033B2832029A76D00E2CB1E /* zoomedout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomedout.png; sourceTree = "<group>"; };
+		4033B2842029A76D00E2CB1E /* zoomedview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomedview.png; sourceTree = "<group>"; };
+		4033B2852029A76D00E2CB1E /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = README.html; sourceTree = "<group>"; };
+		4033B2912029A79B00E2CB1E /* gpl-3.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gpl-3.0.txt"; sourceTree = "<group>"; };
 		404A6B7B1FFF78520044E8E9 /* RouteFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFinder.swift; sourceTree = "<group>"; };
 		405C06192023110A00C007CC /* DetailHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHandler.swift; sourceTree = "<group>"; };
 		4060247C2011ECD400733F0A /* DestinationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationSearchBar.swift; sourceTree = "<group>"; };
@@ -137,6 +161,31 @@
 			path = fmdb;
 			sourceTree = "<group>";
 		};
+		4033B27A2029A76D00E2CB1E /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				4033B27B2029A76D00E2CB1E /* images */,
+				4033B2852029A76D00E2CB1E /* README.html */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		4033B27B2029A76D00E2CB1E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4033B27C2029A76D00E2CB1E /* defaultview.png */,
+				4033B27D2029A76D00E2CB1E /* loadingscreen.png */,
+				4033B27E2029A76D00E2CB1E /* routeplotter.png */,
+				4033B27F2029A76D00E2CB1E /* searchsystem01.png */,
+				4033B2802029A76D00E2CB1E /* searchsystem02.png */,
+				4033B2812029A76D00E2CB1E /* searchsystem03.png */,
+				4033B2822029A76D00E2CB1E /* systemdetails.png */,
+				4033B2832029A76D00E2CB1E /* zoomedout.png */,
+				4033B2842029A76D00E2CB1E /* zoomedview.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		775954661FCADB7A00C92A1A = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +205,9 @@
 		775954711FCADB7A00C92A1A /* evenav */ = {
 			isa = PBXGroup;
 			children = (
+				4033B27A2029A76D00E2CB1E /* docs */,
+				4033B2792029A76D00E2CB1E /* EVE Online License Agreement.txt */,
+				4033B2912029A79B00E2CB1E /* gpl-3.0.txt */,
 				4033B2772029A70800E2CB1E /* README.md */,
 				775954A81FCAFD2800C92A1A /* database */,
 				401A5B691FD02B700077F5BF /* fmdb */,
@@ -268,11 +320,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4033B28F2029A76D00E2CB1E /* zoomedview.png in Resources */,
+				4033B28B2029A76D00E2CB1E /* searchsystem02.png in Resources */,
+				4033B2862029A76D00E2CB1E /* EVE Online License Agreement.txt in Resources */,
+				4033B2922029A79B00E2CB1E /* gpl-3.0.txt in Resources */,
 				775954801FCADB7A00C92A1A /* LaunchScreen.storyboard in Resources */,
+				4033B2882029A76D00E2CB1E /* loadingscreen.png in Resources */,
+				4033B28E2029A76D00E2CB1E /* zoomedout.png in Resources */,
 				7759547D1FCADB7A00C92A1A /* Assets.xcassets in Resources */,
+				4033B28D2029A76D00E2CB1E /* systemdetails.png in Resources */,
+				4033B2872029A76D00E2CB1E /* defaultview.png in Resources */,
+				4033B28A2029A76D00E2CB1E /* searchsystem01.png in Resources */,
 				4033B2782029A70900E2CB1E /* README.md in Resources */,
 				770BC0E11FDFFA62009D33A5 /* EveDB.db in Resources */,
+				4033B2902029A76D00E2CB1E /* README.html in Resources */,
+				4033B2892029A76D00E2CB1E /* routeplotter.png in Resources */,
 				775954781FCADB7A00C92A1A /* Main.storyboard in Resources */,
+				4033B28C2029A76D00E2CB1E /* searchsystem03.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
