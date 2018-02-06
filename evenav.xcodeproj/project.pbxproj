@@ -189,6 +189,10 @@
 		775954661FCADB7A00C92A1A = {
 			isa = PBXGroup;
 			children = (
+				4033B2772029A70800E2CB1E /* README.md */,
+				4033B2792029A76D00E2CB1E /* EVE Online License Agreement.txt */,
+				4033B2912029A79B00E2CB1E /* gpl-3.0.txt */,
+				4033B27A2029A76D00E2CB1E /* docs */,
 				775954711FCADB7A00C92A1A /* evenav */,
 				775954701FCADB7A00C92A1A /* Products */,
 			);
@@ -205,10 +209,6 @@
 		775954711FCADB7A00C92A1A /* evenav */ = {
 			isa = PBXGroup;
 			children = (
-				4033B27A2029A76D00E2CB1E /* docs */,
-				4033B2792029A76D00E2CB1E /* EVE Online License Agreement.txt */,
-				4033B2912029A79B00E2CB1E /* gpl-3.0.txt */,
-				4033B2772029A70800E2CB1E /* README.md */,
 				775954A81FCAFD2800C92A1A /* database */,
 				401A5B691FD02B700077F5BF /* fmdb */,
 				775954721FCADB7A00C92A1A /* AppDelegate.swift */,
