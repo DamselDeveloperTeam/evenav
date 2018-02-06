@@ -1,0 +1,79 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="keywords" content="EVE Online, map, iOS, Swift, DamselDeveloperTeam" />
+<title>EVE Online map for iOS devices by DamselDeveloperTeam</title>
+</head>
+
+<body>
+
+<h1>EVE Online map application for iOS devices</h1>
+
+<p>A team project for the iOS Developer course by <a href="http://opiframe.com" title="Opiframe">Opiframe</a>. The code is in Swift 4. Xcode version is 9.2.</p>
+
+<h2>Requirements</h2>
+
+<p>
+This application requires at least 2GB of RAM to work properly on a hardware device.
+</p>
+
+<h2>Features</h2>
+<p>
+This application has the following features:
+
+<ul>
+<li>Zoomable map of the EVE Online universe (can be reset)
+<ul>
+<li>Note that the zoom reset icon (R) appears only after zoom</li>
+</ul>
+</li>
+<li>Search systems by name</li>
+<li>Route plotter from one system to another (requires internet connection)</li>
+<li>Displays systems, system details, connections to other systems, regions, and constellations</li>
+</ul>
+
+<h2>Third party stuff used and other things</h2>
+
+<ul>
+<li><a href="https://github.com/ccgus/fmdb" title="Visit FMDB's GitHub page">FMDB</a>, a Cocoa / Objective-C wrapper around SQLite</li>
+<li>SQLite database used for storing parsed JSON data received from <a href="" title="EVE Swagger Interface">EVE Swagger Interface</a></li>
+</ul>
+
+<h2>Links to example images</h2>
+
+<p>
+These images are screenshots taken while running an iPhone SE simulator.
+</p>
+
+<ul>
+<li><a href="images/loadingscreen.png" title="One of the messages appearing in loading screen">Loading screen</a></li>
+<li><a href="images/defaultview.png" title="The view seen once the application has finished loading">Default view</a></li>
+<li><a href="images/searchsystem01.png" title="The tableview appearing when you start looking for a system">Starting to search for a system</a></li>
+<li><a href="images/searchsystem02.png" title="The candidate presented for system search">Finished search, presenting the only available system candidate</a></li>
+<li><a href="images/systemdetails.png" title="Detailed system information regarding the selected system">Detailed system information</a></li>
+<li><a href="images/zoomedview.png" title="Zoomed map view">Zoomed map view</a></li>
+<li><a href="images/zoomedout.png" title="Maxed out zoom">Map zoomed out as far as it goes</a></li>
+<li><a href="images/routeplotter.png" title="Route between two systems (yellow line)">Plotted route between two systems (yellow line)</a></li>
+</ul>
+
+<h2>Known bugs</h2>
+
+<p>
+While everything works in various simulators, hardware is a different story, however. For example, fifth generation iPad and iPhone SE work, while iPhone 8 does not, due to insufficient memory. In order to get around this, the application needs refactoring. The source code is provided here for users to tinker as much as they want.
+</p>
+
+<h2>Licences and copyrights</h2>
+
+<p>
+The following licences, copyrights, and agreements apply to this application:
+<ul>
+<li><a href="https://developers.eveonline.com/resource/license-agreement" title="">EVE Online Licence Agreement</a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" title="">GNU GPLv3</a></li>
+<li>Copyright 2018 DamselDeveloperTeam</li>
+<li>EVE Online and all related logos and other elements are trademarks of CCP</li>
+</ul>
+</p>
+
+</body>
+</html>
